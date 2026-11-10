@@ -1,0 +1,27 @@
+# Unreal Engine build output and caches
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+.vs/
+/*.sln
+
+# The Unreal version loads the same art, audio and fonts as the Godot version (Godot/Art, Godot/Audio, Godot/Fonts).
+/Art/
+/Audio/
+/Fonts/
+
+# Godot
+Godot/.godot/
+Godot/Saved/
+Godot/Build/
+
+# The songs are AI-generated placeholders; they ship with the release build, not in the source.
+Godot/Music/*.mp3
+Godot/Music/*.ogg
+Godot/Music/*.wav
+
+# Tool caches and raw exports
+__pycache__/
+Tools/canva/raw/
+Tools/blender/renders/

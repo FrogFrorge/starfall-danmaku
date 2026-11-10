@@ -1,0 +1,34 @@
+; Engine configuration file.
+; Godot port of the Unreal DanmakuSTG project. The game runs in a fixed 384x448 field stepped at 60 Hz;
+; everything is drawn by Scripts/Hud*.cs through Scripts/HudCanvas.cs.
+
+config_version=5
+
+[application]
+
+config/name="星墜彈幕 Starfall Danmaku"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/aspect="keep"
+
+[dotnet]
+
+project/assembly_name="DanmakuSTG"
+
+[importer_defaults]
+
+texture={
+"mipmaps/generate": true
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=3
+environment/defaults/default_clear_color=Color(0.035, 0.025, 0.07, 1)

@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.8",
+	"Category": "",
+	"Description": "Original vertical bullet-hell (danmaku) STG prototype",
+	"Modules": [
+		{
+			"Name": "DanmakuSTG",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

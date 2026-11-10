@@ -1,0 +1,515 @@
+1	Tenrou
+2	Star-Chanting Onmyoji
+3	Stage 1
+4	Starlit Shrine Path
+5	Sun Wheel "Blazing Heaven Ring"
+6	Lunar Eclipse "Moonlit Reflection"
+7	Star Rain "Fall of the Heavenly River"
+8	Sun-Moon-Star Secret Art "Night-Long Firmament"
+9	So the shrine sent a boy who chases stars.
+10	Every constellation over the village has gone dark. That was you, wasn't it?
+11	I only borrowed them for a reading. The stars say that in seven nights the "Heaven's Gate" will open... I must see it clearly.
+12	I don't care about any gate! Give the stars back first!
+13	Big words. Let's see if your fate can survive this star chart!
+14	Another one looking for the stars? An archer this time.
+15	The constellations are out and the village readings are a mess. Give them back.
+16	A voice in the night told me to read the stars. The Gate will open, so I have to spread the whole sky out and look.
+17	You talk too much. I only need one arrow.
+18	Then let's see whether your arrow can pierce this star chart!
+19	A mountain monk? Climbing the shrine path this late, aren't you afraid of getting lost?
+20	The stars are gone, so I can't even find my way home~
+21	I just borrowed them for a reading. A voice in a dream said the Gate will open and told me to read every star.
+22	A voice in a dream? Did you dream about dinner too?
+23	...What a strange one. Fine, let the star chart decide your fate!
+24	A boy carrying puppets... Did the shrine send you too?
+25	Since the starlight vanished, the children have been crying. ...Right, Kogami?
+26	A voice in my dream told me: the Gate will open, and I must see every star.
+27	Then please give the stars back to the sky. Children... get ready.
+28	All right, let's see if a puppet's fate can survive this star chart!
+29	Chiaki
+30	Painter of the Turning Seasons
+31	Stage 2
+32	Scroll of the Four Seasons
+33	Spring Sign "Spring Wind of Growth"
+34	Summer Sign "Edge of the Summer Sun"
+35	Autumn Sign "Falling Leaves in the Autumn Wind"
+36	Winter Sign "Winter Blizzard"
+37	Don't move. You're standing on paint that hasn't dried.
+38	The seasons in this valley are all jumbled up. Did you paint this?
+39	Someone in a dream said to me: "The four seasons will scatter. Paint them." So I put spring, summer, autumn and winter into this one painting.
+40	A voice in a dream again? That stargazer said the same thing!
+41	Oh, he heard it too? ...Never mind, the painting isn't finished. I can't put down my brush!
+42	Then I'll knock that brush out of your hand!
+43	Ah, an archer! Your stance is beautiful. May I paint you?
+44	No. Put the seasons back.
+45	I can't. A voice said the seasons are about to scatter, so I have to paint them all while I can.
+46	Same story as the stargazer. Who's talking behind all this?
+47	I don't know either. But that voice... was gentle, and very tired.
+48	I'm the one who's tired. Let's begin.
+49	You stepped on my paint... oh, never mind, the colour looks nice.
+50	Cherry blossoms blooming and maple leaves falling at once... the persimmons on the hill don't know whether to ripen~
+51	Someone in a dream asked me to paint the seasons before they scatter. I'm just doing as I was told.
+52	You dream too? Everyone's been dreaming a lot lately.
+53	Everyone? ...So it isn't just me?
+54	Forget that, I want autumn persimmons, not frozen ones!
+55	What a quiet child. Do your puppets... want to be in the painting too?
+56	They say the seasons here are so jumbled it makes them dizzy.
+57	I painted as the voice in my dream told me. It said: "The seasons will scatter. Please keep them."
+58	Mr. Tenrou said he heard a voice too... Is it the same person?
+59	Perhaps. That voice sounded like it was about to fade away.
+60	...Then let the children return the seasons first.
+61	Arashi
+62	Weather Master of Wind and Rain
+63	Stage 3
+64	Road Above the Clouds
+65	Clear Sign "Ten Thousand Miles of Blue Sky"
+66	Rain Sign "Endless Curtain of Rain"
+67	Thunder Sign "Eye of the Storm"
+68	Fog Sign "Lost in the Clouds"
+69	Who said you could fly into my sea of clouds? Get down from there!
+70	It's rained for seven days down the mountain. You're the culprit, aren't you!
+71	Hmph, a voice from above told me to gather clouds! But I, Arashi, don't just follow orders. I happened to feel like rain!
+72	A voice from above... the stargazer and the painter heard it too. Who is it?
+73	How should I know! All I know is that the clouds I gather get sucked up into the higher sky.
+74	Someone is collecting power...?
+75	Enough talk! Survive my thunder first!
+76	Another brat who isn't afraid of lightning.
+77	Your lightning wrecked three shrines. Pay for them.
+78	Make the guy upstairs pay! He's the one muttering in my ear to gather clouds!
+79	The clouds you gathered drifted upward.
+80	...You noticed too? Something keeps pulling my clouds toward the zenith. It's annoying.
+81	Then we finish this first, and go up together.
+82	Hey! Are clouds for sitting on? Get up!
+83	It's so soft~ A nap up here would be perfect.
+84	I am Arashi, lord of the weather! Take me seriously!
+85	Okay, okay. So, lord of the weather, why won't the rain stop?
+86	...A voice up there told me to gather clouds. But the more I gather, the more gets taken, so I keep gathering like mad!
+87	Oh~ So you're angry because someone's taking your clouds.
+88	Shut up! You want sunshine? Take a downpour first!
+89	Kid, what are you doing up in the clouds with a pile of dolls?
+90	It's rained too long... the children's clothes never dry.
+91	Hmph, go complain to the voice in the sky! It's the one that told me to gather clouds.
+92	The stargazer, the painter, and you... everyone heard the same voice.
+93	So what? That voice keeps saying "there isn't much time." It's driving me nuts!
+94	...There isn't much time. Children, we have to hurry.
+95	Bokuchiku
+96	Scholar of the Four Gentlemen
+97	Stage 4
+98	Garden of the Four Gentlemen
+99	Plum Sign "Plum Blossoms in Full Bloom"
+100	Orchid Sign "Orchid Path"
+101	Bamboo Sign "Force of the Bamboo Grove"
+102	Chrysanthemum Sign "Sorrow of the Chrysanthemum"
+103	Four Gentlemen "The Gentlemen's Pact"
+104	Trespassing in this garden is most discourteous. What is your business?
+105	Every plant on the mountain is growing toward this place. That's your doing, isn't it?
+106	I gather the spirit of the plants by "Heaven's decree". When the Heaven's Gate opens, the mountain's spirit will scatter.
+107	The voice from above again! The stargazer, the painter, the weather master... it's ordering everyone around!
+108	Stars, seasons, weather, plants. Have you ever wondered what the four make together?
+109	...What?
+110	The breath that holds up the barrier between heaven and earth. Someone is collecting them. Gen of the Five Elements Altar may know more.
+111	Then I'll beat you first and go ask him!
+112	Arriving bow in hand, with such killing intent. Most inelegant.
+113	You drained all the spirit from the mountain.
+114	I act on Heaven's decree. But lately, the more I think, the less right it feels.
+115	Speak.
+116	Stars, seasons, weather and spirit are all being drawn to the zenith. Someone is mending a broken barrier.
+117	Who?
+118	I do not know. But Gen, the sorcerer of the Five Elements Altar, surely does. Before that, however, please grant me a match.
+119	Traveller, please remove your shoes before entering the garden.
+120	Oh, sorry, sorry~ Your bamboo grows so well. Can I eat the shoots?
+121	...Bamboo is a gentleman. One does not eat it.
+122	But it's tasty! Oh, and you're doing this because of a voice in a dream too, right?
+123	...How did you know? The voice said the Gate will open and the mountain's spirit will scatter, and told me to guard it.
+124	Everyone says that! The star one, the painting one, the rainy one... It's like someone's collecting a set.
+125	A set... I see. If you want answers, ask Gen of the Five Elements Altar. But first, you must get past me!
+126	A courteous guest. Have you come to view the flowers?
+127	Yes... and to ask you to return the mountain's spirit.
+128	I act on Heaven's decree. When the Gate opens the spirit will scatter, and someone must guard it.
+129	The children say the stars, the seasons, the clouds... and the spirit here all flow to the same place.
+130	Such perceptive puppets. Yes, it all flows to the zenith, as if mending something.
+131	Mending... a barrier?
+132	Perhaps. Gen, the sorcerer of the Five Elements Altar, knows the affairs of heaven better than anyone.
+133	Then please let the children through.
+134	...Plum, orchid, bamboo and chrysanthemum, all defeated by you. I concede.
+135	You heard that voice too, right? Who is it?
+136	I only know that it comes from the sky. It said that when the spirits gather, the "Gate" will open.
+137	Go to the Five Elements Altar. Gen... he may know more.
+138	Great! Thanks, bookworm!
+139	...B-bookworm?
+140	Fine archery. A gentleman does not compete, yet I competed and lost.
+141	That voice. How much do you know?
+142	Not much. Only that it says something different to each of us, yet it all points to the same night: the Night of the Heaven's Gate.
+143	Who's next?
+144	The sorcerer of the Five Elements Altar, Gen. He speaks in riddles, so... please be patient with him.
+145	I'll try.
+146	I lost. And you trampled my garden into a mess.
+147	Sorry~ But the plums here look really tasty!
+148	...They must bear fruit before you can eat them. Back to the point: there is an unusual spirit in you.
+149	Huh? Is it the bun I just ate?
+150	No. Stars, seasons, weather... and the spirit that just flowed out of me. You are collecting them as you go.
+151	What happens when I collect them all?
+152	I do not know. Ask Gen at the Five Elements Altar.
+153	Puppeteer, you win. My four gentlemen all bow to you.
+154	The children say... your flowers are actually very gentle.
+155	...Thank you. The voice told me to guard the spirit until someone came to take it. Now I think it was waiting for you.
+156	Waiting... for me?
+157	Go to the Five Elements Altar. Gen sees further than I do.
+158	Children, let's go.
+159	Gen
+160	Sorcerer of the Five Elements
+161	Stage 5
+162	Five Elements Altar
+163	Wood Sign "Growth of Ten Thousand Trees"
+164	Fire Sign "Wildfire on the Plains"
+165	Earth Sign "Landslide and Earthquake"
+166	Metal Sign "Spears and Iron Blades"
+167	Water Sign "Formless Flowing Water"
+168	Five Elements "Creation and Destruction"
+169	You've come. A moment later than the divination said.
+170	You must know! Whose is the voice giving orders in our dreams?
+171	Yoh, guardian of the Heavenly Palace. The "Four Gods Barrier" protecting this land is collapsing, and his strength is nearly spent.
+172	So he made everyone collect stars, seasons, weather, spirit...
+173	And my five elements. But he never told us why, because the real purpose was never for us to collect them.
+174	Then what was it?
+175	For "whoever defeats us" to collect them. Each time you win, that power flows into your body. You are the vessel he has been waiting for.
+176	...I don't care about any vessel! I'll ask him myself!
+177	Heh... Then prove you can hold a fifth power.
+178	Your arrows belong to metal.
+179	I don't have time for fortunes. Who's giving the orders?
+180	Yoh of the Heavenly Palace, guardian of the Four Gods Barrier. He can barely hold on, so he sent revelations to five people.
+181	To make everyone collect power?
+182	No. To make everyone "be defeated". When each gatekeeper falls, the power moves to the victor.
+183	...So everyone I shot down along the way was one of his pieces.
+184	Exactly. And I am the last piece. Come, take the five elements too.
+185	Piece or target, I shoot all the same.
+186	A mountain monk who knows the five elements?
+187	A little~ Wood makes fire to roast sweet potatoes, and fire boils water for tea!
+188	...Not wrong. All things give rise to one another, endlessly. But did you know you already carry four powers?
+189	Huh? No wonder I've been so hungry lately!
+190	Heh. Stars, seasons, weather and spirit. All arranged by Yoh of the Heavenly Palace. He is looking for someone who can carry the Four Gods Barrier.
+191	The barrier? Is it broken?
+192	Nearly shattered. And Yoh is nearly gone. So he used revelations to make us cause incidents, so that you would collect the powers one by one.
+193	That's so mean! I'll scold him later!
+194	First get past me. Come, carry the five elements as well.
+195	Puppeteer. Do your puppets belong to wood, or to earth?
+196	They... belong to me. Please tell me who the voice belongs to.
+197	Yoh, guardian of the Heavenly Palace. The Four Gods Barrier will shatter, and he will fade with it.
+198	So that's why everyone...
+199	He had us cause incidents so that you would take our powers one by one. You are already the vessel he chose.
+200	The children say that voice has always been very lonely.
+201	...Puppets see more clearly than people. Then take the fifth. Among the five elements there are no exceptions.
+202	Children, we'll carry it up carefully.
+203	The five elements are spent... The divination was right. You can hold them.
+204	My body's burning... Is this the five powers?
+205	Yes. The Heavenly Palace lies above the clouds. Yoh has been waiting for you, as you are now.
+206	He used all of you. Aren't you angry?
+207	Angry? Heh... We all dreamed of the same world about to collapse. If it can be held up, being a game piece is no shame.
+208	...I'll make sure to ask him properly.
+209	Go. The Night of the Heaven's Gate is nearly here.
+210	Metal cuts wood, and your arrow pierced the five elements. ...The divination did not lie.
+211	How do I get to the Heavenly Palace?
+212	Upward. The clouds will part for you.
+213	You're content being pieces?
+214	If the board is destroyed, there are no pieces. We only chose the move that keeps the board whole.
+215	...I don't like being played. But this move, I'll make.
+216	The five elements are spent. You're even hungrier than before, aren't you?
+217	Yes! My stomach's growling!
+218	That's five powers swirling inside you. Go up to the Heavenly Palace. Yoh will... probably treat you to a meal.
+219	Really?!
+220	The divination didn't say. But if the barrier is mended, everyone will be able to eat in peace.
+221	Then I definitely have to go!
+222	The five elements feed one another, and in the end they all flowed to you.
+223	The children say these powers... are so heavy.
+224	That is the weight of the barrier. Yoh has carried it alone for hundreds of years.
+225	Alone...
+226	Go up to the Heavenly Palace, puppeteer. You and your children may be able to share his burden.
+227	...Yes. We'll go together.
+228	Yoh
+229	Guardian of the Four Gods
+230	Stage 6
+231	Heavenly Palace
+232	East "Azure Dragon Ascends"
+233	West "Roar of the White Tiger"
+234	South "Vermilion Bird Burns the Sky"
+235	North "Black Tortoise Calms the Sea"
+236	Four Gods Secret Art "Four Symbols Become One"
+237	You are the first to make it this far.
+238	You're Yoh! You were behind everyone's incidents!
+239	Yes. The Four Gods Barrier will not survive tonight's Night of the Heaven's Gate, and I no longer have the strength to mend it.
+240	Then why not just say so! Why make Tenrou, Chiaki, Arashi, Bokuchiku and Gen cause trouble?
+241	The barrier's power only acknowledges a "victor". I cannot leave the Heavenly Palace, so I had five gatekeepers each hold one power, and waited for someone to defeat them one by one.
+242	...And all of that power is in me now.
+243	Yes. I am sorry, to them and to the villages. But if the barrier falls, far more than stars and seasons will be lost.
+244	I don't want any inheritance! I just want everyone to live in peace!
+245	That heart is exactly what makes you worthy of this power. One last time, I will test you with the might of the Four Gods.
+246	Fine! And when it's over, you're apologising to everyone yourself!
+247	Archer, you have shot through every trial.
+248	Trials? You troubled that many people just for this?
+249	The Night of the Heaven's Gate is tonight. The Four Gods Barrier is already half broken, and I can barely hold on.
+250	So you had five people cause trouble, and let me take their power one by one.
+251	The barrier's power only follows a victor. I cannot descend, so this was the only way.
+252	Selfish.
+253	I admit it. I will answer for this once the barrier is mended.
+254	...Then let's get it over with.
+255	Very well. With the Four Gods as witness, let me see whether your arrow can reach the zenith!
+256	I told you. I only need one arrow.
+257	Traveller, welcome to the Heavenly Palace.
+258	Wow~ So pretty! Are there any offerings to eat? ...No wait, I came to scold you!
+259	Scold me?
+260	You gave everyone weird dreams and messed up the stars and seasons, and the villages had an awful time!
+261	...Yes. The Four Gods Barrier shatters tonight, and I can no longer mend it. Its power only follows a victor, so I had the gatekeepers each hold a share, and waited for someone to take them.
+262	So all my hard work was just hauling your stuff?
+263	Heh... You could say that. The five powers on your back are enough to mend the barrier. But I must be sure you can bear them.
+264	Then after this, you're treating everyone to dinner. All five gatekeepers too!
+265	It's a promise. Come, face the final trial of the Four Gods.
+266	Deal~ A little exercise before dinner!
+267	A quiet child. Your puppets have walked every stage with you.
+268	Yes... They say you look very lonely.
+269	One who guards the four quarters is alone by nature. And now I can barely even guard.
+270	So you sent the revelations, and made everyone cause incidents.
+271	The barrier's power only follows a victor. I had five people each guard a share, and waited for someone to defeat them one by one. That someone is you.
+272	Mr. Tenrou, Mr. Chiaki, Mr. Arashi, Mr. Bokuchiku, Mr. Gen... none of them are actually bad people.
+273	I made them carry the blame. Once the barrier is mended, I will apologise to them myself.
+274	Then... please let the children keep you company too.
+275	...A kind answer. Then with the might of the Four Gods, I will test you one last time!
+276	Children, this is the last battle.
+277	...It is decided. The power of the Four Gods now belongs to you.
+278	What about the barrier? Can it be fixed?
+279	It is already mending. Each time you won, it grew a little steadier. The Night of the Heaven's Gate will pass safely.
+280	And you? Are you going to disappear?
+281	With the power handed over, I can finally rest. Don't worry. A guardian does not die, he only sleeps.
+282	...Next time something's wrong, just say it! Don't make everyone fight again!
+283	Ha... Yes. I promise.
+284	A fine arrow. ...The barrier is steady now.
+285	You used five people.
+286	Yes. I will remember that sin.
+287	...No need. They all knew, and still chose this path.
+288	You are kinder than you look.
+289	Quiet. Go get some sleep, guardian.
+290	...It's over. The Night of the Heaven's Gate passed without harm.
+291	Great! So can we eat now?
+292	...You fought all the way up to the Heavenly Palace for that?
+293	And for everyone! Tenrou, Chiaki, Arashi, Bokuchiku, Gen, they were all worried about you. Me too!
+294	...Is that so. So I was never guarding alone.
+295	So, next time we eat together!
+296	Yes. Next time, together.
+297	Puppeteer... thank you. The barrier is steady.
+298	The children say your voice isn't lonely anymore.
+299	For five hundred years I thought I could only rely on myself. It turns out the weight can be shared.
+300	Share it with everyone. We're all here.
+301	...Yes. Then I leave it to you, new guardian.
+302	Children, we have a new job.
+303	Reverse Sign "Five Elements Reversed"
+304	Number Sign "River Chart and Luo Writing"
+305	Formation Sign "Golden Lock of the Eight Gates"
+306	We meet again. The barrier is mended, and still you climb higher.
+307	There's a path behind the Heavenly Palace! What's up there?
+308	The "Tenhou Pavilion". Its master is Iisou, the man who won thirteen Heaven Seals from Yoh five hundred years ago.
+309	Thirteen Heaven Seals?
+310	That is when the barrier's first crack appeared. He never loses at tiles. However strong you are, you will have to play by his rules.
+311	I'm not afraid of rules!
+312	I advise you to turn back here. That is the best reading. ...If you won't listen, first pass my three readings.
+313	We meet again. Where do you mean to shoot next?
+314	Behind the Heavenly Palace. Someone's there.
+315	Iisou of the Tenhou Pavilion. He holds thirteen Heaven Seals, the last piece the barrier is missing.
+316	Then I'll take them back.
+317	He is not someone you defeat with strength. Even Yoh couldn't beat his rules. Turn back. That is my advice.
+318	No.
+319	...As expected. Then let my three readings judge whether you are worthy.
+320	Mountain monk, why are you here again?
+321	Yoh said he'd treat us, so I was looking for the kitchen~ and ended up here.
+322	Ahead lies the Tenhou Pavilion. Its master, Iisou, loves to gamble. Five hundred years ago he won thirteen Heaven Seals from Yoh.
+323	Heaven Seals? Can I eat them?
+324	...No. The barrier's crack began back then. He never loses; even Yoh lost to him. I advise you to turn back.
+325	But Yoh said he's treating us, so that Iisou might have good food too!
+326	Sigh... Then let my three readings test your appetite.
+327	Puppeteer, the barrier is mended. Why do you keep going?
+328	The children say there's another shining place up ahead, calling to us.
+329	The Tenhou Pavilion. Its master Iisou gambled with Yoh five hundred years ago and won thirteen Heaven Seals.
+330	Thirteen... Is that the barrier's very first crack?
+331	Indeed. But he never loses at tiles. With your gentleness, I fear his rules will swallow you. Turn back.
+332	...The children want to meet him.
+333	Then first let my three readings see the puppets' resolve.
+334	Iisou
+335	Mahjong Saint of the Yakuman
+336	Mahjong Parlour: Tenhou Pavilion
+337	Riichi "Riichi Ippatsu"
+338	Pinfu "Pinfu Tanyao"
+339	One Suit "Chinitsu"
+340	Pairs "Seven Pairs"
+341	Bloom "After a Kong"
+342	Yakuman I "Big Three Dragons"
+343	Yakuman II "Big Four Winds"
+344	Yakuman III "Nine Gates"
+345	Yakuman Secret Art "Thirteen Orphans"
+346	Final Hand "Tenhou"
+347	Hey there, the hero who cleared the game! Gen couldn't stop you, huh?
+348	You're Iisou! Give the thirteen Heaven Seals back to Yoh!
+349	Give them back? I won them fair and square. Five hundred years ago that overly serious guardian bet the seals against my "unbeatable luck".
+350	Why would he bet on something like that?
+351	He wanted luck that never loses, to guard a barrier that must never fall. Then he lost, and that's when the barrier started to crack.
+352	You knew all that, and you kept them anyway!
+353	I kept them because he never would rest. Without the seals, he'd have to go find a successor. ...And look, didn't he find you?
+354	...What kind of logic is that!
+355	The rules are simple: beat me in one game and all thirteen are yours. Come, let's deal!
+356	A cold, straight face. Nice. Perfect for cards.
+357	I don't gamble. Return the seals.
+358	Life is one big gamble. Yoh lost the seals back then, and the barrier began to crack.
+359	You knew that, and still didn't return them.
+360	Because that guy would have burned himself out. Without the seals he finally agreed to find someone to take over. And the one he found was you.
+361	So you were scheming too.
+362	I just sat at the table and waited. Come on, isn't every arrow you loose a gamble too?
+363	...I never miss.
+364	Haha! Then let's see if you can stay in tenpai to the very end!
+365	A mountain monk in a mahjong parlour? Lose, and you're buying dinner.
+366	Sure~ If I win, you treat me to a whole table! Oh, and give the seals back to Yoh.
+367	Oh? So Gen told you everything. Yoh lost them to me five hundred years ago. He wanted to trade them for my "unbeatable luck".
+368	Why?
+369	That blockhead wanted to guard the barrier forever without ever losing. But how can one person never lose? Only after losing would he ask for help.
+370	Hmm~ So you didn't give them back on purpose, so he'd find helpers?
+371	Who knows. Anyway, the rule is: beat me, and all thirteen are yours.
+372	Then it's a deal: thirteen Heaven Seals, plus thirteen dishes!
+373	Thirteen? What a coincidence, I have thirteen tiles to show you too. Thirteen Orphans!
+374	Little one, you brought puppets to play mahjong?
+375	The children wanted to watch you play... They say your tiles are glowing.
+376	Good eye! These thirteen are the Heaven Seals I won from Yoh five hundred years ago.
+377	The barrier's crack... started back then, didn't it?
+378	It did. That guy wanted to trade the seals for my luck so he could guard alone forever. He lost, so I kept the seals.
+379	Were you afraid he'd... always be alone?
+380	...Puppeteer, you see too clearly. Yes. Without the seals, he finally agreed to find people to share the load.
+381	Then please let the children take the seals home.
+382	Ha! Interesting. Then let's deal. Beat me and I'll even show you the Nine Gates!
+383	Hahaha! Mahjong! No, wait, you won. The thirteen Heaven Seals are yours.
+384	...Just like that?
+385	A good gambler loses gracefully. Besides, this is the day I've been waiting for.
+386	Waiting for what?
+387	For Yoh to find someone he can trust. The seals return to the barrier and the first crack is mended. A five-hundred-year game, finally over.
+388	You've been helping him all along, haven't you.
+389	Who knows? Next time bring Yoh over for a game. We're one player short.
+390	Beautiful. Every arrow in tenpai, every arrow a winning hand.
+391	The seals.
+392	Take them, take them. Thirteen, not one missing.
+393	You meant to give them back all along.
+394	I was just waiting for someone worth giving them to. That guy Yoh finally learned to rely on others.
+395	...You two are both a pain.
+396	Haha! I'll take that as a compliment. Come play a game sometime!
+397	I lose, I lose! As promised, thirteen Heaven Seals... and thirteen dishes!
+398	Yay~! There's really food?
+399	Of course. The Tenhou Pavilion's kitchen is the best in heaven.
+400	Then bring Yoh along too! I bet he hasn't had a proper meal in ages.
+401	...You mountain monk, you always hit the mark. Fine, I'll drag him along.
+402	It's a promise! Thirteen dishes, not one less!
+403	You win, puppeteer. Please take the thirteen Heaven Seals home.
+404	Thank you... The children say you're actually sad to part with them.
+405	Sad to part with them? Ha... Yes. These seals kept me company for five hundred years.
+406	Then you can come to the Heavenly Palace to see them. Together with Yoh.
+407	...You're frighteningly kind. All right, it's settled.
+408	Children, let's go home. The seals are coming too.
+409	-
+410	Start Game
+411	Stage Practice
+412	-
+413	(Locked)
+414	Arrows / WASD  Move    Shift  Focus
+415	Z  Shoot / OK    X  Bomb / Back
+416	P  Pause    R  Restart
+417	Choose Your Character
+418	Left / Right  Select     Z  OK     X  Back
+419	Choose Difficulty
+420	Up / Down  Select     Z  OK     X  Back
+421	-
+422	INVINCIBLE
+423	SHIELD
+424	Bonus
+425	-
+426	Bonus Failed
+427	Last Card: Bombs Deal No Damage
+428	-
+429	Survival Card: Last Until Time Runs Out!
+430	Hi-Score
+431	Score
+432	Lives
+433	Pieces
+434	Bombs
+435	Power
+436	Graze
+437	Spells
+438	Player
+439	-
+440	-
+441	Difficulty
+442	Stage
+443	 (Practice)
+444	-
+445	Bullets
+446	Clear
+447	Stage Bonus
+448	Z  Next Stage
+449	Game Over
+450	R  Retry with the same character
+451	Z  Back to character select
+452	All Clear!
+453	Spell Cards Captured
+454	-
+455	R  Play Again
+456	Paused
+457	P  Resume    R  Restart
+458	Azure Dragon
+459	White Tiger
+460	Vermilion Bird
+461	Black Tortoise
+462	Descends
+463	Riichi Ippatsu
+464	Pinfu Tanyao
+465	Chinitsu
+466	Seven Pairs
+467	After a Kong
+468	Big Three Dragons
+469	Big Four Winds
+470	Nine Gates
+471	Thirteen Orphans
+472	-
+473	-
+474	Ren
+475	Wide Type
+476	Five talismans in a forward fan
+477	Barrier "Evil-Breaking Shockwave"
+478	A spreading shockwave clears bullets and hits the boss hard once
+479	Sou
+480	Piercing Type
+481	A thunder-bow beam that pierces continuously
+482	Thunder Bow "Flash of Heavenly Lightning"
+483	A huge vertical laser clears its column and keeps burning
+484	Haru
+485	Homing Type
+486	Two rows of talismans plus homing charms
+487	Time Sign "Slow-Flow Barrier"
+488	Enemies move at half speed (not invincible)
+489	Yuki
+490	Puppet Type
+491	Four shikigami follow and shoot
+492	Puppet "Shikigami Storm"
+493	The shikigami spray shots in fans
+494	Easy
+495	Sparse, slower bullets and two extra lives
+496	Normal
+497	Standard difficulty
+498	Hard
+499	Denser patterns for practised players
+500	Lunatic
+501	Full-power danmaku beyond mortal reach
+502	Extra
+503	A special challenge after clearing the game
+504	Last card: bombs deal no damage
+505	WARNING
+506	Ahead lies the Tenhou Pavilion
+507	Spell Card Captured!!
+508	Capture Failed...
+509	Bomb piece
+510	1UP!
+511	Life pieces
+512	Bomb +1
+513	-
+514	Score Bonus  1UP!
+515	Graze bonus
