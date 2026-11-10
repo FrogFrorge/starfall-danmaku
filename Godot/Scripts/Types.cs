@@ -160,7 +160,7 @@ public enum ECharacter : byte
 
 public enum EBulletShape : byte { Small, Medium, Large, Rice, Star, Crescent, Comet, Sakura, Maple, Snow, Water, Fire, Chrys, Tile }
 public enum EBulletEvent : byte { None, AimAtPlayer, SplitRing, StopThenAim, SplitTwo }
-public enum EItemType : byte { Power, BigPower, Point, Star, LifePiece, BombPiece }
+public enum EItemType : byte { Power, BigPower, Point, Star, LifePiece, BombPiece, OneUp }
 public enum EShotType : byte { Talisman, Straight, Homing, Doll }
 /** Sound effect events pushed by the simulation, played by DanmakuAudio. */
 public enum ESfx : byte { Shot, EnemyShot, Graze, Item, EnemyDie, PlayerDie, Bomb, Spell, SpellGet, Break, MenuMove, MenuOk, MenuBack, Pause, Count }
@@ -269,6 +269,7 @@ public class FEnemy
 	public FVector2f Acc = FVector2f.Zero;   // added to Vel every frame (curving paths)
 	public float SineAmp = 0f, SineFreq = 0f, SinePhase = 0f;   // sideways sway
 	public bool bRevenge = false;   // bursts into a small ring when killed
+	public bool bCarry1Up = false;  // carries a 1UP item that drops when it is shot down
 	public FLinearColor Color = LinColor.Blue;
 	public bool bDead = false;
 }

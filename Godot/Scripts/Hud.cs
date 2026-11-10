@@ -100,6 +100,7 @@ public sealed class DanmakuHud
 	Texture2D ShotTalisman;
 	Texture2D ItemPower;
 	Texture2D ItemPoint;
+	Texture2D ItemOneUp;   // the 1UP item (Art/item_1up.png)
 	Texture2D IconLife;
 	Texture2D IconBomb;
 
@@ -170,6 +171,7 @@ public sealed class DanmakuHud
 		ShotTalisman   = LoadArt("shot_talisman.png");
 		ItemPower      = LoadArt("item_power.png");
 		ItemPoint      = LoadArt("item_point.png");
+		ItemOneUp      = LoadArt("item_1up.png");
 		IconLife       = LoadArt("icon_life.png");
 		IconBomb       = LoadArt("icon_bomb.png");
 
@@ -1048,6 +1050,14 @@ public sealed class DanmakuHud
 				if (Icon != null) ArtSprite(Icon, P, 18f, Tint);
 				break;
 			}
+			case EItemType.OneUp:
+			{
+				// the 1UP: a pulsing pink glow so it stands out from power and point items
+				Sprite(SoftTex, P, V2D(46f + 6f * FMath.Sin(I.Age * 0.2f)), new FLinearColor(1f, 0.45f, 0.65f, 0.75f * Tint.A), EBlend.Additive);
+				Texture2D Icon = ItemOneUp ?? IconLife;
+				if (Icon != null) ArtSprite(Icon, P, 24f, Tint);
+				break;
+			}
 			case EItemType.Star:
 				Sprite(BulletStar ?? SoftTex, P, V2D(12f), new FLinearColor(0.6f, 1f, 0.6f, 0.8f * Tint.A), EBlend.Additive, I.Age * 6f);
 				break;
@@ -1065,6 +1075,13 @@ public sealed class DanmakuHud
 			float R = E.Radius;
 			FLinearColor Tint = E.HitFlash > 0 ? new FLinearColor(1f, 0.7f, 0.7f) : LinColor.White;
 			Sprite(SoftTex, E.Pos, V2D(R * 4f), WithAlpha(E.Color, 0.35f), EBlend.Additive);
+			if (E.bCarry1Up)
+			{
+				// the 1UP carrier holds its item up for everyone to see
+				Sprite(SoftTex, E.Pos, V2D(R * 7f + 6f * FMath.Sin(S.Frame * 0.15f)), new FLinearColor(1f, 0.45f, 0.65f, 0.5f), EBlend.Additive);
+				Texture2D Carried = ItemOneUp ?? IconLife;
+				if (Carried != null) ArtSprite(Carried, E.Pos + new FVector2f(0f, -R * 2.2f), 18f, LinColor.White);
+			}
 			Texture2D Art = E.Kind == 2 ? SpiritArt : (E.Kind == 1 ? FairyRedArt : FairyBlueArt);
 			float T = (S.Frame + E.Age) + E.Pos.X;
 			if (E.Kind == 2) WarpSprite(Art, E.Pos, R * 2.6f, Tint, -E.Vel.X * 0.4f, 1.6f, T * 0.22f, 0.16f, 0.0f);
@@ -1574,10 +1591,10 @@ public sealed class DanmakuHud
 			ScreenText(Label, X0, Y, LabelColor, 1.0f, false, ValX - X0 - 8f * TextScale);
 			float IH = 26f * TextScale;
 			float IX = ValX;
-			for (int i = 0; i < FMath.Min(Count, 8); ++i)
+			for (int i = 0; i < FMath.Min(Count, DanmakuWorld.MaxLives); ++i)
 			{
 				if (Icon == null) break;
-				float IW = IH * (float)Icon.GetWidth() / (float)FMath.Max(1, Icon.GetHeight());
+				float IW = FMath.Min(27f * TextScale, IH * (float)Icon.GetWidth() / (float)FMath.Max(1, Icon.GetHeight()));
 				Canvas.TexRect(Icon, new Vector2(IX, Y + 2f * TextScale), new Vector2(IW, IH), LinColor.White, EBlend.Translucent);
 				IX += IW + 4f * TextScale;
 			}
@@ -1588,9 +1605,11 @@ public sealed class DanmakuHud
 		Row("分數", $"{S.Score:D10}");
 		Y += Line * 0.4f;
 		IconRow("殘機", S.Player.Lives, IconLife);
-		ScreenText(Tr("碎片") + $" {S.Player.LifePieces}/{DanmakuWorld.LifePiecesPerLife}", ValX + (FMath.Max(FMath.Min(S.Player.Lives, 8), FMath.Min(S.Player.Bombs, 8)) * 30f + 14f) * TextScale, Y - Line + 6f * TextScale, new FLinearColor(1f, 0.7f, 0.8f), 0.7f);
+		// the pieces counters sit in a fixed column after room for six icons (the most you can hold), so they never move
+		float PiecesX = ValX + (DanmakuWorld.MaxLives * 31f + 10f) * TextScale;
+		ScreenText(Tr("碎片") + $" {S.Player.LifePieces}/{DanmakuWorld.LifePiecesPerLife}", PiecesX, Y - Line + 6f * TextScale, new FLinearColor(1f, 0.7f, 0.8f), 0.7f);
 		IconRow("靈符", S.Player.Bombs, IconBomb);
-		ScreenText(Tr("碎片") + $" {S.Player.BombPieces}/{S.BombPiecesNeeded()}", ValX + (FMath.Max(FMath.Min(S.Player.Lives, 8), FMath.Min(S.Player.Bombs, 8)) * 30f + 14f) * TextScale, Y - Line + 6f * TextScale, new FLinearColor(0.7f, 1f, 0.75f), 0.7f);
+		ScreenText(Tr("碎片") + $" {S.Player.BombPieces}/{S.BombPiecesNeeded()}", PiecesX, Y - Line + 6f * TextScale, new FLinearColor(0.7f, 1f, 0.75f), 0.7f);
 		Y += Line * 0.4f;
 		Row("靈力", Inv($"{S.Player.Power:F2} / 4.00"));
 		Row("擦彈", $"{S.Graze}");

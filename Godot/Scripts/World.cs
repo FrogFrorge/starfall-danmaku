@@ -162,8 +162,8 @@ public partial class DanmakuWorld
 	// Life / bomb recovery (see UpdateRecovery)
 	public const int LifePiecesPerLife = 5;
 	public const int BombPiecesPerBomb = 3;
-	public const int MaxLives = 8;
-	public const int MaxBombs = 8;
+	public const int MaxLives = 6;
+	public const int MaxBombs = 6;
 	public const int GrazePerBombPiece = 250;
 	public int NextExtend = 0;          // index into the score-extend table
 	public int NextGrazeReward = GrazePerBombPiece;

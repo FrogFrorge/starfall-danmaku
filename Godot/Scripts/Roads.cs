@@ -92,6 +92,17 @@ public partial class DanmakuWorld
 		return E;
 	}
 
+	/** A fairy carrying a 1UP: it hovers in the middle for a while, and drops the 1UP if you shoot it down in time. */
+	public FEnemy OneUpCarrier()
+	{
+		FEnemy E = Sentry(new FVector2f(FieldW * 0.5f, -20f), 1, 70, 480, 160f);
+		E.bCarry1Up = true;
+		E.bRevenge = false;
+		E.Color = new FLinearColor(1f, 0.55f, 0.75f);
+		E.DropPower = 0;
+		return E;
+	}
+
 	public FEnemy Spirit(FVector2f Pos, int Pattern, float HP)
 	{
 		return SpawnEnemy(Pos, new FVector2f(0f, 1.5f), 2, HP * 0.7f, Pattern, 90, 690, new FVector2f(0f, -1f), 8, 8);
@@ -291,6 +302,7 @@ public partial class DanmakuWorld
 		}
 		if (F == 2600) for (int i = 0; i < 4; ++i) Sentry(new FVector2f(64f + i * 85f, -20f), i % 2 != 0 ? 1 : 8, 60, 300).Color = RYellow;
 		if (Rep(F, 2700, 16, 18, ref K)) Doll(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), -16f), new FVector2f(0f, 2.1f), 0).Color = RYellow;
+		if (F == 3100) OneUpCarrier();   // the last fairy before the final boss carries a 1UP
 		if (F >= 3600 && (Enemies.Count == 0 || F >= 3900)) StartBoss();
 	}
 
@@ -345,6 +357,7 @@ public partial class DanmakuWorld
 			Spirit(new FVector2f(FieldW * 0.5f, -30f), 22, 600f);
 		}
 		if (Rep(F, 6800, 20, 20, ref K)) Doll(new FVector2f(K % 2 != 0 ? -16f : FieldW + 16f, 40f + (K % 3) * 25f), new FVector2f(K % 2 != 0 ? 2f : -2f, 0.6f), 0);
+		if (F == 7300) OneUpCarrier();   // the last fairy before 一索 carries a 1UP
 		if (F >= 7800 && (Enemies.Count == 0 || F >= 8100)) StartBoss();
 	}
 

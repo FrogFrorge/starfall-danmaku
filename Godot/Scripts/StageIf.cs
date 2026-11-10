@@ -830,6 +830,7 @@ public partial class DanmakuWorld
 		if (Rep(F, 4400, 30, 14, ref K)) Doll(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), -16f), new FVector2f(0f, 1.8f), K % 3 == 0 ? 16 : 0).Color = Pearl;
 		if (Rep(F, 5200, 44, 8, ref K)) Doll(new FVector2f(FieldW * 0.5f + (K % 2 != 0 ? -1f : 1f) * (20f + (K % 11) * 14f), -16f), new FVector2f(0f, 2f), K % 3 == 0 ? 2 : -1).Color = Bronze;
 		if (F == 6000) for (int i = 0; i < 4; ++i) Sentry(new FVector2f(64f + i * 85f, -20f), i % 2 != 0 ? 1 : 8, 60, 360).Color = i % 2 != 0 ? Crimson : Indigo;
+		if (F == 6500) OneUpCarrier();   // the last fairy before the four perils carries a 1UP
 		if (F >= 7000 && (Enemies.Count == 0 || F >= 7300)) StartBoss();
 	}
 }

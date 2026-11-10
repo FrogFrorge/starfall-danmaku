@@ -60,7 +60,7 @@ public partial class DanmakuWorld
 				new(600f, 35, false, "", static (w, t) => w.Pattern_NonSpell2(t)),
 				new(850f, 50, true, "月蝕「月面反照」", static (w, t) => w.Pattern_Moon(t)),
 				new(850f, 50, true, "星雨「天河崩落」", static (w, t) => w.Pattern_Star(t)),
-				new(1300f, 60, true, "日月星奧義「終夜天象」", static (w, t) => w.Pattern_Final(t)),
+				new(1100f, 60, true, "日月星奧義「終夜天象」", static (w, t) => w.Pattern_Final(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{

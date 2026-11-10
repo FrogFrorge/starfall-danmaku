@@ -56,13 +56,16 @@ def shift(layer, dx, dy):
 
 
 def cloth_weight(h, w, spec):
-    """How much each pixel flutters: outer sleeves / robe below `top`, the hem, minus rigid `keep` boxes (feathered)."""
+    """How much each pixel flutters: outer sleeves / robe below `top`, minus the legs and rigid `keep` boxes (feathered).
+    The legs and feet (below `legs`=(v_top, half_width)) never move, so nobody walks on rubber legs."""
     core, top, amp = spec.get("cloth", (0.14, 0.30, 1.0))
+    leg_top, leg_half = spec.get("legs", (0.58, 0.20))
     v, u = np.mgrid[0:h, 0:w]
     u = (u + 0.5) / w
     v = (v + 0.5) / h
     wgt = smooth(core, core + 0.22, np.abs(u - 0.5)) * smooth(top, top + 0.28, v)
-    wgt = np.maximum(wgt, 0.7 * smooth(0.72, 0.97, v))           # the hem swings even at the centre
+    wgt = wgt * (1 - smooth(0.80, 0.90, v))                       # nothing near the feet moves
+    wgt = wgt * (1 - smooth(leg_top, leg_top + 0.06, v) * (1 - smooth(leg_half, leg_half + 0.06, np.abs(u - 0.5))))
     for (u0, u1, v0, v1) in spec.get("keep", []):
         f = 0.04
         box = smooth(u0 - f, u0, u) * (1 - smooth(u1, u1 + f, u)) * smooth(v0 - f, v0, v) * (1 - smooth(v1, v1 + f, v))
@@ -94,7 +97,7 @@ def build(name, spec):
     amp = w * 0.035
     yy = (np.mgrid[0:h, 0:w][0] + 0.5) / h
     cw_, uu, vv = cloth_weight(h, w, spec)
-    camp = w * 0.05
+    camp = w * 0.035
     for row in range(POSES):
         pose = row - POSES // 2
         for col in range(COLS):

@@ -1209,6 +1209,7 @@ public partial class DanmakuWorld
 			for (int i = 0; i < N; ++i) Fire(E.Pos, 1.25f, Base + 360f * i / N, EBulletShape.Small, new FLinearColor(1f, 0.96f, 0.85f));
 		}
 		if (E.Kind == 2) SpawnItem(EItemType.BombPiece, E.Pos, false);
+		if (E.bCarry1Up) SpawnItem(EItemType.OneUp, E.Pos, false);   // the carrier drops its 1UP
 		for (int i = 0; i < E.DropPower; ++i) SpawnItem(EItemType.Power, E.Pos + new FVector2f(Rng.FRandRange(-16f, 16f), Rng.FRandRange(-8f, 8f)), false);
 		for (int i = 0; i < E.DropPoint; ++i) SpawnItem(EItemType.Point, E.Pos + new FVector2f(Rng.FRandRange(-16f, 16f), Rng.FRandRange(-8f, 8f)), false);
 	}
@@ -1309,6 +1310,8 @@ public partial class DanmakuWorld
 				}
 				if (bMidboss)
 				{
+					// beating the Extra / Extra-IF midboss drops a 1UP
+					if (StageIndex >= ExtraStage) SpawnItem(EItemType.OneUp, Boss.Pos, false);
 					bMidboss = false;
 					bMidDone = true;
 					Boss = new FBossState();
@@ -1738,10 +1741,10 @@ public partial class DanmakuWorld
 	public void Pattern_Final(int T)
 	{
 		PatrolBoss(T);
-
-		if (Every(T, 20, 0))
+		// toned down for a first boss: every layer fires less often than it used to (sun 20 -> 28, stars 10 -> 16, moons 60 -> 90 ...)
+		if (Every(T, 28, 0))
 		{
-			float Sgn = (T / 20) % 2 == 0 ? 1f : -1f;
+			float Sgn = (T / 28) % 2 == 0 ? 1f : -1f;
 			float Base = T * 0.03f * Sgn * RadToDeg;
 			for (int Rg = 0; Rg < 2; ++Rg)
 			{
@@ -1757,9 +1760,9 @@ public partial class DanmakuWorld
 				}
 			}
 		}
-		if (Every(T, 60, 0)) LunarSideWave(T);
-		if (Every(T, 10, 0)) StarRain(1);
-		if (Every(T, 160, 80))
+		if (Every(T, 90, 0)) LunarSideWave(T);
+		if (Every(T, 16, 0)) StarRain(1);
+		if (Every(T, 200, 100))
 		{
 			int N = Cnt(18);
 			for (int i = 0; i < N; ++i)
@@ -1772,8 +1775,8 @@ public partial class DanmakuWorld
 				B.MaxSpeed = 2.3f;
 			}
 		}
-		if (Every(T, 260, 130)) OrbitingMoons(8, 48f, 70);
-		if (Every(T, 240, 40)) MeteorSweep(Rng.FRand() < 0.5f);
+		if (Every(T, 360, 180)) OrbitingMoons(8, 48f, 70);
+		if (Every(T, 330, 40)) MeteorSweep(Rng.FRand() < 0.5f);
 	}
 
 	// =====================================================================================
@@ -2195,6 +2198,16 @@ public partial class DanmakuWorld
 		case EItemType.BombPiece:
 			AddBombPieces(1, "靈符碎片");
 			break;
+		case EItemType.OneUp:
+			if (Player.Lives < MaxLives)
+			{
+				++Player.Lives;
+				Sfx(ESfx.SpellGet);
+				Popup("1UP！", new FLinearColor(1f, 0.55f, 0.7f));
+				AddParticle(Player.Pos, FVector2f.Zero, 120f, new FLinearColor(1f, 0.55f, 0.7f), 30, true);
+			}
+			else Score += 2000000;
+			break;
 		}
 	}
 
@@ -2203,7 +2216,7 @@ public partial class DanmakuWorld
 	//   * score extends (1UP at 10M / 30M / 60M / 100M / 150M, then every 100M)
 	//   * life pieces: capturing a spell card drops one; 5 pieces = 1UP
 	//   * bomb pieces: beating a non-spell, killing a big spirit, or every 250 grazes; 3 pieces = 1 bomb
-	// Lives and bombs cap at 8; anything beyond that turns into score.
+	// Lives and bombs cap at 6; anything beyond that turns into score.
 	// =====================================================================================
 
 	public static long ExtendScore(int Index)
