@@ -81,7 +81,7 @@ public sealed class DanmakuHud
 	List<Texture2D> PlayerSheets = new();    // indexed by ECharacter
 	List<Texture2D> BossSheets = new();      // per stage art index
 	List<Texture2D> PlayerAnims = new();     // hand-made idle / left / right sheets (anim_<name>.png), indexed by ECharacter
-	List<Texture2D> BossAnims = new();       // the same for boss art 0..6 (stages 1-6 and the Extra boss)
+	List<Texture2D> BossAnims = new();       // the same for boss art 0..10 (stages 1-6, the Extra boss, the four Extra-IF beasts)
 	Texture2D FairyBlueArt;
 	Texture2D FairyRedArt;
 	Texture2D SpiritArt;
@@ -195,6 +195,7 @@ public sealed class DanmakuHud
 		PlayerAnims = new() { LoadArt("anim_ren.png"), LoadArt("anim_sou.png"), LoadArt("anim_haru.png"), LoadArt("anim_yuki.png") };
 		BossAnims.Clear();
 		for (int i = 1; i <= 7; ++i) BossAnims.Add(LoadArt($"anim_boss{i}.png"));
+		for (int i = 1; i <= 4; ++i) BossAnims.Add(LoadArt($"anim_beast{i}.png"));   // art indices 7..10
 		BossSheets.Clear();
 		BossSheets.Add(LoadArt("boss_body_sheet.png"));
 		for (int i = 2; i <= DanmakuWorld.ExtraStage + 1; ++i) BossSheets.Add(LoadArt($"boss{i}_body_sheet.png"));
@@ -1142,14 +1143,18 @@ public sealed class DanmakuHud
 		{
 			// the beast that just finished its cards flies off
 			float A = FMath.Min(1f, B.DepartTimer / 40f);
-			SheetSprite(BeastSheet(DanmakuWorld.BeastArt + B.DepartActor), B.DepartPos, BossSpriteH, new FLinearColor(1f, 1f, 1f, A), B.DepartVel.X > 0f ? 2f : -2f, S.Frame / 6);
+			Texture2D DepartAnim = At(BossAnims, DanmakuWorld.BeastArt + B.DepartActor);
+			if (DepartAnim != null) AnimSprite(DepartAnim, B.DepartPos, BossSpriteH, new FLinearColor(1f, 1f, 1f, A), B.DepartVel.X > 0f ? 2 : 1, S.Frame / DanmakuWorld.AnimIdleStep);
+			else SheetSprite(BeastSheet(DanmakuWorld.BeastArt + B.DepartActor), B.DepartPos, BossSpriteH, new FLinearColor(1f, 1f, 1f, A), B.DepartVel.X > 0f ? 2f : -2f, S.Frame / 6);
 		}
 		if (S.IsQuadPhase())
 		{
 			for (int i = 0; i < 4; ++i)
 			{
 				Sprite(SoftTex, B.QuadPos[i], V2D(110f), QuadGlow[i], EBlend.Additive);
-				SheetSprite(BeastSheet(DanmakuWorld.BeastArt + i), B.QuadPos[i] + new FVector2f(0f, 5f), QuadSpriteH, BodyTint, 0f, S.Frame / 6 + i * 3);
+				Texture2D QuadAnim = At(BossAnims, DanmakuWorld.BeastArt + i);
+				if (QuadAnim != null) AnimSprite(QuadAnim, B.QuadPos[i] + new FVector2f(0f, 5f), QuadSpriteH, BodyTint, 0, S.Frame / DanmakuWorld.AnimIdleStep + i * 3);
+				else SheetSprite(BeastSheet(DanmakuWorld.BeastArt + i), B.QuadPos[i] + new FVector2f(0f, 5f), QuadSpriteH, BodyTint, 0f, S.Frame / 6 + i * 3);
 			}
 			return;
 		}

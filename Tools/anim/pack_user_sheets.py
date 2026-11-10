@@ -29,6 +29,10 @@ CHARS = {
     "boss5":  ("Boss_5_6_Game_Sprites/Boss5_{a}_12frames_4x3.png", "grid"),
     "boss6":  ("Boss_5_6_Game_Sprites/Boss6_{a}_12frames_4x3.png", "grid"),
     "boss7":  ("Extra_Boss_Game_Sprites/ExtraBoss_{a}_12frames_4x3.png", "grid"),
+    "beast1": ("Extra_IF_Boss_Sprites/饕餮_Taotie_{a}_12frames_4x3.png", "grid"),
+    "beast2": ("Extra_IF_Boss_Sprites/檮杌_Taowu_{a}_12frames_4x3.png", "grid"),
+    "beast3": ("Extra_IF_Boss_Sprites/混沌_Hundun_{a}_12frames_4x3.png", "grid"),
+    "beast4": ("Extra_IF_Boss_Sprites/窮奇_Qiongqi_{a}_12frames_4x3.png", "grid"),
 }
 ANIMS = ("idle", "left", "right")
 
@@ -48,6 +52,28 @@ def clean_glow(fr):
     """Boss1: a faint grey glow (alpha < 40) surrounds the figure; drop it."""
     a = fr[..., 3]
     a[a < 40] = 0
+    return fr
+
+
+def clean_dust(fr):
+    """Extra-IF sheets: near-invisible specks (alpha < 24) all over the canvas."""
+    fr[..., 3][fr[..., 3] < 24] = 0
+    return fr
+
+
+def clean_pale_halo(fr):
+    """Taotie's left sheet: a soft white halo around a dark figure. Drop see-through pale pixels."""
+    a = fr[..., 3].astype(np.int32)
+    pale = fr[..., :3].min(axis=2) > 140
+    fr[..., 3] = np.where(pale & (a < 235), 0, a).astype(np.uint8)
+    return clean_dust(fr)
+
+
+def clean_soft_halo(fr):
+    """Hundun's idle sheet: a white halo around a white figure, so colour can't tell them apart;
+    the halo is see-through while the figure and ribbons are nearly opaque. Ramp alpha 150..230."""
+    a = fr[..., 3].astype(np.float32)
+    fr[..., 3] = (np.clip((a - 150) / 80, 0, 1) * 255).astype(np.uint8)
     return fr
 
 
@@ -107,6 +133,12 @@ def main(names):
             frames = {a: [clean_glow(f) for f in fs] for a, fs in frames.items()}
         if name == "boss2":
             frames = {a: [clean_white(f) for f in fs] for a, fs in frames.items()}
+        if name.startswith("beast"):
+            frames = {a: [clean_dust(f) for f in fs] for a, fs in frames.items()}
+        if name == "beast1":
+            frames["left"] = [clean_pale_halo(f) for f in frames["left"]]
+        if name == "beast3":
+            frames["idle"] = [clean_soft_halo(f) for f in frames["idle"]]
         # all frames of one character share a canvas size within one source sheet; anchor on idle frame 0
         x0, y0, x1, y1 = bbox(frames["idle"][0])
         s = REF_H / (y1 - y0)
