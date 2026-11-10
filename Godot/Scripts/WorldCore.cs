@@ -2177,7 +2177,7 @@ public partial class DanmakuWorld
 		{
 		case EItemType.Power:
 			if (Player.Power >= 4f) Score += 1000;
-			else { int Before = PowerLevel(); Player.Power = FMath.Min(4f, Player.Power + 0.05f); Score += 10; PowerUpPopup(Before); }
+			else { int Before = PowerLevel(); Player.Power = FMath.Min(4f, Player.Power + 0.01f); Score += 10; PowerUpPopup(Before); }
 			break;
 		case EItemType.BigPower:
 			{ int Before = PowerLevel(); Player.Power = FMath.Min(4f, Player.Power + 1f); PowerUpPopup(Before); }
