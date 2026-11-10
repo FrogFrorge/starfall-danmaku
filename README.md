@@ -15,7 +15,7 @@ This is a side project. I designed and directed it, and an AI coding agent, Clau
 | **My role** | Game design, spell card design, balance, story direction (a solo side project made with an AI coding agent) |
 | **Timeline** | 6–10 November 2026, about five days |
 | **Tools** | Godot 4.6 (C#), Unreal Engine 5.8 (C++, first version), Python, Blender; Claude Code, Canva (AI images), an AI music generator |
-| **Play it** | A Windows build (no install needed) and three recorded runs on Lunatic, Extra and Extra-IF: [Releases](../../releases/latest) |
+| **Videos** | Three full runs played by the game's bot, on Lunatic, Extra and Extra-IF: [Releases](../../releases/latest). A playable build isn't public yet. |
 
 ## My role and the use of AI
 
@@ -108,7 +108,7 @@ This is a side project. I designed and directed it, and an AI coding agent, Clau
 | [`Tools/`](Tools) | Python scripts for the art, sprite sheets, sound effects and translation tables |
 | [`docs/`](docs) | The [development log](docs/DEVLOG.md) and the original design notes |
 
-**Running it.** Download the Windows build from [Releases](../../releases/latest), or open `Godot/project.godot` in Godot 4.6.1 (.NET). Without the songs, the game falls back to its built-in synthesized music.
+**Running it.** A playable build isn't public yet; the recorded runs are in [Releases](../../releases/latest). The project opens in Godot 4.6.1 (.NET) from `Godot/project.godot`; without the songs, the game falls back to its built-in synthesized music.
 
 ## What I learned
 

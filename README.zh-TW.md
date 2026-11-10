@@ -15,7 +15,7 @@
 | **我的角色** | 遊戲設計、符卡設計、平衡調整、劇情方向（與 AI 程式代理合作的個人副業專案） |
 | **時間** | 2026 年 11 月 6–10 日，約五天 |
 | **工具** | Godot 4.6（C#）、Unreal Engine 5.8（C++，第一版）、Python、Blender；Claude Code、Canva（AI 圖像）、AI 音樂生成工具 |
-| **試玩** | Windows 版（免安裝），以及 Lunatic、Extra、Extra-IF 三段錄影：[Releases](../../releases/latest) |
+| **影片** | 由遊戲 bot 打完的 Lunatic、Extra、Extra-IF 三段完整錄影：[Releases](../../releases/latest)。可遊玩的版本暫不公開。 |
 
 ## 我的角色與 AI 的使用
 
@@ -108,7 +108,7 @@
 | [`Tools/`](Tools) | 美術、sprite sheet、音效和翻譯表的 Python 腳本 |
 | [`docs/`](docs) | [開發紀錄](docs/DEVLOG.md)和最初的設計說明 |
 
-**執行方式。** 從 [Releases](../../releases/latest) 下載 Windows 版，或用 Godot 4.6.1（.NET）打開 `Godot/project.godot`。沒有放曲子的話，遊戲會改用內建的合成音樂。
+**執行方式。** 可遊玩的版本暫不公開；錄影在 [Releases](../../releases/latest)。專案可以用 Godot 4.6.1（.NET）打開 `Godot/project.godot`；沒有放曲子的話，遊戲會改用內建的合成音樂。
 
 ## 學到的事
 
