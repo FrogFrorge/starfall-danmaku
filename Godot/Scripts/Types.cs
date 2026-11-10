@@ -314,6 +314,11 @@ public class FDanmakuPlayer
 	public int RespawnTimer = 0;
 	public int ShotCooldown = 0;
 	public int Lean = 0;                // -12 .. 12, drives cloth trailing
+	// sprite-sheet animation (Godot/Art/anim_<name>.png): 0 idle, -1 left, 1 right
+	public int AnimDir = 0;
+	public int AnimFrame = 0;           // column in that row
+	public int AnimMode = 0;            // 0 leaning in, 1 holding, 2 returning to the middle, 3 re-leaning on a re-press, 4 unwinding a half lean
+	public int AnimTick = 0;
 	public int DollsAlive = NumDolls;   // Yuki: puppets still with him (spent by his auto-bomb)
 	public int DollRespawn = 0;         // frames until the next lost puppet comes back
 	public FDanmakuPlayer() { Dolls = new[] { Pos, Pos, Pos, Pos }; }

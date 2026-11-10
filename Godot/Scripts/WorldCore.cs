@@ -1,4 +1,4 @@
-// Port of DanmakuWorld.cpp: flow, menus, player, enemies, boss flow, stage 1 patterns, bullets, items, recovery, beams.
+﻿// Port of DanmakuWorld.cpp: flow, menus, player, enemies, boss flow, stage 1 patterns, bullets, items, recovery, beams.
 using Godot;
 using static DanmakuSTG.WorldCoreLocals;
 
@@ -738,6 +738,50 @@ public partial class DanmakuWorld
 			&& Player.RespawnTimer == 0 && (BombTime == 0 || BombKind == ECharacter.Haru);
 	}
 
+	// Per character (Ren, Sou, Haru, Yuki): the frame of the left / right animation where the lean is
+	// fullest, and the one closest to standing straight (printed by Tools/anim/pack_user_sheets.py).
+	static readonly int[] LeftPeak = { 7, 9, 4, 4 }, LeftMid = { 11, 0, 11, 11 };
+	static readonly int[] RightPeak = { 1, 9, 1, 1 }, RightMid = { 8, 0, 5, 5 };
+	public const int AnimIdleStep = 6, AnimLeanStep = 3;   // sim frames per sheet frame
+
+	/** Lean animation: play into the lean from its middle frame, hold the fullest frame while the key
+	 *  stays down, and only play the way back to the middle once the key is released. */
+	static void StepPlayerAnim(FDanmakuPlayer P, int Want)
+	{
+		int C = (int)P.Character;
+		if (Want != 0 && Want != P.AnimDir)
+		{
+			P.AnimDir = Want; P.AnimMode = 0; P.AnimTick = 0;
+			P.AnimFrame = Want < 0 ? LeftMid[C] : RightMid[C];
+			return;
+		}
+		if (P.AnimDir == 0) { P.AnimFrame = 0; return; }   // idle: Hud runs the loop from the frame counter
+		int Peak = P.AnimDir < 0 ? LeftPeak[C] : RightPeak[C];
+		int Mid = P.AnimDir < 0 ? LeftMid[C] : RightMid[C];
+		if (Want != 0)
+		{
+			if (P.AnimMode == 2) P.AnimMode = 3;            // pressed again on the way back: lean back in
+			if (P.AnimMode == 4) P.AnimMode = 0;
+			if (P.AnimMode == 1) return;                    // keep holding the lean
+		}
+		else if (P.AnimMode != 2 && P.AnimMode != 4) { P.AnimMode = P.AnimMode == 0 ? 4 : 2; P.AnimTick = 0; }   // let go before the lean was full: unwind it
+		if (++P.AnimTick < AnimLeanStep) return;
+		P.AnimTick = 0;
+		switch (P.AnimMode)
+		{
+		case 0: P.AnimFrame = (P.AnimFrame + 1) % 12; if (P.AnimFrame == Peak) P.AnimMode = 1; break;
+		case 3: P.AnimFrame = (P.AnimFrame + 11) % 12; if (P.AnimFrame == Peak) P.AnimMode = 1; break;
+		case 2:
+			if (P.AnimFrame == Mid) { P.AnimDir = 0; P.AnimFrame = 0; break; }
+			P.AnimFrame = (P.AnimFrame + 1) % 12;
+			break;
+		case 4:
+			if (P.AnimFrame == Mid) { P.AnimDir = 0; P.AnimFrame = 0; break; }
+			P.AnimFrame = (P.AnimFrame + 11) % 12;
+			break;
+		}
+	}
+
 	public void UpdatePlayer()
 	{
 		FDanmakuPlayer P = Player;
@@ -781,6 +825,7 @@ public partial class DanmakuWorld
 		if (CurInput.Move.X < -0.3f)      P.Lean = FMath.Max(-12, P.Lean - 1);
 		else if (CurInput.Move.X > 0.3f)  P.Lean = FMath.Min(12, P.Lean + 1);
 		else                              P.Lean -= FMath.Sign(P.Lean) * FMath.Min(2, FMath.Abs(P.Lean));
+		StepPlayerAnim(P, CurInput.Move.X < -0.3f ? -1 : CurInput.Move.X > 0.3f ? 1 : 0);
 
 		P.Trail.Insert(0, P.Pos);
 		if (P.Trail.Count > 80) P.Trail.RemoveRange(80, P.Trail.Count - 80);

@@ -80,6 +80,8 @@ public sealed class DanmakuHud
 	List<Texture2D> StageBgs = new();        // per stage
 	List<Texture2D> PlayerSheets = new();    // indexed by ECharacter
 	List<Texture2D> BossSheets = new();      // per stage art index
+	List<Texture2D> PlayerAnims = new();     // hand-made idle / left / right sheets (anim_<name>.png), indexed by ECharacter
+	List<Texture2D> BossAnims = new();       // the same for boss art 0..6 (stages 1-6 and the Extra boss)
 	Texture2D FairyBlueArt;
 	Texture2D FairyRedArt;
 	Texture2D SpiritArt;
@@ -190,6 +192,9 @@ public sealed class DanmakuHud
 			StageBgs.Add(LoadArt($"bg_stage{i}.png", true));
 		}
 		PlayerSheets = new() { LoadArt("player_back_sheet.png"), LoadArt("player_back_sou_sheet.png"), LoadArt("player_back_haru_sheet.png"), LoadArt("player_back_yuki_sheet.png") };
+		PlayerAnims = new() { LoadArt("anim_ren.png"), LoadArt("anim_sou.png"), LoadArt("anim_haru.png"), LoadArt("anim_yuki.png") };
+		BossAnims.Clear();
+		for (int i = 1; i <= 7; ++i) BossAnims.Add(LoadArt($"anim_boss{i}.png"));
 		BossSheets.Clear();
 		BossSheets.Add(LoadArt("boss_body_sheet.png"));
 		for (int i = 2; i <= DanmakuWorld.ExtraStage + 1; ++i) BossSheets.Add(LoadArt($"boss{i}_body_sheet.png"));
@@ -311,6 +316,22 @@ public sealed class DanmakuHud
 		int Row = FMath.Clamp(FMath.RoundToInt(Lean) + Rows / 2, 0, Rows - 1);
 		int Col = ((Phase % Cols) + Cols) % Cols;
 		float H = HeightUnits * (1f + 2f * PadY);
+		float W = H * CellW / CellH;
+		Vector2 TL = ToScreen(Center - new FVector2f(W * 0.5f, H * 0.5f));
+		Canvas.TexRect(Sheet, TL, new Vector2(W, H) * Scale, Color, EBlend.Translucent,
+			new Vector2(Col / (float)Cols, Row / (float)Rows), new Vector2((Col + 1) / (float)Cols, (Row + 1) / (float)Rows));
+	}
+
+	/** Frame of a hand-made sheet (Tools/anim/pack_user_sheets.py): rows idle / left / right, 12 columns.
+	 *  Every cell is centred on the first idle frame, which is AnimRefH px tall in the sheet. */
+	void AnimSprite(Texture2D Sheet, FVector2f Center, float HeightUnits, FLinearColor Color, int Row, int Col)
+	{
+		if (Sheet == null) return;
+		const int Cols = 12, Rows = 3;
+		const float AnimRefH = 256f;   // must match REF_H in pack_user_sheets.py
+		float CellW = (float)Sheet.GetWidth() / Cols, CellH = (float)Sheet.GetHeight() / Rows;
+		Col = ((Col % Cols) + Cols) % Cols;
+		float H = HeightUnits * CellH / AnimRefH;
 		float W = H * CellW / CellH;
 		Vector2 TL = ToScreen(Center - new FVector2f(W * 0.5f, H * 0.5f));
 		Canvas.TexRect(Sheet, TL, new Vector2(W, H) * Scale, Color, EBlend.Translucent,
@@ -1134,8 +1155,15 @@ public sealed class DanmakuHud
 		}
 		int ArtI = S.GetBossArtIndex();
 		Texture2D Sheet = At(BossSheets, ArtI);
+		Texture2D Anim = At(BossAnims, ArtI);
 		Texture2D Body;
-		if (Sheet != null)
+		if (Anim != null)
+		{
+			// moving left / right plays that loop, standing still plays idle (with a dead zone so it doesn't flicker)
+			int Row = BossLean < -0.6f ? 1 : BossLean > 0.6f ? 2 : 0;
+			AnimSprite(Anim, B.Pos + new FVector2f(0f, 5f), BossSpriteH, BodyTint, Row, S.Frame / DanmakuWorld.AnimIdleStep);
+		}
+		else if (Sheet != null)
 		{
 			SheetSprite(Sheet, B.Pos + new FVector2f(0f, 5f), BossSpriteH, BodyTint, BossLean, S.Frame / 6);
 		}
@@ -1222,7 +1250,11 @@ public sealed class DanmakuHud
 		if (Back != null)
 		{
 			Texture2D Sheet = At(PlayerSheets, (int)P.Character);
-			if (Sheet != null) SheetSprite(Sheet, P.Pos + new FVector2f(0f, -3f), PlayerSpriteH, LinColor.White, P.Lean / 6f, S.Frame / 5);
+			Texture2D Anim = At(PlayerAnims, (int)P.Character);
+			if (Anim != null)
+				AnimSprite(Anim, P.Pos + new FVector2f(0f, -3f), PlayerSpriteH, LinColor.White,
+					P.AnimDir < 0 ? 1 : P.AnimDir > 0 ? 2 : 0, P.AnimDir == 0 ? S.Frame / DanmakuWorld.AnimIdleStep : P.AnimFrame);
+			else if (Sheet != null) SheetSprite(Sheet, P.Pos + new FVector2f(0f, -3f), PlayerSpriteH, LinColor.White, P.Lean / 6f, S.Frame / 5);
 			else ArtSprite(Back, P.Pos + new FVector2f(0f, -3f), PlayerSpriteH, LinColor.White);
 		}
 		else
