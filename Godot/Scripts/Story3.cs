@@ -4,92 +4,93 @@ namespace DanmakuSTG;
 public static partial class Story
 {
 	// =====================================================================================
-	// Extra midboss — 玄 again. Beyond the palace lies 天和閣, where 一索 only plays for stakes: losing would mean
-	// handing over the five shares that now hold the barrier together. 玄 won't let that be gambled lightly.
+	// Extra midboss — 玄 again. Beyond the palace lies 天和閣; 一索 only gives up the seals to someone who beats him
+	// at mahjong, and he has never lost. 玄 tests whether you're ready.
 	// =====================================================================================
 	static Talk ExMid => new(
 		new L[] {
 			new(1, "結界補好了，你卻還往上走。", "The barrier is mended, and yet you keep climbing."),
 			new(0, "燁說，最舊的那道裂痕是他五百年前犯的錯。我想知道是什麼錯。", "Yoh said the oldest crack was a mistake he made five hundred years ago. I want to know what it was."),
-			new(1, "他連這個都跟你說了。前面是天和閣，主人叫一索。五百年前，燁跟他賭了一局，輸掉十三枚天印。最早的裂痕，就是從那時開始的。", "He even told you that. Ahead is the Tenhou Pavilion. Its master is called Isso. Five hundred years ago Yoh gambled with him and lost thirteen Heaven Seals. That's when the first crack appeared."),
+			new(1, "他連這個都跟你說了。前面是天和閣，主人叫一索。五百年前，燁跟他賭了一局，十三枚天印就留在了那裡。最早的裂痕，就是從那時開始的。", "He even told you that. Ahead is the Tenhou Pavilion. Its master is called Isso. Five hundred years ago Yoh played a game with him, and the thirteen Heaven Seals stayed there. That's when the first crack appeared."),
 			new(0, "那我去把天印拿回來！", "Then I'll go get the seals back!"),
-			new(1, "一索不跟人打，只跟人賭。輸的人得把身上的東西押出去——你身上押的，是五份力量，是結界。", "Isso doesn't fight; he gambles. The loser hands over whatever he carries. What you'd be staking is the five shares. The barrier itself."),
+			new(1, "一索不會白白交出來。他只認牌桌上的輸贏，而他從來沒輸過。", "Isso won't just hand them over. He only trusts what's decided at the table, and he has never lost."),
 			new(0, "那贏就好啦！", "Then I'll just win!"),
-			new(1, "他從沒輸過。我不能讓你拿結界去賭。要過去，先過我這三卦。", "He has never lost. I can't let you gamble the barrier. If you want to pass, get through my three divinations first."),
+			new(1, "說得容易。你連我這三卦都過不了，就別去讓他看笑話。", "Easy to say. If you can't get past my three divinations, don't go and make a fool of yourself in front of him."),
 		},
 		new L[] {
 			new(1, "你的箭，還想往哪裡射？", "Where else do you mean to shoot?"),
 			new(0, "燁說還有一道裂沒補。我順路。", "Yoh said there's a crack left. It's on my way."),
 			new(1, "順路……前面是天和閣。一索手上有十三枚天印，是五百年前從燁那裡贏來的，結界缺的就是它們。", "On your way... Ahead is the Tenhou Pavilion. Isso holds thirteen Heaven Seals he won from Yoh five hundred years ago. They're what the barrier is missing."),
 			new(0, "那就拿回來。", "Then I'll take them back."),
-			new(1, "他不收箭，只收賭注。你輸了，賭上的會是你身上的五份力量。", "He doesn't accept arrows, only stakes. If you lose, what you've staked is the five shares you carry."),
+			new(1, "他不收箭，只收牌。要拿回天印，得在他的牌桌上贏他。", "He doesn't take arrows, only tiles. To get the seals back, you have to beat him at his table."),
 			new(0, "我不輸。", "I won't lose."),
 			new(1, "每個坐上他牌桌的人都這麼說。讓我用三卦，看看你的運。", "Everyone who sits at his table says that. Let me read your luck with three divinations."),
 		},
 		new L[] {
 			new(1, "山伏，你又來做什麼？", "Yamabushi, what are you doing here again?"),
 			new(0, "燁睡著了，沒人請我吃飯～我聞到前面有很香的味道，就一路走過來了！", "Yoh fell asleep and nobody's feeding me~ I smelled something delicious up ahead, so I followed it!"),
-			new(1, "那是天和閣的廚房。主人一索是個賭徒，五百年前，燁跟他賭輸了十三枚天印。", "That's the kitchen of the Tenhou Pavilion. Its master, Isso, is a gambler. Five hundred years ago Yoh lost thirteen Heaven Seals to him."),
+			new(1, "那是天和閣的廚房。主人一索是個愛賭的雀聖，五百年前，燁的十三枚天印輸給了他。", "That's the kitchen of the Tenhou Pavilion. Its master, Isso, is a mahjong saint who loves a gamble. Five hundred years ago Yoh's thirteen Heaven Seals went to him."),
 			new(0, "天印是什麼？好吃嗎？", "What's a Heaven Seal? Is it tasty?"),
-			new(1, "不能吃。是補結界最早那道裂痕要用的東西。你一進去，一索就會要你上牌桌。輸了，你身上的五份力量就歸他。", "You can't eat it. It's what the barrier's oldest crack needs. The moment you walk in, Isso will have you at his table. Lose, and your five shares of power are his."),
+			new(1, "不能吃。是補結界最早那道裂痕要用的東西。你一進去，一索就會要你上牌桌，不贏他，他是不會交出來的。", "You can't eat it. It's what the barrier's oldest crack needs. The moment you walk in, Isso will have you at his table, and he won't hand them over unless you win."),
 			new(0, "那我不要賭，我只要吃飯！", "Then I won't gamble. I just want to eat!"),
-			new(1, "他不會只請你吃飯。先讓我看看，你有沒有本事全身而退。", "He won't just feed you. First, let me see if you can get out of there in one piece."),
+			new(1, "他不會只請你吃飯。先讓我看看，你有沒有本事坐上那張桌子。", "He won't just feed you. First, let me see if you're good enough to sit at that table."),
 		},
 		new L[] {
 			new(1, "人偶師，結界已經補好，你為何還往前走？", "Puppeteer, the barrier is mended. Why do you keep going?"),
 			new(0, "燁先生說的那點光，孩子們找到了。在前面。", "The children found the faint light Yoh spoke of. It's up ahead."),
-			new(1, "天和閣。那光是十三枚天印。五百年前燁跟主人一索對賭，輸掉的就是它們。", "The Tenhou Pavilion. That light is thirteen Heaven Seals. Five hundred years ago Yoh gambled against its master, Isso, and lost them."),
+			new(1, "天和閣。那光是十三枚天印。五百年前燁跟主人一索對賭，天印就留在那裡了。", "The Tenhou Pavilion. That light is thirteen Heaven Seals. Five hundred years ago Yoh gambled against its master, Isso, and the seals stayed there."),
 			new(0, "孩子們想把它們帶回去，讓燁先生不用再背這個債。", "The children want to bring them back, so Yoh won't have to carry that debt anymore."),
-			new(1, "一索只用賭局說話。你輸了，就得把結界的力量押上去。", "Isso only speaks through games. If you lose, you'll have staked the barrier's power."),
+			new(1, "一索只用牌局說話。贏不了他，天印一枚也帶不走。", "Isso only speaks through games. If you can't beat him, you won't take a single seal."),
 			new(0, "我會怕。可是孩子們想去。", "I'm scared. But the children want to go."),
 			new(1, "那就先過我這三卦吧。", "Then get through my three divinations first."),
 		});
 
 	// =====================================================================================
-	// Extra — 一索. He kept the seals so that Yoh would have to ask someone for help.
+	// Extra — 一索, a good man. He won the seals so Yoh couldn't trade them for never-losing luck and wear himself out
+	// guarding alone, and has kept them safe since. His game only tests whether you can carry them; losing costs nothing.
 	// =====================================================================================
 	static Talk StageEx => new(
 		new L[] {
-			new(1, "喲，玄沒攔住你啊。坐吧，桌子都擺好了。", "Well, Gen couldn't stop you. Have a seat, the table's all set."),
-			new(0, "我不是來打牌的！你把十三枚天印還給燁！", "I'm not here to play! Give the thirteen Heaven Seals back to Yoh!"),
-			new(1, "還？我可是贏來的。五百年前，那個死腦筋拿天印來賭我的「不敗之運」。", "Give back? I won them. Five hundred years ago that blockhead bet the seals against my 'luck that never loses'."),
-			new(0, "他為什麼要賭那種東西？", "Why would he bet for something like that?"),
-			new(1, "他想要一份永遠不輸的運氣，好一個人守著永遠不能輸的結界。結果他輸了。", "He wanted luck that never loses, so he could guard a barrier that can never fail, all by himself. And he lost."),
-			new(0, "你明知道結界會裂，還一直留著天印！", "You knew the barrier would crack, and you kept the seals anyway!"),
-			new(1, "留著，他才會承認自己不是什麼都扛得動。你看，他不就找了你？", "Keeping them made him admit he can't carry everything alone. Look, he went and found you, didn't he?"),
-			new(0, "這算什麼理由！", "What kind of reason is that!"),
-			new(1, "我的理由。規矩很簡單：你贏，十三枚全拿走；你輸，你身上那五份留下來。開局吧。", "Mine. The rules are simple: you win, you take all thirteen. You lose, those five shares stay here. Let's begin."),
+			new(1, "喲，玄放你上來了。坐吧，桌子都擺好了。", "Well, Gen let you through. Have a seat, the table's all set."),
+			new(0, "我不是來打牌的！十三枚天印，請你還給燁！", "I'm not here to play! Please give the thirteen Heaven Seals back to Yoh!"),
+			new(1, "還，當然要還。我替他保管了五百年，就等這一天。", "Of course they go back. I've kept them for him for five hundred years, waiting for this day."),
+			new(0, "保管？玄說是你贏走的。", "Kept them? Gen said you won them."),
+			new(1, "是贏來的。那天燁想拿天印換一份永遠不輸的運氣，好一個人守著結界到永遠。我不能讓他換。", "I did win them. That day Yoh wanted to trade the seals for luck that never loses, so he could guard the barrier alone forever. I couldn't let him make that trade."),
+			new(0, "為什麼？", "Why not?"),
+			new(1, "一個人不可能永遠不輸，他會把自己撐壞的。所以我贏下天印，替他收著，等他願意找人幫忙。你看，他不就找了你？", "No one alone can never lose. He'd have broken himself. So I won the seals and kept them for him until he was willing to ask for help. And look, he found you."),
+			new(0, "那現在就還給我吧！", "Then give them to me now!"),
+			new(1, "天印很重，拿不穩的人會被壓垮。陪我打一局吧。你贏了，十三枚全帶走；輸了也沒關係，吃頓飯，下次再來。", "The seals are heavy. Anyone who can't hold them steady gets crushed. Play one game with me. Win, and all thirteen go with you. Lose, and that's fine too: have dinner and come back another time."),
 		},
 		new L[] {
 			new(1, "臉這麼冷，很適合打牌。", "A face that cold. Made for cards."),
 			new(0, "我不賭。天印。", "I don't gamble. The seals."),
-			new(1, "不賭就沒有天印。", "No gambling, no seals."),
+			new(1, "天印會還。可是得先確定，你拿得動。", "The seals will go back. But first I need to know you can carry them."),
 			new(0, "玄說你從沒輸過。", "Gen says you've never lost."),
-			new(1, "沒錯。所以這五百年，燁一次也沒敢回來。", "Right. That's why Yoh hasn't dared come back in five hundred years."),
-			new(0, "你留著天印，是在等他回來。", "You kept the seals so he'd come back."),
-			new(1, "你這人眼睛真利。規矩不變：你贏，天印拿走；你輸，五份力量留下。", "Sharp eyes. The rules stand: you win, you take the seals. You lose, the five shares stay."),
+			new(1, "沒錯。燁那天也是不肯認輸，想一個人扛下所有事。", "That's right. Yoh wouldn't admit defeat that day either. He wanted to carry everything alone."),
+			new(0, "你留著天印，是在等他找人幫忙。", "You kept the seals, waiting for him to find help."),
+			new(1, "你這人眼睛真利。規矩很簡單：贏我，天印你帶回去。", "Sharp eyes. The rule is simple: beat me, and you take the seals home."),
 			new(0, "射箭也是賭。我沒射偏過。", "Every shot is a gamble. I've never missed."),
 			new(1, "哈哈！那就看你能不能聽牌到最後！", "Hahaha! Then let's see if you can stay one tile from winning to the very end!"),
 		},
 		new L[] {
-			new(1, "山伏也來雀莊？輸了可是要請客喔。", "A yamabushi in a mahjong parlour? The loser pays for dinner, you know."),
-			new(0, "我是聞到味道來的！還有，玄說你拿了燁的天印。", "I followed the smell! Also, Gen says you took Yoh's seals."),
-			new(1, "拿？是贏。五百年前，他想用天印換我的不敗之運。", "Took? Won. Five hundred years ago he wanted to trade them for my unbeatable luck."),
+			new(1, "山伏也來雀莊？先說好，輸了要洗碗喔。", "A yamabushi in a mahjong parlour? Fair warning: the loser does the dishes."),
+			new(0, "我是聞到味道來的！還有，玄說燁的天印在你這裡。", "I followed the smell! Also, Gen says Yoh's seals are here."),
+			new(1, "在，一枚也沒少。五百年前，他想用天印換我的不敗之運。", "They are, every one of them. Five hundred years ago he wanted to trade them for my unbeatable luck."),
 			new(0, "為什麼要換那個？", "Why would he want that?"),
-			new(1, "他想一個人永遠不輸地守著結界。一個人哪可能永遠不輸？", "He wanted to guard the barrier alone and never lose. How can anyone alone never lose?"),
-			new(0, "所以你不還他，是想讓他找人幫忙？", "So you won't give them back because you want him to ask for help?"),
-			new(1, "誰知道呢。規矩是：贏我，十三枚全給你。輸了，你身上的五份歸我。", "Who knows. The rules: beat me and all thirteen are yours. Lose, and your five shares are mine."),
+			new(1, "他想一個人永遠不輸地守著結界。一個人哪可能永遠不輸？所以我贏了天印，替他好好收著。", "He wanted to guard the barrier alone and never lose. How can anyone alone never lose? So I won the seals and kept them safe for him."),
+			new(0, "所以你一直在等他找人幫忙？", "So you've been waiting for him to ask for help?"),
+			new(1, "誰知道呢。規矩是：贏我，十三枚全給你。", "Who knows. The rule: beat me and all thirteen are yours."),
 			new(0, "那再加一桌菜！", "Then add a full dinner on top!"),
-			new(1, "行。贏了，就是十三枚天印加十三道菜。", "Done. If you win, it's thirteen Heaven Seals and thirteen dishes."),
+			new(1, "行。贏了，就是十三枚天印加十三道菜。輸了，碗歸你洗。", "Done. Win, and it's thirteen Heaven Seals and thirteen dishes. Lose, and the dishes are yours to wash."),
 		},
 		new L[] {
 			new(1, "小朋友，帶著人偶來打牌？", "Little one, you brought puppets to a card game?"),
 			new(0, "孩子們說，您的牌在發光。", "The children say your tiles are glowing."),
-			new(1, "好眼光。這十三張，是五百年前從燁手上贏來的天印。", "Good eye. These thirteen are the Heaven Seals I won from Yoh five hundred years ago."),
-			new(0, "燁先生想用它們換什麼呢？", "What did Yoh want in exchange for them?"),
-			new(1, "換我的運氣。他想一個人守到永遠，永遠不輸。他輸了，我就把天印留下了。", "My luck. He wanted to guard it alone forever and never lose. He lost, so I kept the seals."),
+			new(1, "好眼光。這十三張，是燁的天印。我替他收了五百年。", "Good eye. These thirteen are Yoh's Heaven Seals. I've kept them for him for five hundred years."),
+			new(0, "燁先生那時想用它們換什麼呢？", "What did Yoh want to trade them for back then?"),
+			new(1, "換我的運氣。他想一個人守到永遠，永遠不輸。我不想看他那樣，就贏下了天印。", "My luck. He wanted to guard it alone forever and never lose. I didn't want to see him like that, so I won the seals."),
 			new(0, "您是怕他……一直一個人嗎？", "Were you afraid he'd... always be alone?"),
-			new(1, "人偶師，你看得太清楚了。不過規矩就是規矩：你贏，天印帶走；你輸，結界的力量留下。", "You see too clearly, puppeteer. But rules are rules: you win, you take the seals. You lose, the barrier's power stays."),
+			new(1, "人偶師，你看得太清楚了。天印很重，我得確定你們拿得動。陪我打一局吧。", "You see too clearly, puppeteer. The seals are heavy; I need to be sure you can carry them. Play a game with me."),
 			new(0, "孩子們，我們坐下吧。", "Children, let's sit down."),
 		});
 

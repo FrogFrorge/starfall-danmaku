@@ -42,7 +42,6 @@ public partial class DanmakuWorld
 	{
 		PatrolBoss(T);
 		ElementVolley(0, T, 1.2f);
-		if (Every(T, 48, 24)) Fan(Boss.Pos, Cnt(7), 50f, 2.5f, AimAngle(Boss.Pos), EBulletShape.Rice, new FLinearColor(0.55f, 0.95f, 0.4f));
 		if (Every(T, 6, 0))
 		{
 			foreach (float Off in new[] { 0f, 120f, 240f })
@@ -59,7 +58,6 @@ public partial class DanmakuWorld
 	{
 		PatrolBoss(T);
 		ElementVolley(1, T, 1.7f);
-		if (Every(T, 50, 25)) Fan(Boss.Pos, Cnt(5), 30f, 2.4f, AimAngle(Boss.Pos), EBulletShape.Fire, new FLinearColor(1f, 0.75f, 0.3f));
 		if (Every(T, 32, 0))
 		{
 			// a ring of flames that speeds up as it spreads; every other ring is offset by half a step
@@ -171,13 +169,13 @@ public partial class DanmakuWorld
 	public void S5_Cycle(int T)
 	{
 		PatrolBoss(T);
-		int Elem = (T / 300) % 5;
-		float Into = (float)(T % 300) / 300f;
 		float S = CycleStrength[FMath.Clamp(Difficulty, 0, 3)];
-		ElementVolley(Elem, T, (0.8f + 0.3f * Into) * S);
-		ElementVolley(Elem + 4, T, 0.5f * (1f - Into) * S);          // the element that just generated it
+		// all five elements at once, each one firing slowly, so there is always something from every direction
+		// but the gaps between the bullets stay wide enough to read
+		for (int e = 0; e < 5; ++e) ElementVolley(e, T + e * 37, 0.42f * S);
 		if (Every(T, 300, 0))
 		{
+			int Elem = (T / 300) % 5;
 			Ring(Boss.Pos, 30, 1.5f, Rng.FRandRange(0f, 12f), EBulletShape.Large, ElemCol[Elem]);
 			AddParticle(Boss.Pos, V2.ZeroVector, 260f, ElemCol[Elem], 30, true);
 		}

@@ -862,7 +862,7 @@ public partial class DanmakuWorld
 				new(1000f, 45, true, "凶符「顛倒是非」", static (w, t) => w.IF_Inversion(t), false, 0, 3),
 				new(800f, 30, false, "", static (w, t) => w.IF_NsQiongqi(t), false, 0, 3),
 				new(1000f, 90, true, "凶符「窮奇之翼」", static (w, t) => w.IF_Wings(t), false, 0, 3),
-				new(1f, 60, true, "耐久「四凶降世」", static (w, t) => w.IF_QuadSurvive(t), true, 0, 4),
+				new(1f, 40, true, "耐久「四凶降世」", static (w, t) => w.IF_QuadSurvive(t), true, 0, 4),
 				new(4000f, 99, true, "終符「四凶・天地失序」", static (w, t) => w.IF_QuadFinal(t), false, 0, 4) { bTimerAtThird = true },   // the 99 s only start at 1/3 HP
 			},
 			Dialogue = new List<FDialogueLine>[]

@@ -131,6 +131,8 @@ public partial class DanmakuWorld
 	public int StageIndex = 0;          // 0..NumStages-1 main stages, ExtraStage for Extra
 	public bool bExtra = false;
 	public bool bPractice = false;
+	public bool bLangPicker = false;     // the language window is open over the title menu
+	public int LangPickCursor = 0;       // index into LanguageOrder
 	public int TitleCursor = 0;          // 0 start, 1 Extra, 2 Extra-IF, 3 stage practice, 4 spell practice, 5 music room, 6 options, 7 language
 	public const int TitleItems = 8;
 	public int MusicCursor = 0;          // music room: highlighted track (index into MusicTracks)
@@ -196,6 +198,11 @@ public partial class DanmakuWorld
 	public FVector2f BombCenter = FVector2f.Zero;
 	public float BombRadius = 0f;
 	public bool bBombHitBoss = false;
+	public int BombSerial = 0;          // counts bombs, so a one-hit bomb hits each fairy once
+	// 蒼's bomb: an arrow flies up first; the thunder strikes where it lands and stays there
+	public bool bBombArrowFlying = false;
+	public FVector2f BombArrowPos = FVector2f.Zero;
+	public int BombArrowAge = 0;
 	public bool IsTimeSlowed() => BombTime > 0 && BombKind == ECharacter.Haru;
 
 	public string Message = "";
@@ -217,7 +224,6 @@ public partial class DanmakuWorld
 	public int DialoguePageCount = 1;
 	public bool IsInDialogue() => DialogueIndex >= 0;
 
-	public const float LaserHalfWidth = 9f;
 	public const float ThunderHalfWidth = 38f;
 
 	// ---------- (UE private section) ----------
@@ -253,8 +259,6 @@ public partial class DanmakuWorld
 	public float PowerMul() => 0.75f + 0.125f * Player.Power;   // bombs only; the main shot grows by power level instead
 	/** Touhou-style power level 1..4 (靈力 1.00-1.99 = 1 ... 4.00 = 4): each level adds shots. */
 	public int PowerLevel() => FMath.Clamp(FMath.FloorToInt(Player.Power + 0.001f), 1, 4);
-	/** Sou's laser widens with each power level (full width at 4.00). */
-	public float LaserWidthNow() => LaserHalfWidth * (0.55f + 0.15f * PowerLevel());
 
 	public List<FBullet> NewBullets = new();
 	public FRandomStream Rng = new FRandomStream();
@@ -266,6 +270,7 @@ public partial class DanmakuWorld
 
 	// Demo / automated capture (-DanmakuDemo -DanmakuSkip=N -DanmakuPhase=N -DanmakuChar=N -DanmakuTitle
 	//                            -DanmakuSelect -DanmakuBombAt=N -DanmakuShotEvery=N -DanmakuShots=N)
+	public bool bDemoFocus = false;      // -DanmakuFocus: the demo holds focus down
 	public int DemoSkipFrames = 0;
 	public int DemoStartPhase = 0;
 	public int DemoCharacter = 0;

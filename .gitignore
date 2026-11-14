@@ -25,3 +25,6 @@ Godot/Music/*.wav
 __pycache__/
 Tools/canva/raw/
 Tools/blender/renders/
+
+# Raw sprite sheets straight from the art tools (large; the packed sheets in Godot/Art are what the game uses)
+NewArt/

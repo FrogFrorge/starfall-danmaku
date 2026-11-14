@@ -187,17 +187,24 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 杌符「丈八之尾」: two long striped tails sweep round the boss in opposite directions (clockwise twice as fast)
+	/** A tail's starting angle: random-looking, but the same every time for a given tail so the sim stays repeatable. */
+	static float TaowuTailAngle(int I) => FMath.Fmod(FMath.Abs(FMath.Sin(I * 12.9898f) * 43758.5453f), 360f);
+
+	// 杌符「丈八之尾」: he lashes out one striped tail at a time. A new tail starts every second from a random angle,
+	// turning the opposite way to the one before, and each one keeps sweeping for five seconds.
 	public void IF_TaowuTail(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 110f));
-		if (Every(T, 3, 0) && (T / 3) % 5 < 3)
+		const int Spawn = 60, Life = 300;
+		if (Every(T, 3, 0))
 		{
-			for (int k = 0; k < 2; ++k)
+			for (int i = FMath.Max(0, (T - Life) / Spawn); i * Spawn <= T; ++i)
 			{
-				// one tail turns clockwise, the other counter-clockwise at half the speed
-				float A = k == 0 ? T * 1.8f : 180f - T * 0.9f;
-				FirePolar(Boss.Pos, A, 10f, 2.0f, 0.12f, EBulletShape.Medium, (T / 6) % 2 != 0 ? TigerGold : new FLinearColor(0.25f, 0.2f, 0.2f));
+				int L = T - i * Spawn;
+				if (L < 0 || L >= Life) continue;
+				float Turn = i % 2 == 0 ? 1f : -1f;
+				float A = TaowuTailAngle(i) + Turn * 1.8f * L;
+				FirePolar(Boss.Pos, A, 10f, 2.0f, 0.12f * Turn, EBulletShape.Medium, (L / 6) % 2 != 0 ? TigerGold : new FLinearColor(0.25f, 0.2f, 0.2f));
 			}
 		}
 		if (Every(T, 48, 24)) Ring(Boss.Pos, 28, 1.5f, Rng.FRandRange(0f, 20f), EBulletShape.Small, Crimson);
@@ -343,21 +350,27 @@ public partial class DanmakuWorld
 	// 凶符「吞天噬地」: 饕餮 inhales — you are dragged toward it, and bullets stream up from the ground into its mouth
 	public void IF_Devour(int T)
 	{
-		PlaceBoss(new FVector2f(FieldW * 0.5f, 80f));
+		PlaceBoss(new FVector2f(FieldW * 0.5f, FieldH * 0.5f));   // the maw sits in the middle of the field
+		// the green bullets drift in slowly and the maw's pull is just as gentle, so every character can still move;
+		// what it spits back out is the quick part
+		const float DevourSpeed = 0.5f, DevourPull = 0.5f;
 		if (Player.RespawnTimer == 0 && !IsInDialogue())
 		{
 			FVector2f D = (Boss.Pos - Player.Pos).GetSafeNormal();
-			Player.Pos += D * 0.36f;
+			Player.Pos += D * (DevourPull * GetDifficultyInfo(Difficulty).SpeedMul);
+			Player.Pos.X = FMath.Clamp(Player.Pos.X, 8f, FieldW - 8f);
+			Player.Pos.Y = FMath.Clamp(Player.Pos.Y, 16f, FieldH - 16f);
 		}
 		if (Every(T, 4, 0))
 		{
-			FVector2f From = new FVector2f(Rng.FRandRange(10f, FieldW - 10f), FieldH + 6f);
-			Fire(From, 1.9f, AngleOf(Boss.Pos - From) + Rng.FRandRange(-6f, 6f), EBulletShape.Rice, Jade);
+			// one more morsel drifting in towards the maw, from anywhere around the edge of the field
+			FVector2f From = RandomEdgePoint(8f);
+			Fire(From, DevourSpeed, AngleOf(Boss.Pos - From) + Rng.FRandRange(-6f, 6f), EBulletShape.Rice, Jade);
 		}
-		// every bullet it eats is spat straight back out somewhere in the 120° in front of it
+		// every bullet it eats is spat straight back out, in any direction at all
 		List<FVector2f> Eaten = new();
 		SwallowBullets(Boss.Pos, 70f, 16f, 0.04f, Eaten);
-		for (int i = 0; i < Eaten.Count; ++i) SpitBullet(Boss.Pos, Rng.FRandRange(1.6f, 2.1f), 90f + Rng.FRandRange(-60f, 60f), EBulletShape.Medium, Bronze);
+		for (int i = 0; i < Eaten.Count; ++i) SpitBullet(Boss.Pos, Rng.FRandRange(2.0f, 2.5f), Rng.FRandRange(0f, 360f), EBulletShape.Medium, Bronze);
 		Boss.MawEaten = 0;
 	}
 
@@ -807,7 +820,7 @@ public partial class DanmakuWorld
 		}
 		if (Rep(F, 500, 6, 50, ref K)) Sentry(new FVector2f(60f + K * 52f, -20f), 8, 60, 300).Color = Bronze;
 		if (Rep(F, 900, 30, 10, ref K)) Doll(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), -16f), new FVector2f(0f, 2f), K % 2 != 0 ? 2 : 21).Color = Indigo;
-		if (F == 1400) { Spirit(new FVector2f(110f, -30f), 3, 600f).Color = Crimson; Spirit(new FVector2f(FieldW - 110f, -30f), 17, 600f).Color = Indigo; }
+		if (F == 1400) { Spirit(new FVector2f(110f, -30f), 3, 520f).Color = Crimson; Spirit(new FVector2f(FieldW - 110f, -30f), 17, 520f).Color = Indigo; }
 		if (Rep(F, 1500, 12, 36, ref K)) Doll(new FVector2f(K % 2 != 0 ? 40f : FieldW - 40f, -16f), new FVector2f(K % 2 != 0 ? 1f : -1f, 1.6f), 6, true).Color = Pearl;
 		if (Rep(F, 2100, 40, 8, ref K))
 		{
@@ -826,7 +839,7 @@ public partial class DanmakuWorld
 		}
 		if (Rep(F, 3300, 30, 12, ref K)) Doll(new FVector2f(K % 2 != 0 ? -16f : FieldW + 16f, 40f + (K % 4) * 20f), new FVector2f(K % 2 != 0 ? 2f : -2f, 0.8f), 19, K % 5 == 0).Color = Crimson;
 		if (Rep(F, 3600, 8, 45, ref K)) Sentry(new FVector2f(50f + (K % 6) * 57f, -20f), K % 2 != 0 ? 1 : 15, 60, 280).Color = Indigo;
-		if (F == 4300) for (int i = 0; i < 2; ++i) Spirit(new FVector2f(110f + i * 164f, -30f), i != 0 ? 13 : 9, 600f);
+		if (F == 4300) for (int i = 0; i < 2; ++i) Spirit(new FVector2f(110f + i * 164f, -30f), i != 0 ? 13 : 9, 520f);
 		if (Rep(F, 4400, 30, 14, ref K)) Doll(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), -16f), new FVector2f(0f, 1.8f), K % 3 == 0 ? 16 : 0).Color = Pearl;
 		if (Rep(F, 5200, 44, 8, ref K)) Doll(new FVector2f(FieldW * 0.5f + (K % 2 != 0 ? -1f : 1f) * (20f + (K % 11) * 14f), -16f), new FVector2f(0f, 2f), K % 3 == 0 ? 2 : -1).Color = Bronze;
 		if (F == 6000) for (int i = 0; i < 4; ++i) Sentry(new FVector2f(64f + i * 85f, -20f), i % 2 != 0 ? 1 : 8, 60, 360).Color = i % 2 != 0 ? Crimson : Indigo;

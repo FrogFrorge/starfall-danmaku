@@ -1,0 +1,4057 @@
+[
+{
+"id": 0,
+"zh": "天狼",
+"en": "Tenrou"
+},
+{
+"id": 1,
+"zh": "星詠陰陽師",
+"en": "Star-Chanting Onmyoji"
+},
+{
+"id": 2,
+"zh": "第一面",
+"en": "Stage 1"
+},
+{
+"id": 3,
+"zh": "星光參道",
+"en": "Starlit Shrine Path"
+},
+{
+"id": 4,
+"zh": "日輪「赫耀天環」",
+"en": "Sun Wheel \"Blazing Heaven Ring\""
+},
+{
+"id": 5,
+"zh": "月蝕「月面反照」",
+"en": "Lunar Eclipse \"Moonlit Reflection\""
+},
+{
+"id": 6,
+"zh": "星雨「天河崩落」",
+"en": "Star Rain \"Fall of the Heavenly River\""
+},
+{
+"id": 7,
+"zh": "日月星奧義「終夜天象」",
+"en": "Sun-Moon-Star Secret Art \"Night-Long Firmament\""
+},
+{
+"id": 8,
+"zh": "千秋",
+"en": "Chiaki"
+},
+{
+"id": 9,
+"zh": "四季流轉的畫師",
+"en": "Painter of the Turning Seasons"
+},
+{
+"id": 10,
+"zh": "第二面",
+"en": "Stage 2"
+},
+{
+"id": 11,
+"zh": "四時繪卷",
+"en": "Scroll of the Four Seasons"
+},
+{
+"id": 12,
+"zh": "春符「春風催生」",
+"en": "Spring Sign \"Spring Wind of Growth\""
+},
+{
+"id": 13,
+"zh": "夏符「夏日鋒芒」",
+"en": "Summer Sign \"Edge of the Summer Sun\""
+},
+{
+"id": 14,
+"zh": "秋符「秋風落葉」",
+"en": "Autumn Sign \"Falling Leaves in the Autumn Wind\""
+},
+{
+"id": 15,
+"zh": "冬符「冬日暴雪」",
+"en": "Winter Sign \"Winter Blizzard\""
+},
+{
+"id": 16,
+"zh": "嵐",
+"en": "Arashi"
+},
+{
+"id": 17,
+"zh": "呼風喚雨的天氣師",
+"en": "Weather Master of Wind and Rain"
+},
+{
+"id": 18,
+"zh": "第三面",
+"en": "Stage 3"
+},
+{
+"id": 19,
+"zh": "雲上之路",
+"en": "Road Above the Clouds"
+},
+{
+"id": 20,
+"zh": "晴符「晴空萬里」",
+"en": "Clear Sign \"Ten Thousand Miles of Blue Sky\""
+},
+{
+"id": 21,
+"zh": "雨符「雨幕延綿」",
+"en": "Rain Sign \"Endless Curtain of Rain\""
+},
+{
+"id": 22,
+"zh": "雷符「雷暴中心」",
+"en": "Thunder Sign \"Eye of the Storm\""
+},
+{
+"id": 23,
+"zh": "霧符「雲裡霧裡」",
+"en": "Fog Sign \"Lost in the Clouds\""
+},
+{
+"id": 24,
+"zh": "墨竹",
+"en": "Bokuchiku"
+},
+{
+"id": 25,
+"zh": "四君子的書生",
+"en": "Scholar of the Four Gentlemen"
+},
+{
+"id": 26,
+"zh": "第四面",
+"en": "Stage 4"
+},
+{
+"id": 27,
+"zh": "四君子庭園",
+"en": "Garden of the Four Gentlemen"
+},
+{
+"id": 28,
+"zh": "梅符「梅花盛開」",
+"en": "Plum Sign \"Plum Blossoms in Full Bloom\""
+},
+{
+"id": 29,
+"zh": "蘭符「蘭花路徑」",
+"en": "Orchid Sign \"Orchid Path\""
+},
+{
+"id": 30,
+"zh": "竹符「竹林之勢」",
+"en": "Bamboo Sign \"Force of the Bamboo Grove\""
+},
+{
+"id": 31,
+"zh": "菊符「菊花之哀」",
+"en": "Chrysanthemum Sign \"Sorrow of the Chrysanthemum\""
+},
+{
+"id": 32,
+"zh": "四君子「君子之約」",
+"en": "Four Gentlemen \"The Gentlemen's Pact\""
+},
+{
+"id": 33,
+"zh": "我盡量。",
+"en": "I'll try."
+},
+{
+"id": 34,
+"zh": "玄",
+"en": "Gen"
+},
+{
+"id": 35,
+"zh": "五行的方士",
+"en": "Sorcerer of the Five Elements"
+},
+{
+"id": 36,
+"zh": "第五面",
+"en": "Stage 5"
+},
+{
+"id": 37,
+"zh": "五行仙壇",
+"en": "Altar of the Five Elements"
+},
+{
+"id": 38,
+"zh": "木符「萬木生長」",
+"en": "Wood Sign \"Growth of Ten Thousand Trees\""
+},
+{
+"id": 39,
+"zh": "火符「烈火燎原」",
+"en": "Fire Sign \"Wildfire on the Plains\""
+},
+{
+"id": 40,
+"zh": "土符「山崩地裂」",
+"en": "Earth Sign \"Landslide and Earthquake\""
+},
+{
+"id": 41,
+"zh": "金符「金戈鐵刃」",
+"en": "Metal Sign \"Spears and Iron Blades\""
+},
+{
+"id": 42,
+"zh": "水符「流水無形」",
+"en": "Water Sign \"Formless Flowing Water\""
+},
+{
+"id": 43,
+"zh": "五行「相生相剋」",
+"en": "Five Elements \"Creation and Destruction\""
+},
+{
+"id": 44,
+"zh": "你來了。比卦象晚了一刻。",
+"en": "You've come. A quarter-hour later than the divination said."
+},
+{
+"id": 45,
+"zh": "你的箭，屬金。",
+"en": "Your arrows belong to Metal."
+},
+{
+"id": 46,
+"zh": "山伏也懂五行？",
+"en": "A yamabushi who knows the five elements?"
+},
+{
+"id": 47,
+"zh": "天宮怎麼走。",
+"en": "How do I get to the palace?"
+},
+{
+"id": 48,
+"zh": "五行皆盡。你現在，比剛才更餓了吧？",
+"en": "The five elements are spent. You're even hungrier than before, aren't you?"
+},
+{
+"id": 49,
+"zh": "那是結界的重量。燁一個人扛了好幾百年。",
+"en": "That's the weight of the barrier. Yoh has carried it alone for centuries."
+},
+{
+"id": 50,
+"zh": "燁",
+"en": "Yoh"
+},
+{
+"id": 51,
+"zh": "四神的守護者",
+"en": "Guardian of the Four Gods"
+},
+{
+"id": 52,
+"zh": "第六面",
+"en": "Stage 6"
+},
+{
+"id": 53,
+"zh": "天宮",
+"en": "The Heavenly Palace"
+},
+{
+"id": 54,
+"zh": "東方「青龍天昇」",
+"en": "East \"Azure Dragon Ascends\""
+},
+{
+"id": 55,
+"zh": "西方「白虎嘯風」",
+"en": "West \"Roar of the White Tiger\""
+},
+{
+"id": 56,
+"zh": "南方「朱雀焚天」",
+"en": "South \"Vermilion Bird Burns the Sky\""
+},
+{
+"id": 57,
+"zh": "北方「玄武鎮海」",
+"en": "North \"Black Tortoise Calms the Sea\""
+},
+{
+"id": 58,
+"zh": "四神奧義「四象歸一」",
+"en": "Four Gods Secret Art \"Four Symbols Become One\""
+},
+{
+"id": 59,
+"zh": "修行者，歡迎來到天宮。",
+"en": "Welcome to the Heavenly Palace, traveller."
+},
+{
+"id": 60,
+"zh": "你利用了五個人。",
+"en": "You used five people."
+},
+{
+"id": 61,
+"zh": "你比看起來溫柔。",
+"en": "You're kinder than you look."
+},
+{
+"id": 62,
+"zh": "太好了！那可以吃飯了嗎？",
+"en": "Great! So can we eat now?"
+},
+{
+"id": 63,
+"zh": "逆符「五行逆轉」",
+"en": "Reverse Sign \"Five Elements Reversed\""
+},
+{
+"id": 64,
+"zh": "數符「河圖洛書」",
+"en": "Number Sign \"River Chart and Luo Writing\""
+},
+{
+"id": 65,
+"zh": "陣符「八門金鎖」",
+"en": "Formation Sign \"Golden Lock of the Eight Gates\""
+},
+{
+"id": 66,
+"zh": "那就拿回來。",
+"en": "Then I'll take them back."
+},
+{
+"id": 67,
+"zh": "人偶師，結界已經補好，你為何還往前走？",
+"en": "Puppeteer, the barrier is mended. Why do you keep going?"
+},
+{
+"id": 68,
+"zh": "一索",
+"en": "Iisou"
+},
+{
+"id": 69,
+"zh": "役滿的雀聖",
+"en": "Mahjong Saint of the Yakuman"
+},
+{
+"id": 70,
+"zh": "雀莊・天和閣",
+"en": "Mahjong Parlour: Tenhou Pavilion"
+},
+{
+"id": 71,
+"zh": "立直「立直一發」",
+"en": "Riichi \"Riichi Ippatsu\""
+},
+{
+"id": 72,
+"zh": "平和「平和斷么」",
+"en": "Pinfu \"Pinfu Tanyao\""
+},
+{
+"id": 73,
+"zh": "一色「清一色」",
+"en": "One Suit \"Chinitsu\""
+},
+{
+"id": 74,
+"zh": "對子「七對子」",
+"en": "Pairs \"Seven Pairs\""
+},
+{
+"id": 75,
+"zh": "開花「嶺上開花」",
+"en": "Bloom \"After a Kong\""
+},
+{
+"id": 76,
+"zh": "役滿一「大三元」",
+"en": "Yakuman I \"Big Three Dragons\""
+},
+{
+"id": 77,
+"zh": "役滿二「大四喜」",
+"en": "Yakuman II \"Big Four Winds\""
+},
+{
+"id": 78,
+"zh": "役滿三「九蓮寶燈」",
+"en": "Yakuman III \"Nine Gates\""
+},
+{
+"id": 79,
+"zh": "役滿奧義「國士無雙」",
+"en": "Yakuman Secret Art \"Thirteen Orphans\""
+},
+{
+"id": 80,
+"zh": "終局「天和」",
+"en": "Final Hand \"Tenhou\""
+},
+{
+"id": 81,
+"zh": "為什麼？",
+"en": "Why not?"
+},
+{
+"id": 82,
+"zh": "小朋友，帶著人偶來打牌？",
+"en": "Little one, you brought puppets to a card game?"
+},
+{
+"id": 83,
+"zh": "您是怕他……一直一個人嗎？",
+"en": "Were you afraid he'd... always be alone?"
+},
+{
+"id": 84,
+"zh": "你其實一直在幫他吧。",
+"en": "You've been helping him all along, haven't you."
+},
+{
+"id": 85,
+"zh": "天印。",
+"en": "The seals."
+},
+{
+"id": 86,
+"zh": "孩子們，回家吧。天印也一起。",
+"en": "Children, let's go home. The seals are coming with us."
+},
+{
+"id": 87,
+"zh": "開始遊戲",
+"en": "Start Game"
+},
+{
+"id": 88,
+"zh": "關卡練習",
+"en": "Stage Practice"
+},
+{
+"id": 89,
+"zh": "（尚未開放）",
+"en": "(Locked)"
+},
+{
+"id": 90,
+"zh": "方向鍵 / WASD　移動　　Shift　低速",
+"en": "Arrows / WASD  Move    Shift  Focus"
+},
+{
+"id": 91,
+"zh": "Z　射擊／決定　　X　Bomb／返回",
+"en": "Z  Shoot / OK    X  Bomb / Back"
+},
+{
+"id": 92,
+"zh": "P　暫停　　R　重來",
+"en": "P  Pause    R  Restart"
+},
+{
+"id": 93,
+"zh": "選擇自機",
+"en": "Choose Your Character"
+},
+{
+"id": 94,
+"zh": "←　→　選擇　　　Z　決定　　　X　返回",
+"en": "Left / Right  Select     Z  OK     X  Back"
+},
+{
+"id": 95,
+"zh": "選擇難度",
+"en": "Choose Difficulty"
+},
+{
+"id": 96,
+"zh": "↑　↓　選擇　　　Z　決定　　　X　返回",
+"en": "Up / Down  Select     Z  OK     X  Back"
+},
+{
+"id": 97,
+"zh": "無敵",
+"en": "INVINCIBLE"
+},
+{
+"id": 98,
+"zh": "護盾",
+"en": "SHIELD"
+},
+{
+"id": 99,
+"zh": "獎勵",
+"en": "Bonus"
+},
+{
+"id": 100,
+"zh": "收取失敗",
+"en": "Bonus Failed"
+},
+{
+"id": 101,
+"zh": "最終符卡：Bomb 無效",
+"en": "Last Card: Bombs Deal No Damage"
+},
+{
+"id": 102,
+"zh": "耐久符卡　撐到時間結束！",
+"en": "Survival Card: Last Until Time Runs Out!"
+},
+{
+"id": 103,
+"zh": "最高分",
+"en": "Hi-Score"
+},
+{
+"id": 104,
+"zh": "分數",
+"en": "Score"
+},
+{
+"id": 105,
+"zh": "殘機",
+"en": "Lives"
+},
+{
+"id": 106,
+"zh": "碎片",
+"en": "Pieces"
+},
+{
+"id": 107,
+"zh": "靈符",
+"en": "Bombs"
+},
+{
+"id": 108,
+"zh": "靈力",
+"en": "Power"
+},
+{
+"id": 109,
+"zh": "擦彈",
+"en": "Graze"
+},
+{
+"id": 110,
+"zh": "符卡",
+"en": "Spells"
+},
+{
+"id": 111,
+"zh": "自機",
+"en": "Player"
+},
+{
+"id": 112,
+"zh": "難度",
+"en": "Difficulty"
+},
+{
+"id": 113,
+"zh": "關卡",
+"en": "Stage"
+},
+{
+"id": 114,
+"zh": "（練習）",
+"en": " (Practice)"
+},
+{
+"id": 115,
+"zh": "彈數",
+"en": "Bullets"
+},
+{
+"id": 116,
+"zh": "通過",
+"en": "Clear"
+},
+{
+"id": 117,
+"zh": "關卡獎勵",
+"en": "Stage Bonus"
+},
+{
+"id": 118,
+"zh": "Z　前往下一關",
+"en": "Z  Next Stage"
+},
+{
+"id": 119,
+"zh": "遊戲結束",
+"en": "Game Over"
+},
+{
+"id": 120,
+"zh": "R　以同一自機重來",
+"en": "R  Retry with the same character"
+},
+{
+"id": 121,
+"zh": "Z　返回選角",
+"en": "Z  Back to character select"
+},
+{
+"id": 122,
+"zh": "通關！",
+"en": "All Clear!"
+},
+{
+"id": 123,
+"zh": "符卡收取",
+"en": "Spell Cards Captured"
+},
+{
+"id": 124,
+"zh": "R　再玩一次",
+"en": "R  Play Again"
+},
+{
+"id": 125,
+"zh": "暫停",
+"en": "Paused"
+},
+{
+"id": 126,
+"zh": "P　繼續　　R　重來",
+"en": "P  Resume    R  Restart"
+},
+{
+"id": 127,
+"zh": "青龍",
+"en": "Azure Dragon"
+},
+{
+"id": 128,
+"zh": "白虎",
+"en": "White Tiger"
+},
+{
+"id": 129,
+"zh": "朱雀",
+"en": "Vermilion Bird"
+},
+{
+"id": 130,
+"zh": "玄武",
+"en": "Black Tortoise"
+},
+{
+"id": 131,
+"zh": "降臨",
+"en": "Descends"
+},
+{
+"id": 132,
+"zh": "立直一發",
+"en": "Riichi Ippatsu"
+},
+{
+"id": 133,
+"zh": "平和斷么",
+"en": "Pinfu Tanyao"
+},
+{
+"id": 134,
+"zh": "清一色",
+"en": "Chinitsu"
+},
+{
+"id": 135,
+"zh": "七對子",
+"en": "Seven Pairs"
+},
+{
+"id": 136,
+"zh": "嶺上開花",
+"en": "After a Kong"
+},
+{
+"id": 137,
+"zh": "大三元",
+"en": "Big Three Dragons"
+},
+{
+"id": 138,
+"zh": "大四喜",
+"en": "Big Four Winds"
+},
+{
+"id": 139,
+"zh": "九蓮寶燈",
+"en": "Nine Gates"
+},
+{
+"id": 140,
+"zh": "國士無雙",
+"en": "Thirteen Orphans"
+},
+{
+"id": 141,
+"zh": "天和",
+"en": "Tenhou"
+},
+{
+"id": 142,
+"zh": "地和",
+"en": "Chihou"
+},
+{
+"id": 143,
+"zh": "人和",
+"en": "Renhou"
+},
+{
+"id": 144,
+"zh": "蓮",
+"en": "Ren"
+},
+{
+"id": 145,
+"zh": "廣域型",
+"en": "Wide Type"
+},
+{
+"id": 146,
+"zh": "前方扇形符咒（靈力越高越多）",
+"en": "Talismans in a forward fan (more with power)"
+},
+{
+"id": 147,
+"zh": "靈力升級！",
+"en": "Power up!"
+},
+{
+"id": 148,
+"zh": "靈力 MAX！",
+"en": "Power MAX!"
+},
+{
+"id": 149,
+"zh": "結界「破邪衝擊」",
+"en": "Barrier \"Evil-Breaking Shockwave\""
+},
+{
+"id": 150,
+"zh": "擴散衝擊波清除彈幕，對 Boss 造成一次大傷害",
+"en": "A spreading shockwave clears bullets and hits the boss hard once"
+},
+{
+"id": 151,
+"zh": "蒼",
+"en": "Sou"
+},
+{
+"id": 152,
+"zh": "貫穿型",
+"en": "Piercing Type"
+},
+{
+"id": 153,
+"zh": "雷弓光束持續貫穿",
+"en": "A thunder-bow beam that pierces continuously"
+},
+{
+"id": 154,
+"zh": "雷弓「天雷一閃」",
+"en": "Thunder Bow \"Flash of Heavenly Lightning\""
+},
+{
+"id": 155,
+"zh": "超寬雷射縱向清場，持續傷害",
+"en": "A huge vertical laser clears its column and keeps burning"
+},
+{
+"id": 156,
+"zh": "晴",
+"en": "Haru"
+},
+{
+"id": 157,
+"zh": "追蹤型",
+"en": "Homing Type"
+},
+{
+"id": 158,
+"zh": "兩排直符＋追蹤護符",
+"en": "Two rows of talismans plus homing charms"
+},
+{
+"id": 159,
+"zh": "時符「緩流結界」",
+"en": "Time Sign \"Slow-Flow Barrier\""
+},
+{
+"id": 160,
+"zh": "敵方減速一半（不無敵）",
+"en": "Enemies move at half speed (not invincible)"
+},
+{
+"id": 161,
+"zh": "雪",
+"en": "Yuki"
+},
+{
+"id": 162,
+"zh": "操偶型",
+"en": "Puppet Type"
+},
+{
+"id": 163,
+"zh": "四體式神尾隨射擊",
+"en": "Four shikigami follow and shoot"
+},
+{
+"id": 164,
+"zh": "傀儡「式神暴雨」",
+"en": "Puppet \"Shikigami Storm\""
+},
+{
+"id": 165,
+"zh": "式神扇形亂射",
+"en": "The shikigami spray shots in fans"
+},
+{
+"id": 166,
+"zh": "簡單",
+"en": "Easy"
+},
+{
+"id": 167,
+"zh": "彈幕稀疏、速度較慢，殘機多兩個",
+"en": "Sparse, slower bullets and two extra lives"
+},
+{
+"id": 168,
+"zh": "普通",
+"en": "Normal"
+},
+{
+"id": 169,
+"zh": "標準難度",
+"en": "Standard difficulty"
+},
+{
+"id": 170,
+"zh": "困難",
+"en": "Hard"
+},
+{
+"id": 171,
+"zh": "密度更高，適合熟練的玩家",
+"en": "Denser patterns for practised players"
+},
+{
+"id": 172,
+"zh": "瘋狂",
+"en": "Lunatic"
+},
+{
+"id": 173,
+"zh": "全力的彈幕，非常人所能及",
+"en": "Full-power danmaku beyond mortal reach"
+},
+{
+"id": 174,
+"zh": "額外",
+"en": "Extra"
+},
+{
+"id": 175,
+"zh": "通關後的特別挑戰",
+"en": "A special challenge after clearing the game"
+},
+{
+"id": 176,
+"zh": "最終符卡：Bomb 傷害無效",
+"en": "Last card: bombs deal no damage"
+},
+{
+"id": 177,
+"zh": "警告",
+"en": "WARNING"
+},
+{
+"id": 178,
+"zh": "前方，就是天和閣",
+"en": "Ahead lies the Tenhou Pavilion"
+},
+{
+"id": 179,
+"zh": "符卡收取！！",
+"en": "Spell Card Captured!!"
+},
+{
+"id": 180,
+"zh": "收取失敗……",
+"en": "Capture Failed..."
+},
+{
+"id": 181,
+"zh": "靈符碎片",
+"en": "Bomb piece"
+},
+{
+"id": 182,
+"zh": "1UP！",
+"en": "1UP!"
+},
+{
+"id": 183,
+"zh": "殘機碎片",
+"en": "Life pieces"
+},
+{
+"id": 184,
+"zh": "靈符 +1",
+"en": "Bomb +1"
+},
+{
+"id": 185,
+"zh": "分數獎勵　1UP！",
+"en": "Score Bonus  1UP!"
+},
+{
+"id": 186,
+"zh": "擦彈獎勵",
+"en": "Graze bonus"
+},
+{
+"id": 187,
+"zh": "饕餮",
+"en": "Taotie"
+},
+{
+"id": 188,
+"zh": "貪食的凶獸",
+"en": "The Gluttonous Beast"
+},
+{
+"id": 189,
+"zh": "饕符「貪食之口」",
+"en": "Glutton Sign \"Devouring Maw\""
+},
+{
+"id": 190,
+"zh": "饕符「鐘鼎饌宴」",
+"en": "Glutton Sign \"Banquet of Bronze Cauldrons\""
+},
+{
+"id": 191,
+"zh": "饕符「饕餮紋」",
+"en": "Glutton Sign \"Taotie Motif\""
+},
+{
+"id": 192,
+"zh": "檮杌",
+"en": "Taowu"
+},
+{
+"id": 193,
+"zh": "不馴的凶獸",
+"en": "The Untamable Beast"
+},
+{
+"id": 194,
+"zh": "杌符「頑石不化」",
+"en": "Stubborn Sign \"Stone That Never Yields\""
+},
+{
+"id": 195,
+"zh": "杌符「難訓之獸」",
+"en": "Stubborn Sign \"Beast That Cannot Be Taught\""
+},
+{
+"id": 196,
+"zh": "杌符「丈八之尾」",
+"en": "Stubborn Sign \"Tail of Eighteen Feet\""
+},
+{
+"id": 197,
+"zh": "結界碎了。你是什麼。",
+"en": "The barrier's broken. What are you?"
+},
+{
+"id": 198,
+"zh": "那就先過你。",
+"en": "Then I'll get past you first."
+},
+{
+"id": 199,
+"zh": "好。我也從不退。",
+"en": "Good. I never back down either."
+},
+{
+"id": 200,
+"zh": "混沌",
+"en": "Hundun"
+},
+{
+"id": 201,
+"zh": "無面的凶獸",
+"en": "The Faceless Beast"
+},
+{
+"id": 202,
+"zh": "沌符「七竅未開」",
+"en": "Chaos Sign \"Seven Openings Not Yet Bored\""
+},
+{
+"id": 203,
+"zh": "沌符「無面之舞」",
+"en": "Chaos Sign \"Dance Without a Face\""
+},
+{
+"id": 204,
+"zh": "沌符「帝江歌舞」",
+"en": "Chaos Sign \"Song and Dance of Dijiang\""
+},
+{
+"id": 205,
+"zh": "孩子們想帶燁先生回家。",
+"en": "The children want to take Yoh home."
+},
+{
+"id": 206,
+"zh": "窮奇",
+"en": "Qiongqi"
+},
+{
+"id": 207,
+"zh": "顛倒是非的凶獸",
+"en": "The Beast Who Turns Right and Wrong Upside Down"
+},
+{
+"id": 208,
+"zh": "奇符「懲善揚惡」",
+"en": "Winged Sign \"Punish the Good, Praise the Wicked\""
+},
+{
+"id": 209,
+"zh": "奇符「翼虎狂風」",
+"en": "Winged Sign \"Gale of the Winged Tiger\""
+},
+{
+"id": 210,
+"zh": "奇符「食人從首」",
+"en": "Winged Sign \"Devoured Head First\""
+},
+{
+"id": 211,
+"zh": "喲，好正直的眼神。我最喜歡吃你這種人了。",
+"en": "Well, what honest eyes. People like you are my favourite meal."
+},
+{
+"id": 212,
+"zh": "我才不回頭！",
+"en": "I'm not turning back!"
+},
+{
+"id": 213,
+"zh": "哈！那就從頭開始，一口一口吃掉你！",
+"en": "Ha! Then I'll start with your head and eat you one bite at a time!"
+},
+{
+"id": 214,
+"zh": "四凶",
+"en": "The Four Perils"
+},
+{
+"id": 215,
+"zh": "結界下的上古凶獸",
+"en": "Ancient Beasts Beneath the Barrier"
+},
+{
+"id": 216,
+"zh": "崩落天宮・四凶之淵",
+"en": "Collapsed Heavenly Palace: Abyss of the Four Perils"
+},
+{
+"id": 217,
+"zh": "凶符「吞天噬地」",
+"en": "Peril Sign \"Swallowing Heaven and Earth\""
+},
+{
+"id": 218,
+"zh": "凶符「無底之胃」",
+"en": "Peril Sign \"Bottomless Stomach\""
+},
+{
+"id": 219,
+"zh": "凶符「傲狠明德」",
+"en": "Peril Sign \"Arrogant and Cruel\""
+},
+{
+"id": 220,
+"zh": "凶符「不退之陣」",
+"en": "Peril Sign \"Formation of No Retreat\""
+},
+{
+"id": 221,
+"zh": "凶符「混元一氣」",
+"en": "Peril Sign \"Primordial Breath\""
+},
+{
+"id": 222,
+"zh": "凶符「渾沌初開」",
+"en": "Peril Sign \"Chaos Splits Open\""
+},
+{
+"id": 223,
+"zh": "凶符「顛倒是非」",
+"en": "Peril Sign \"Right and Wrong Reversed\""
+},
+{
+"id": 224,
+"zh": "凶符「窮奇之翼」",
+"en": "Peril Sign \"Wings of Qiongqi\""
+},
+{
+"id": 225,
+"zh": "耐久「四凶降世」",
+"en": "Survival \"Four Perils Descend\""
+},
+{
+"id": 226,
+"zh": "終符「四凶・天地失序」",
+"en": "Final Sign \"Four Perils: Heaven and Earth in Disorder\""
+},
+{
+"id": 227,
+"zh": "來了來了！窮奇說的那個正直小鬼！",
+"en": "Here he comes! The honest brat Qiongqi was talking about!"
+},
+{
+"id": 228,
+"zh": "我說過了吧？正直的人在上面活不久。",
+"en": "Didn't I tell you? Honest people don't last long up here."
+},
+{
+"id": 229,
+"zh": "我們被壓了幾千年。沒有人問過我們，想不想好好過日子。",
+"en": "We were held down for thousands of years. No one ever asked whether we wanted to live in peace."
+},
+{
+"id": 230,
+"zh": "休想！我一個一個打回去！",
+"en": "Not a chance! I'll beat you back, one at a time!"
+},
+{
+"id": 231,
+"zh": "好啊，一個一個來。最後，四個一起！",
+"en": "Sure, one at a time. And at the end, all four together!"
+},
+{
+"id": 232,
+"zh": "燁在哪。",
+"en": "Where's Yoh?"
+},
+{
+"id": 233,
+"zh": "眼神真直，我喜歡。",
+"en": "Such straight eyes. I like him."
+},
+{
+"id": 234,
+"zh": "我們不會退。你也不會。那就只剩一條路。",
+"en": "We won't back down. Neither will you. That leaves only one way."
+},
+{
+"id": 235,
+"zh": "我只需要四箭。",
+"en": "I only need four arrows."
+},
+{
+"id": 236,
+"zh": "又是你！剛剛還沒吃夠嗎？",
+"en": "You again! Weren't you full yet?"
+},
+{
+"id": 237,
+"zh": "先打贏再說吧，小鬼！",
+"en": "Win first, then talk, brat!"
+},
+{
+"id": 238,
+"zh": "人偶師。你跳完舞了，還站著。",
+"en": "Puppeteer. The dance is over, and you're still standing."
+},
+{
+"id": 239,
+"zh": "哦？混沌居然放他上來？",
+"en": "Oh? Hundun actually let him up here?"
+},
+{
+"id": 240,
+"zh": "好安靜的小鬼。你不怕嗎？",
+"en": "Such a quiet kid. Aren't you scared?"
+},
+{
+"id": 241,
+"zh": "約定？",
+"en": "A promise?"
+},
+{
+"id": 242,
+"zh": "天門之夜我來接你們！一年一次，請你們吃大餐！",
+"en": "I'll come get you on the Night of the Heaven's Gate! Once a year, a big feast on me!"
+},
+{
+"id": 243,
+"zh": "你的舞，跳得比我好。",
+"en": "You danced better than I did."
+},
+{
+"id": 244,
+"zh": "還想吃飽一點。",
+"en": "And to eat a little more."
+},
+{
+"id": 245,
+"zh": "還想有人聽我們吵架。",
+"en": "And for someone to listen to us argue."
+},
+{
+"id": 246,
+"zh": "凶獸逃向了天宮深處",
+"en": "The beast fled deeper into the Heavenly Palace"
+},
+{
+"id": 247,
+"zh": "四凶齊聚",
+"en": "The Four Perils Gather"
+},
+{
+"id": 248,
+"zh": "判定縮小 20%",
+"en": "Hitbox 20% smaller"
+},
+{
+"id": 249,
+"zh": "2 個碎片換 1 張靈符",
+"en": "Only 2 pieces make a bomb"
+},
+{
+"id": 250,
+"zh": "不射擊時移動速度 ×1.5",
+"en": "Moves x1.5 faster while not shooting"
+},
+{
+"id": 251,
+"zh": "道具回收線較低",
+"en": "Lower item-collection line"
+},
+{
+"id": 252,
+"zh": "身邊的子彈減速 20%",
+"en": "Bullets near him move 20% slower"
+},
+{
+"id": 253,
+"zh": "道具掉落減速 20%",
+"en": "Items fall 20% slower"
+},
+{
+"id": 254,
+"zh": "被彈時自動 Bomb（消耗 2 張靈符，不足時以式神抵）",
+"en": "Auto-bombs when hit (costs 2 bombs; puppets make up any missing bombs)"
+},
+{
+"id": 255,
+"zh": "式神每 60 秒復活；四體齊全時式神傷害 +20%、本體 −20%",
+"en": "Lost puppets return every 60 s; with all 4, puppets deal +20% and Yuki -20%"
+},
+{
+"id": 256,
+"zh": "速度",
+"en": "Speed"
+},
+{
+"id": 257,
+"zh": "式神復活",
+"en": "Puppet returns"
+},
+{
+"id": 258,
+"zh": "自動 Bomb：式神代替",
+"en": "Auto Bomb: puppets lost"
+},
+{
+"id": 259,
+"zh": "自動 Bomb",
+"en": "Auto Bomb"
+},
+{
+"id": 260,
+"zh": "符卡練習",
+"en": "Spell Practice"
+},
+{
+"id": 261,
+"zh": "↑　↓　選擇　　←　→　翻頁　　Z　決定　　X　返回",
+"en": "Up / Down  Select    Left / Right  Page    Z  OK    X  Back"
+},
+{
+"id": 262,
+"zh": "Z　返回符卡選擇",
+"en": "Z  Back to the spell list"
+},
+{
+"id": 263,
+"zh": "音樂室",
+"en": "Music Room"
+},
+{
+"id": 264,
+"zh": "選項",
+"en": "Options"
+},
+{
+"id": 265,
+"zh": "音樂音量",
+"en": "Music Volume"
+},
+{
+"id": 266,
+"zh": "音效音量",
+"en": "Sound Effects"
+},
+{
+"id": 267,
+"zh": "返回",
+"en": "Back"
+},
+{
+"id": 268,
+"zh": "繼續",
+"en": "Resume"
+},
+{
+"id": 269,
+"zh": "重來",
+"en": "Restart"
+},
+{
+"id": 270,
+"zh": "回到主選單",
+"en": "Back to Title"
+},
+{
+"id": 271,
+"zh": "↑　↓　選擇　　Z　播放　　X　返回",
+"en": "↑ ↓  Select    Z  Play    X  Back"
+},
+{
+"id": 272,
+"zh": "↑　↓　選擇　　←　→　調整　　X　返回",
+"en": "↑ ↓  Select    ← →  Adjust    X  Back"
+},
+{
+"id": 273,
+"zh": "↑　↓　選擇　　Z　決定　　P　繼續",
+"en": "↑ ↓  Select    Z  Confirm    P  Resume"
+},
+{
+"id": 274,
+"zh": "播放中",
+"en": "Now playing"
+},
+{
+"id": 275,
+"zh": "這首曲子你還沒在遊戲裡聽過，曲名和介紹可能會劇透接下來的內容。確定要聽嗎？",
+"en": "You haven't heard this song in the game yet. Its title and notes may spoil what's ahead. Listen anyway?"
+},
+{
+"id": 276,
+"zh": "還沒在遊戲裡聽過的曲子。",
+"en": "A song you haven't heard in the game yet."
+},
+{
+"id": 277,
+"zh": "Z　聽　　X　取消",
+"en": "Z  Listen    X  Cancel"
+},
+{
+"id": 278,
+"zh": "Z　還是想聽",
+"en": "Z  Listen anyway"
+},
+{
+"id": 279,
+"zh": "標題畫面",
+"en": "Title Screen"
+},
+{
+"id": 280,
+"zh": "第一面道中",
+"en": "Stage 1 Theme"
+},
+{
+"id": 281,
+"zh": "第二面道中",
+"en": "Stage 2 Theme"
+},
+{
+"id": 282,
+"zh": "第三面道中",
+"en": "Stage 3 Theme"
+},
+{
+"id": 283,
+"zh": "第四面道中",
+"en": "Stage 4 Theme"
+},
+{
+"id": 284,
+"zh": "第五面道中",
+"en": "Stage 5 Theme"
+},
+{
+"id": 285,
+"zh": "第六面道中",
+"en": "Stage 6 Theme"
+},
+{
+"id": 286,
+"zh": "Extra 道中",
+"en": "Extra Stage Theme"
+},
+{
+"id": 287,
+"zh": "Extra-IF 道中",
+"en": "Extra-IF Stage Theme"
+},
+{
+"id": 288,
+"zh": "第一面 Boss　天狼的主題",
+"en": "Stage 1 Boss: Tenrou's Theme"
+},
+{
+"id": 289,
+"zh": "第二面 Boss　千秋的主題",
+"en": "Stage 2 Boss: Chiaki's Theme"
+},
+{
+"id": 290,
+"zh": "第三面 Boss　嵐的主題",
+"en": "Stage 3 Boss: Arashi's Theme"
+},
+{
+"id": 291,
+"zh": "第四面 Boss　墨竹的主題",
+"en": "Stage 4 Boss: Mochiku's Theme"
+},
+{
+"id": 292,
+"zh": "第五面 Boss　玄的主題",
+"en": "Stage 5 Boss: Gen's Theme"
+},
+{
+"id": 293,
+"zh": "第六面 Boss　燁的主題",
+"en": "Stage 6 Boss: Yoh's Theme"
+},
+{
+"id": 294,
+"zh": "Extra Boss　一索的主題",
+"en": "Extra Boss: Isso's Theme"
+},
+{
+"id": 295,
+"zh": "Extra-IF Boss　四凶的主題",
+"en": "Extra-IF Boss: Theme of the Four Perils"
+},
+{
+"id": 296,
+"zh": "星墜彈幕　～ Starfall Overture",
+"en": "Starfall Danmaku ~ Starfall Overture"
+},
+{
+"id": 297,
+"zh": "天狼星詠　～ Star-Chanting Onmyoji",
+"en": "Song of Sirius ~ Star-Chanting Onmyoji"
+},
+{
+"id": 298,
+"zh": "千秋萬色　～ Painter of Four Seasons",
+"en": "A Thousand Autumns of Colour ~ Painter of Four Seasons"
+},
+{
+"id": 299,
+"zh": "嵐之支配者",
+"en": "Ruler of the Storm"
+},
+{
+"id": 300,
+"zh": "墨竹清風　～ Ink and Bamboo",
+"en": "Clear Wind Through Ink Bamboo ~ Ink and Bamboo"
+},
+{
+"id": 301,
+"zh": "玄之又玄",
+"en": "Mystery Upon Mystery"
+},
+{
+"id": 302,
+"zh": "四象歸一　～ Guardian of the Four Symbols",
+"en": "Four Symbols Become One ~ Guardian of the Four Symbols"
+},
+{
+"id": 303,
+"zh": "役滿的雀聖　～ Yakuman Saint",
+"en": "Saint of the Yakuman ~ Yakuman Saint"
+},
+{
+"id": 304,
+"zh": "四凶　～ The Four Perils",
+"en": "The Four Perils"
+},
+{
+"id": 305,
+"zh": "天門之夜的前一晚，山上神社的天空開始掉星星。這是整個故事的主題。村子裡的人都還在睡，只有四個少年抬頭看見了。",
+"en": "The night before the Night of the Heaven's Gate, stars begin to fall over the mountain shrine. This is the theme of the whole story. The village sleeps on; only four young men look up and see it."
+},
+{
+"id": 306,
+"zh": "通往神社的石階，每一階都映著星光。出發的夜晚總是有點興奮，也有點不安：天上明明還有這麼多星星，為什麼一顆接一顆不見了？",
+"en": "Stone steps up to the shrine, each one lit by starlight. A night of setting out is always a little exciting and a little uneasy: with so many stars still in the sky, why are they vanishing one by one?"
+},
+{
+"id": 307,
+"zh": "天狼的主題。他把整片星空借走，只為了讀懂一句預言。他不是壞人，只是太想知道命運的答案，忘了星星也是大家的。",
+"en": "Tenrou's theme. He borrowed the whole starry sky just to understand a single prophecy. He isn't wicked; he wanted fate's answer so badly that he forgot the stars belong to everyone."
+},
+{
+"id": 308,
+"zh": "走進畫卷裡的路。前一步還是春天，下一步已經落雪。美得讓人想停下來看，可是季節亂了，山下的田正在受苦。",
+"en": "A road inside a painted scroll. One step is spring, the next is falling snow. Beautiful enough to make you stop and look, but the seasons are out of order and the fields below are suffering."
+},
+{
+"id": 309,
+"zh": "千秋的主題。一位想把四季畫到完美的畫師。他眼裡只有那幅畫，看不見畫外的人；直到有人站到他面前，他才想起，四季本來就是給人過的。",
+"en": "Chiaki's theme. A painter who wants to paint the four seasons perfectly. He sees only the painting, never the people outside it, until someone stands in front of him and he remembers that seasons are there to be lived in."
+},
+{
+"id": 310,
+"zh": "雲海上的路。雨一直下，雷就打在身邊。明明已經飛到雲的上面了，暴風雨卻像是在後面追著人跑。",
+"en": "A road above the sea of clouds. The rain never stops and thunder strikes close by. You've flown higher than the clouds, yet the storm seems to be chasing you."
+},
+{
+"id": 311,
+"zh": "嵐的主題。天氣師的脾氣說變就變，就像夏天午後的雷陣雨。可是暴風雨過後，天空總是特別乾淨。",
+"en": "Arashi's theme. The weather-master's temper turns in an instant, like a summer afternoon thunderstorm. But after the storm, the sky is always especially clear."
+},
+{
+"id": 312,
+"zh": "月光下的庭園，梅、蘭、竹、菊各守一角。安靜得像一幅水墨畫，可是每一片葉子都在看著你。這座庭園不歡迎客人。",
+"en": "A garden by moonlight, with plum, orchid, bamboo and chrysanthemum each guarding a corner. Quiet as an ink painting, yet every leaf is watching you. This garden does not welcome guests."
+},
+{
+"id": 313,
+"zh": "墨竹的主題。一位驕傲的書生，每一個字都要寫得端端正正。他守了一輩子的規矩，所以最怕的，就是有人告訴他規矩錯了。",
+"en": "Mochiku's theme. A proud scholar who writes every character just so. He has kept the rules all his life, so what he fears most is someone telling him the rules were wrong."
+},
+{
+"id": 314,
+"zh": "通往天宮前的最後一座仙壇。木生火、火生土，腳下的每一步都在輪轉。越往上爬，越覺得好像有人一直在等你來。",
+"en": "The last altar before the Heavenly Palace. Wood feeds fire, fire makes earth, and every step turns the wheel. The higher you climb, the more it feels like someone has been waiting for you."
+},
+{
+"id": 315,
+"zh": "玄的主題。知道真相、卻一個字也不能說的方士。他攔住你，不是因為討厭你，而是因為他知道上面有什麼在等著。",
+"en": "Gen's theme. A sorcerer who knows the truth but may not say a word of it. He stands in your way not because he dislikes you, but because he knows what is waiting above."
+},
+{
+"id": 316,
+"zh": "天上的宮殿。金碧輝煌，卻安靜得聽不到一點聲音。這裡很久很久沒有客人了，只有一個人一直守在這裡。",
+"en": "The palace in the sky. All gold and splendour, and not a single sound. No guest has come here in a very, very long time; only one person has kept watch."
+},
+{
+"id": 317,
+"zh": "燁的主題，最終 Boss。四神的守護者，一個人撐著結界撐了太久。他很強，也很累。這是他最後的力氣，也是他終於可以休息的那一刻。",
+"en": "Yoh's theme, the final boss. The guardian of the Four Gods, who has held up the barrier alone for far too long. He is strong, and very tired. This is his last strength, and the moment he can finally rest."
+},
+{
+"id": 318,
+"zh": "天宮後面的雀莊。燈籠一盞一盞亮著，洗牌的聲音從來沒停過。熱鬧得不像天界，好像每個人都在等著看下一手牌。",
+"en": "A mahjong parlour behind the Heavenly Palace. Lanterns glow one after another and the shuffle of tiles never stops. Too lively for heaven, as if everyone is waiting to see the next hand."
+},
+{
+"id": 319,
+"zh": "一索的主題。愛笑、愛賭、從來沒輸過的雀聖。五百年來，他替老朋友保管著十三枚天印，等的不是一場勝利，而是一個能讓燁放心交出重擔的人。",
+"en": "Isso's theme. A mahjong saint who loves to laugh, loves to gamble and has never lost. For five hundred years he has kept thirteen Heaven Seals safe for an old friend, waiting not for a win but for someone Yoh can trust with his burden."
+},
+{
+"id": 320,
+"zh": "如果，主角來不及的話。結界碎了，天宮塌了，天空裂開紅色的縫。熟悉的路變成了廢墟，可是燁還在上面，只能往前走。",
+"en": "What if the hero was too late? The barrier is shattered, the palace has fallen and the sky is split with red. The road you knew lies in ruins, but Yoh is still up there, so the only way is forward."
+},
+{
+"id": 321,
+"zh": "四凶的主題。被壓在結界底下幾千年的上古凶獸。他們很兇，也很寂寞：從來沒有人問過他們想要什麼。這一夜，他們終於能大聲說話。",
+"en": "Theme of the Four Perils, ancient beasts held under the barrier for thousands of years. They are fierce, and lonely too: no one ever asked them what they wanted. Tonight, at last, they can speak out loud."
+},
+{
+"id": 322,
+"zh": "別踩到那條線。整片星圖都畫在石階上。",
+"en": "Don't step on that line. The whole star chart is drawn across these steps."
+},
+{
+"id": 323,
+"zh": "星圖？村子上面的星星一顆都看不到，原來是被你搬到這裡來了！",
+"en": "A star chart? Not one star is left over the village. So you dragged them all down here!"
+},
+{
+"id": 324,
+"zh": "借而已。天門之夜以前，我得把它們讀完。",
+"en": "Only borrowed. I have to finish reading them before the Night of the Heaven's Gate."
+},
+{
+"id": 325,
+"zh": "神社的婆婆說，沒有星星就定不了祭典的日子。你要借到什麼時候？",
+"en": "The old lady at the shrine says we can't set the festival day without stars. How long are you keeping them?"
+},
+{
+"id": 326,
+"zh": "讀完為止。",
+"en": "Until I'm done."
+},
+{
+"id": 327,
+"zh": "那是多久！",
+"en": "And how long is that?"
+},
+{
+"id": 328,
+"zh": "不知道。夢裡有個聲音要我讀，沒說要讀多久。我總不能為了一個小孩收起星圖。",
+"en": "No idea. A voice in a dream told me to read them. It didn't say for how long. I'm not rolling up the chart for a kid."
+},
+{
+"id": 329,
+"zh": "那我就打到你收為止！",
+"en": "Then I'll fight you until you do!"
+},
+{
+"id": 330,
+"zh": "這麼晚還上山。獵人？",
+"en": "Climbing the mountain this late. A hunter?"
+},
+{
+"id": 331,
+"zh": "沒有星星，夜裡認不了路。陷阱放了三天，一個都找不回來。",
+"en": "No stars, no way to find the paths at night. I set traps three days ago and can't find a single one."
+},
+{
+"id": 332,
+"zh": "那真是抱歉了。星星在我這裡。",
+"en": "My apologies, then. The stars are with me."
+},
+{
+"id": 333,
+"zh": "還來。",
+"en": "Give them back."
+},
+{
+"id": 334,
+"zh": "天門之夜以前不行。有個聲音要我在那之前把星象讀完。",
+"en": "Not before the Night of the Heaven's Gate. A voice told me to finish reading them by then."
+},
+{
+"id": 335,
+"zh": "我不管什麼聲音。今晚就還。",
+"en": "I don't care about voices. Tonight."
+},
+{
+"id": 336,
+"zh": "不行。",
+"en": "No."
+},
+{
+"id": 337,
+"zh": "那就打。",
+"en": "Then we fight."
+},
+{
+"id": 338,
+"zh": "山伏？這條參道晚上不好走。",
+"en": "A yamabushi? This path is no place to be at night."
+},
+{
+"id": 339,
+"zh": "我本來是看著北斗星走的～走到一半星星全不見了，現在連自己從哪裡來都不知道。",
+"en": "I was following the Big Dipper~ Halfway up, every star vanished. Now I don't even know where I came from."
+},
+{
+"id": 340,
+"zh": "那是我借走的。",
+"en": "I borrowed them."
+},
+{
+"id": 341,
+"zh": "星星可以借喔？那先借我北斗星就好，我想下山吃宵夜。",
+"en": "You can borrow stars? Then just lend me the Big Dipper. I want to go down for a late-night snack."
+},
+{
+"id": 342,
+"zh": "一顆也不能少。少一顆，星象就讀不準。",
+"en": "Not a single one. With one missing, the reading goes wrong."
+},
+{
+"id": 343,
+"zh": "可是我的晚飯在山下耶。",
+"en": "But my dinner is down the mountain."
+},
+{
+"id": 344,
+"zh": "你真想要，就自己從星圖裡拿。拿得到再說。",
+"en": "If you want it that badly, take it out of the chart yourself. Then we'll talk."
+},
+{
+"id": 345,
+"zh": "好喔，那我拿囉！",
+"en": "Okay, I'm taking it!"
+},
+{
+"id": 346,
+"zh": "帶著人偶上參道……這麼晚了，你不怕嗎？",
+"en": "Climbing the shrine path with puppets... this late? Aren't you scared?"
+},
+{
+"id": 347,
+"zh": "怕。可是孩子們說，星星的聲音是從這裡傳來的。",
+"en": "I am. But the children say the stars' voices are coming from here."
+},
+{
+"id": 348,
+"zh": "星星的聲音？",
+"en": "The stars' voices?"
+},
+{
+"id": 349,
+"zh": "它們說，天上空了一大塊，星星全擠在這片石階上，很吵。",
+"en": "They say there's a big hole in the sky, and all the stars are crammed onto these steps, being noisy."
+},
+{
+"id": 350,
+"zh": "你的人偶耳朵真好。沒錯，是我把星星請下來的。夢裡有人告訴我，天門之夜以前要讀完它們。",
+"en": "Your puppets have good ears. Yes, I brought the stars down. Someone in a dream told me to read them all before the Night of the Heaven's Gate."
+},
+{
+"id": 351,
+"zh": "孩子們想把星星送回去。",
+"en": "The children want to send the stars back."
+},
+{
+"id": 352,
+"zh": "我還沒讀完。想送回去，就先讓我看看它們有多少本事。",
+"en": "I'm not done reading. If they want to send them back, let me see what they can do first."
+},
+{
+"id": 353,
+"zh": "站住，你腳下那一塊還沒乾。",
+"en": "Stop. The paint under your feet isn't dry yet."
+},
+{
+"id": 354,
+"zh": "又是畫在地上的東西……這山谷怎麼同時在下雪又開櫻花？",
+"en": "Another thing painted on the ground... Why is this valley snowing and blooming at the same time?"
+},
+{
+"id": 355,
+"zh": "我在畫四季。春夏秋冬放進同一幅畫裡，畫完以前會有點亂。",
+"en": "I'm painting the four seasons. Spring, summer, autumn and winter in one picture. It's a bit of a mess until I finish."
+},
+{
+"id": 356,
+"zh": "有點？山下的稻子凍死了一半！",
+"en": "A bit? Half the rice down the mountain froze to death!"
+},
+{
+"id": 357,
+"zh": "……那我很抱歉。可是有人在夢裡跟我說，四季就要散了，要我趁現在把它們畫下來。",
+"en": "...I'm sorry about that. But someone told me in a dream that the seasons are about to scatter, and to paint them while I still can."
+},
+{
+"id": 358,
+"zh": "夢裡？參道上那個看星星的，也說他聽到聲音！",
+"en": "In a dream? The stargazer on the shrine path said he heard a voice too!"
+},
+{
+"id": 359,
+"zh": "他也是？那我更不能停了。不只我一個人聽見，就表示那是真的。",
+"en": "Him too? Then I really can't stop. If I'm not the only one who heard it, it's real."
+},
+{
+"id": 360,
+"zh": "真的假的我不管，先把季節放回去！",
+"en": "Real or not, put the seasons back first!"
+},
+{
+"id": 361,
+"zh": "你的弓，可以讓我畫一張嗎？一下就好。",
+"en": "Your bow. May I paint it? Just for a moment."
+},
+{
+"id": 362,
+"zh": "不行。山谷的雪是你下的？",
+"en": "No. Is the snow in this valley your doing?"
+},
+{
+"id": 363,
+"zh": "雪、櫻花、楓葉、蟬聲，都是我畫的。四季就要散了，我得把它們留在紙上。",
+"en": "The snow, the blossoms, the maple leaves, the cicadas. All mine. The seasons are about to scatter, so I'm keeping them on paper."
+},
+{
+"id": 364,
+"zh": "誰說的。",
+"en": "Who says so?"
+},
+{
+"id": 365,
+"zh": "夢裡的聲音。",
+"en": "A voice in a dream."
+},
+{
+"id": 366,
+"zh": "上面那個看星星的，也這麼說。",
+"en": "The stargazer up there said the same."
+},
+{
+"id": 367,
+"zh": "原來不只我……那我更要畫完。抱歉了，獵人，畫到一半的東西，我不給人碰。",
+"en": "So it isn't just me... Then I have to finish. Sorry, hunter. Nobody touches a painting of mine halfway through."
+},
+{
+"id": 368,
+"zh": "那就別怪我把紙射穿。",
+"en": "Then don't blame me when I shoot through the paper."
+},
+{
+"id": 369,
+"zh": "啊，別踩——算了，你踩的那塊，顏色反而好看。",
+"en": "Ah, don't step on— never mind. The colour looks better where you stepped."
+},
+{
+"id": 370,
+"zh": "這裡好奇怪喔～我剛剛在雪地裡撿到一顆熟透的柿子。",
+"en": "This place is so weird~ I just found a ripe persimmon in the snow."
+},
+{
+"id": 371,
+"zh": "那是秋天那一段的。你吃了？",
+"en": "That's from the autumn part. Did you eat it?"
+},
+{
+"id": 372,
+"zh": "吃了！冰冰的，很好吃。",
+"en": "I did! Nice and cold. Delicious."
+},
+{
+"id": 373,
+"zh": "那顆我還沒畫完。",
+"en": "I hadn't finished painting that one."
+},
+{
+"id": 374,
+"zh": "啊，對不起。所以這裡的季節，全是你畫出來的喔？",
+"en": "Oh, sorry. So all the seasons here are things you painted?"
+},
+{
+"id": 375,
+"zh": "夢裡有人拜託我，在四季散掉以前把它們畫下來。",
+"en": "Someone in a dream asked me to paint the seasons before they scatter."
+},
+{
+"id": 376,
+"zh": "又是夢喔？星星那個人也是做夢耶。",
+"en": "A dream again? The star guy had a dream too."
+},
+{
+"id": 377,
+"zh": "他在哪裡？",
+"en": "Where is he?"
+},
+{
+"id": 378,
+"zh": "被我打倒了，在參道上睡覺～",
+"en": "I beat him. He's napping on the shrine path~"
+},
+{
+"id": 379,
+"zh": "那我得小心了。畫完以前，誰都別想讓我放下筆。",
+"en": "Then I'd better be careful. Until I finish, no one makes me put down my brush."
+},
+{
+"id": 380,
+"zh": "好安靜的客人。你身邊那幾個孩子，也是人偶吧？可以借我畫嗎？",
+"en": "What a quiet guest. Those little ones with you are puppets too, aren't they? May I paint them?"
+},
+{
+"id": 381,
+"zh": "它們不喜歡被盯著看。這個山谷冷熱一直在換，孩子們頭很暈。",
+"en": "They don't like being stared at. This valley keeps turning hot and cold. It makes the children dizzy."
+},
+{
+"id": 382,
+"zh": "那是我在畫四季。抱歉，再一下就好。",
+"en": "That's me painting the seasons. Sorry. Just a little longer."
+},
+{
+"id": 383,
+"zh": "參道上的人也說「再一下」。他說，有聲音要他讀星星。",
+"en": "The man on the shrine path said 'a little longer' too. He said a voice told him to read the stars."
+},
+{
+"id": 384,
+"zh": "我也是聽了聲音。它說四季要散了……說話的樣子很累。",
+"en": "I heard a voice too. It said the seasons would scatter... It sounded so tired."
+},
+{
+"id": 385,
+"zh": "孩子們說，那個聲音是從很高的地方來的。",
+"en": "The children say that voice comes from somewhere very high up."
+},
+{
+"id": 386,
+"zh": "那我更得把畫畫完，好拿給它看。請別攔我。",
+"en": "Then I have to finish all the more, so I can show it. Please don't stop me."
+},
+{
+"id": 387,
+"zh": "孩子們會小心，不弄髒你的畫。",
+"en": "The children will be careful not to smudge your painting."
+},
+{
+"id": 388,
+"zh": "哪來的小鬼，敢踩上我的雲！",
+"en": "Where did this brat come from, walking on my clouds!"
+},
+{
+"id": 389,
+"zh": "山下連下了七天雨，河都快滿出來了，是你吧！",
+"en": "It's rained for seven days down there. The river's about to flood. That's you, isn't it!"
+},
+{
+"id": 390,
+"zh": "是我又怎樣？雲是我聚的，雨愛下哪就下哪。",
+"en": "So what if it is? I gather the clouds, the rain falls where it likes."
+},
+{
+"id": 391,
+"zh": "你是不是也聽到什麼聲音？看星星的跟畫畫的，都說有人在夢裡叫他們做事。",
+"en": "Do you hear a voice too? The stargazer and the painter both said someone in a dream told them what to do."
+},
+{
+"id": 392,
+"zh": "那兩個傢伙也是？哼，我才不是聽誰的話。我是自己想聚雲。",
+"en": "Those two as well? Hmph. I don't take orders. I gather clouds because I want to."
+},
+{
+"id": 393,
+"zh": "那雲呢？你一聚好，就全往上面飄走了。",
+"en": "Then where are the clouds going? The moment you gather them, they drift upward."
+},
+{
+"id": 394,
+"zh": "你也看到了？我聚一團，上面就吸走一團。不知道是哪個混帳在偷我的雲！",
+"en": "You saw that too? Every cloud I gather gets sucked up. Some bastard up there is stealing my clouds!"
+},
+{
+"id": 395,
+"zh": "那你停手不就好了？",
+"en": "Then why not just stop?"
+},
+{
+"id": 396,
+"zh": "停手就輸了！在搞清楚之前，誰都別想叫我停——你也一樣！",
+"en": "Stopping means losing! Until I figure this out, nobody tells me to stop. That includes you!"
+},
+{
+"id": 397,
+"zh": "又一個不怕被雷劈的。",
+"en": "Another one who isn't afraid of lightning."
+},
+{
+"id": 398,
+"zh": "你的雷，劈壞了山下三間屋子。",
+"en": "Your lightning broke three houses down the mountain."
+},
+{
+"id": 399,
+"zh": "要賠找天上那傢伙賠！雲是我聚的，可是一聚好就被吸上去，害我只能一直聚！",
+"en": "Take it up with whoever's in the sky! I gather the clouds, but they get sucked up the moment I'm done, so I keep gathering more!"
+},
+{
+"id": 400,
+"zh": "被吸上去？",
+"en": "Sucked up?"
+},
+{
+"id": 401,
+"zh": "你自己看。",
+"en": "See for yourself."
+},
+{
+"id": 402,
+"zh": "看星星的跟畫畫的，也說夢裡有人叫他們做事。",
+"en": "The stargazer and the painter said someone in a dream gave them orders too."
+},
+{
+"id": 403,
+"zh": "我沒那麼好使喚。不過那聲音確實很吵。",
+"en": "I'm not that easy to order around. Though that voice is noisy, I'll give you that."
+},
+{
+"id": 404,
+"zh": "讓雨停。",
+"en": "Stop the rain."
+},
+{
+"id": 405,
+"zh": "想讓我停，就拿出本事來！",
+"en": "If you want me to stop, show me what you've got!"
+},
+{
+"id": 406,
+"zh": "喂！那是雲，不是床！給我起來！",
+"en": "Hey! That's a cloud, not a bed! Get up!"
+},
+{
+"id": 407,
+"zh": "好軟喔……我爬了好久的山，休息一下嘛。",
+"en": "It's so soft... I've been climbing forever. Let me rest a bit."
+},
+{
+"id": 408,
+"zh": "我是天氣之主嵐！在我的雲上睡午覺，你膽子不小！",
+"en": "I am Arashi, lord of the weather! Napping on my clouds takes some nerve!"
+},
+{
+"id": 409,
+"zh": "天氣之主？那為什麼一直下雨呀？我的衣服濕了三天了。",
+"en": "Lord of the weather? Then why won't the rain stop? My clothes have been wet for three days."
+},
+{
+"id": 410,
+"zh": "我在聚雲！可是不管聚多少都被往上吸走，只好一直聚！",
+"en": "I'm gathering clouds! But however many I gather, they get sucked upward, so I have to keep at it!"
+},
+{
+"id": 411,
+"zh": "喔～所以你是雲被拿走在生氣。跟星星那個人、畫畫那個人一樣，大家都被什麼東西搞得團團轉耶。",
+"en": "Oh~ so you're mad because someone took your clouds. Like the star guy and the painter. Everyone's being spun around by something."
+},
+{
+"id": 412,
+"zh": "誰團團轉了！我才沒有！",
+"en": "Who's spinning around! Not me!"
+},
+{
+"id": 413,
+"zh": "好好好，那你下完這場就休息一下嘛。",
+"en": "Okay, okay. Then take a break after this rain."
+},
+{
+"id": 414,
+"zh": "少囉嗦！想要晴天，先撐過這場暴雨！",
+"en": "Quiet! You want clear skies? Survive this storm first!"
+},
+{
+"id": 415,
+"zh": "小鬼，抱著一堆娃娃跑上雲來幹什麼？",
+"en": "Kid, what are you doing up on the clouds with an armful of dolls?"
+},
+{
+"id": 416,
+"zh": "孩子們的衣服一直乾不了。雨下太久，它們都快發霉了。",
+"en": "The children's clothes never dry. It's rained so long they're starting to mould."
+},
+{
+"id": 417,
+"zh": "發霉？那是你家的事。",
+"en": "Mould? That's your problem."
+},
+{
+"id": 418,
+"zh": "孩子們說，你的雲一直被拉到更高的地方。",
+"en": "The children say your clouds keep being pulled somewhere higher."
+},
+{
+"id": 419,
+"zh": "它們看得到？",
+"en": "They can see that?"
+},
+{
+"id": 420,
+"zh": "看得到。像有一根線，在上面拉著。",
+"en": "They can. Like a string pulling from above."
+},
+{
+"id": 421,
+"zh": "線？哼，要是讓我知道是誰在拉，我非劈了他不可。",
+"en": "A string? Hmph. If I ever find out who's pulling it, I'll strike him down."
+},
+{
+"id": 422,
+"zh": "參道的人和畫畫的人，也被同一根線拉著。",
+"en": "The man on the shrine path and the painter are on the same string."
+},
+{
+"id": 423,
+"zh": "我才不是什麼人偶！既然你這麼會看，就看看我的雷吧！",
+"en": "I'm nobody's puppet! If you're so good at seeing things, take a look at my lightning!"
+},
+{
+"id": 424,
+"zh": "擅自闖入，有失禮數。閣下所為何來？",
+"en": "Entering uninvited is ill-mannered. What brings you here?"
+},
+{
+"id": 425,
+"zh": "山裡的樹全都往你這裡長，連路都被樹根擋住了。是你吧？",
+"en": "Every tree on the mountain is growing toward this place. The roots have blocked the paths. That's you, right?"
+},
+{
+"id": 426,
+"zh": "在下奉天命，替山守住草木之氣。",
+"en": "I am keeping the mountain's plant spirit safe, by heaven's order."
+},
+{
+"id": 427,
+"zh": "天命？是不是夢裡的聲音？",
+"en": "Heaven's order? A voice in a dream, by any chance?"
+},
+{
+"id": 428,
+"zh": "閣下怎麼知道？",
+"en": "How would you know that?"
+},
+{
+"id": 429,
+"zh": "看星星的、畫畫的、叫雨的那個，全都聽到了。",
+"en": "The stargazer, the painter and the rain guy all heard it."
+},
+{
+"id": 430,
+"zh": "三人皆然……星辰、四時、天候，再加上在下守的草木之氣，全都被引往天頂。看來不是天命，是有人在收東西。",
+"en": "All three of them... The stars, the seasons, the weather, and the plant spirit I keep, all drawn toward the sky. That isn't heaven's order. Someone is collecting."
+},
+{
+"id": 431,
+"zh": "收去幹嘛？",
+"en": "Collecting it for what?"
+},
+{
+"id": 432,
+"zh": "在下不知。五行仙壇的玄精通天象，或許清楚。",
+"en": "I do not know. Gen of the Altar of the Five Elements knows the heavens well. He may."
+},
+{
+"id": 433,
+"zh": "那你讓開，我去問他。",
+"en": "Then let me through and I'll go ask him."
+},
+{
+"id": 434,
+"zh": "天命未解之前，在下仍得守住此地。要過去，請先勝過在下。",
+"en": "Until this order is understood, I must still hold this place. If you wish to pass, you must first defeat me."
+},
+{
+"id": 435,
+"zh": "持弓入園，殺氣太重。",
+"en": "You enter a garden carrying a bow. Far too much killing intent."
+},
+{
+"id": 436,
+"zh": "林子裡的獸道全被樹根封了。我要過去。",
+"en": "Every animal trail in the woods is sealed off by roots. I'm going through."
+},
+{
+"id": 437,
+"zh": "那是在下聚的草木之氣。天命所託，不能讓。",
+"en": "That is the plant spirit I have gathered. Heaven entrusted it to me. I cannot give way."
+},
+{
+"id": 438,
+"zh": "天命。夢裡的？",
+"en": "Heaven. From a dream?"
+},
+{
+"id": 439,
+"zh": "閣下也聽過？",
+"en": "You have heard it too?"
+},
+{
+"id": 440,
+"zh": "我沒有。是我一路打倒的人聽過。",
+"en": "No. The people I beat on the way here did."
+},
+{
+"id": 441,
+"zh": "一路打倒……難怪閣下身上的氣這麼雜。星、季、雲，全纏在閣下身上。",
+"en": "Beat on the way... No wonder your spirit is so mixed. Stars, seasons, clouds, all tangled around you."
+},
+{
+"id": 442,
+"zh": "我不在乎。讓路。",
+"en": "I don't care. Move."
+},
+{
+"id": 443,
+"zh": "若天命要閣下來取，在下更該確認閣下取得起。請。",
+"en": "If heaven means for you to take it, all the more reason I make sure you can carry it. Please."
+},
+{
+"id": 444,
+"zh": "這位修行者，入園之前，請先把鞋上的泥擦掉。",
+"en": "Traveller, please wipe the mud off your shoes before entering the garden."
+},
+{
+"id": 445,
+"zh": "啊，抱歉抱歉～你家竹子長得好好喔，筍子可以挖嗎？",
+"en": "Ah, sorry, sorry~ Your bamboo's growing so well. Can I dig up some shoots?"
+},
+{
+"id": 446,
+"zh": "竹乃君子，豈可食之。",
+"en": "Bamboo is a gentleman. One does not eat a gentleman."
+},
+{
+"id": 447,
+"zh": "可是很好吃耶。對了，山上的樹全朝這裡長，害我繞了好遠的路。你也是被夢叫來做這個的嗎？",
+"en": "But they're tasty. Oh, right, every tree on the mountain grows this way, so I had to take a huge detour. Did a dream tell you to do this too?"
+},
+{
+"id": 448,
+"zh": "閣下何以得知？",
+"en": "How do you know that?"
+},
+{
+"id": 449,
+"zh": "前面三個人都是這樣啊。星星、季節、雲，現在是樹。好像有人在湊東西。",
+"en": "The three people before you were all like that. Stars, seasons, clouds, and now trees. It's like someone is collecting a set."
+},
+{
+"id": 450,
+"zh": "湊……確實。在下的草木之氣，也日夜往天頂流去。",
+"en": "Collecting... Indeed. My plant spirit has been flowing toward the sky day and night."
+},
+{
+"id": 451,
+"zh": "往天上？上面是不是有人在等著吃？",
+"en": "Toward the sky? Is someone up there waiting to eat it?"
+},
+{
+"id": 452,
+"zh": "閣下說得粗俗，倒也未必錯。要知道上面是誰，可去五行仙壇問玄。只是，在下的職責還沒卸下。",
+"en": "Crudely put, but perhaps not wrong. To learn who it is, ask Gen at the Altar of the Five Elements. But my duty here is not yet done."
+},
+{
+"id": 453,
+"zh": "那我先陪你練一下囉！",
+"en": "Then I'll spar with you first!"
+},
+{
+"id": 454,
+"zh": "客人有禮。是來賞花的嗎？",
+"en": "A polite guest. Have you come to view the flowers?"
+},
+{
+"id": 455,
+"zh": "花很漂亮。可是孩子們說，山裡的草木都很累。",
+"en": "They're beautiful. But the children say the plants on the mountain are very tired."
+},
+{
+"id": 456,
+"zh": "人偶也懂得草木的累嗎？",
+"en": "Puppets can tell when plants are tired?"
+},
+{
+"id": 457,
+"zh": "它們的身體是木頭做的。",
+"en": "Their bodies are made of wood."
+},
+{
+"id": 458,
+"zh": "原來如此。在下奉天命，聚集山中靈氣，守到天門之夜。",
+"en": "I see. By heaven's order, I am gathering the mountain's spirit and keeping it until the Night of the Heaven's Gate."
+},
+{
+"id": 459,
+"zh": "星星、季節、雲，也都被人收著。孩子們說，最後全往同一個地方去。",
+"en": "The stars, the seasons and the clouds are being kept too. The children say they all end up going to the same place."
+},
+{
+"id": 460,
+"zh": "天頂。在下也感覺到了。五行仙壇的玄比誰都清楚天上的事，閣下可以去問他。",
+"en": "The top of the sky. I have felt it as well. Gen of the Altar of the Five Elements knows the heavens better than anyone. You may ask him."
+},
+{
+"id": 461,
+"zh": "那，可以讓我們過去嗎？",
+"en": "Then may we pass?"
+},
+{
+"id": 462,
+"zh": "天命還在在下肩上。要過去，得先讓在下看見，閣下擔得起。",
+"en": "Heaven's order still rests on my shoulders. To pass, you must first show me you can bear it."
+},
+{
+"id": 463,
+"zh": "你早就知道我會來？那你一定也知道，夢裡那個聲音是誰！",
+"en": "You knew I'd come? Then you must know whose voice is in the dreams!"
+},
+{
+"id": 464,
+"zh": "天宮的守護者，燁。",
+"en": "Yoh, guardian of the Heavenly Palace."
+},
+{
+"id": 465,
+"zh": "燁……他為什麼要大家去偷星星、搶季節？",
+"en": "Yoh... Why make everyone steal stars and snatch seasons?"
+},
+{
+"id": 466,
+"zh": "四神結界快碎了，他也快撐不住了。補結界需要力量，而那份力量只認勝者。",
+"en": "The Barrier of the Four Gods is about to break, and he can barely hold on. Mending it takes power, and that power only answers to a victor."
+},
+{
+"id": 467,
+"zh": "勝者？",
+"en": "A victor?"
+},
+{
+"id": 468,
+"zh": "打倒守門人的人。我們五個各守一份，等人來一一贏過。你身上已經有四份了。",
+"en": "Someone who defeats the gatekeepers. The five of us each hold one share, waiting for someone to beat us one by one. You already carry four."
+},
+{
+"id": 469,
+"zh": "所以我一路打過來，全照著他的意思？",
+"en": "So everything I did on the way here went exactly the way he wanted?"
+},
+{
+"id": 470,
+"zh": "是。",
+"en": "Yes."
+},
+{
+"id": 471,
+"zh": "那你們呢？明知道被安排了，還照做？",
+"en": "And you? You knew you were being used, and you went along with it?"
+},
+{
+"id": 472,
+"zh": "我知道，其他人不知道。",
+"en": "I knew. The others didn't."
+},
+{
+"id": 473,
+"zh": "這種事應該好好說清楚！",
+"en": "Something like this should be said plainly!"
+},
+{
+"id": 474,
+"zh": "說清楚了，你就會來嗎？第五份在我這裡。想上天宮問他，就拿走它。",
+"en": "Would you have come if it had been? The fifth share is with me. If you want to go up and ask him, take it."
+},
+{
+"id": 475,
+"zh": "我不聽卦。夢裡的聲音是誰。",
+"en": "I'm not here for fortunes. Whose voice is in the dreams?"
+},
+{
+"id": 476,
+"zh": "天宮的燁。守著四神結界的人。",
+"en": "Yoh of the Heavenly Palace. The one who guards the Barrier of the Four Gods."
+},
+{
+"id": 477,
+"zh": "他要什麼。",
+"en": "What does he want?"
+},
+{
+"id": 478,
+"zh": "要一個人，一路贏過五個守門人，把五份力量帶上天宮。結界只認勝者的力量。",
+"en": "Someone who beats five gatekeepers in a row and carries their five shares up to the palace. The barrier only accepts a victor's power."
+},
+{
+"id": 479,
+"zh": "我只是來收陷阱的。",
+"en": "I only came to collect my traps."
+},
+{
+"id": 480,
+"zh": "卦象不管你為什麼來。你已經走到這裡，身上背著四份。",
+"en": "The divination doesn't care why you came. You're here, carrying four shares."
+},
+{
+"id": 481,
+"zh": "所以我是被拿來搬東西的。",
+"en": "So I'm being used to haul things."
+},
+{
+"id": 482,
+"zh": "你可以在這裡轉身。",
+"en": "You can turn back here."
+},
+{
+"id": 483,
+"zh": "轉身，雨會停嗎？星星會回來嗎？",
+"en": "If I turn back, does the rain stop? Do the stars come back?"
+},
+{
+"id": 484,
+"zh": "不會。",
+"en": "No."
+},
+{
+"id": 485,
+"zh": "一點點～木頭生火烤地瓜，火燒水泡茶！",
+"en": "A little~ Wood makes fire for roasting sweet potatoes, fire boils water for tea!"
+},
+{
+"id": 486,
+"zh": "倒也沒錯。那你知道，你身上已經背了四份力量嗎？",
+"en": "Not wrong. Then do you know you're already carrying four shares of power?"
+},
+{
+"id": 487,
+"zh": "難怪一直很餓！這也是你們搞的喔？",
+"en": "No wonder I'm always hungry! Is this your doing too?"
+},
+{
+"id": 488,
+"zh": "是天宮的燁安排的。四神結界快碎了，他要找一個人一路贏過我們，把力量帶上去補結界。",
+"en": "Yoh of the Heavenly Palace arranged it. The Barrier of the Four Gods is about to break. He needs someone to beat all of us and carry the power up to mend it."
+},
+{
+"id": 489,
+"zh": "他為什麼不自己來拿？",
+"en": "Why doesn't he come and get it himself?"
+},
+{
+"id": 490,
+"zh": "他離不開天宮，也已經沒力氣贏過任何人了。",
+"en": "He can't leave the palace, and he no longer has the strength to beat anyone."
+},
+{
+"id": 491,
+"zh": "好麻煩喔……那他有沒有好好吃飯啊？撐那麼久，一定很累。",
+"en": "What a hassle... Is he eating properly? Holding on that long must be exhausting."
+},
+{
+"id": 492,
+"zh": "這倒沒人想過。先把第五份拿走吧，上去以後你自己問他。",
+"en": "No one ever thought to ask that. Take the fifth share first. You can ask him yourself up there."
+},
+{
+"id": 493,
+"zh": "好，那我收下囉！",
+"en": "Okay, I'll take it then!"
+},
+{
+"id": 494,
+"zh": "人偶師。你的人偶，屬木，還是屬土？",
+"en": "Puppeteer. Do your puppets belong to Wood, or to Earth?"
+},
+{
+"id": 495,
+"zh": "它們屬於我。請告訴我們，那根線的另一頭是誰。",
+"en": "They belong to me. Please tell us who's at the other end of the string."
+},
+{
+"id": 496,
+"zh": "線？說得好。天宮的守護者，燁。他用夢牽著我們五個，又讓你一路收走我們的力量。",
+"en": "A string? Well put. Yoh, the guardian of the Heavenly Palace. He holds the five of us with dreams, and has you gather up our power one by one."
+},
+{
+"id": 497,
+"zh": "為什麼要這樣做？",
+"en": "Why would he do that?"
+},
+{
+"id": 498,
+"zh": "四神結界快碎了。補它的力量只認勝者，而他已經沒力氣自己去贏。",
+"en": "The Barrier of the Four Gods is about to break. The power to mend it only answers to a victor, and he no longer has the strength to win on his own."
+},
+{
+"id": 499,
+"zh": "孩子們說，那個聲音一直很寂寞。",
+"en": "The children say that voice has always been lonely."
+},
+{
+"id": 500,
+"zh": "人偶看得比人清楚。最後一份在我這裡。你們想替他分擔，就拿去。",
+"en": "Puppets see more clearly than people. The last share is with me. If you want to help carry his load, take it."
+},
+{
+"id": 501,
+"zh": "孩子們，準備好了嗎？",
+"en": "Children, are you ready?"
+},
+{
+"id": 502,
+"zh": "你來了。走到這裡的人，你是第一個。",
+"en": "You've come. You're the first to make it this far."
+},
+{
+"id": 503,
+"zh": "你就是燁吧？看星星的、畫畫的、叫雨的、墨竹，還有玄——大家會鬧事，全是你安排的！",
+"en": "You're Yoh, right? The stargazer, the painter, the rain guy, Mochiku and Gen. Everything they did, you set it up!"
+},
+{
+"id": 504,
+"zh": "是。四神結界撐不過今晚的天門之夜，而我已經沒有力氣補它。",
+"en": "Yes. The Barrier of the Four Gods won't last through tonight's Night of the Heaven's Gate, and I no longer have the strength to mend it."
+},
+{
+"id": 505,
+"zh": "那為什麼不直接說？找人來幫忙不就好了！",
+"en": "Then why not just say so? Why not ask for help!"
+},
+{
+"id": 506,
+"zh": "結界的力量只跟隨勝者。我離不開天宮，只好讓五個人各守一份，等有人一一勝過他們。",
+"en": "The barrier's power only follows a victor. I can't leave the palace, so I had five people each hold a share and waited for someone to beat them."
+},
+{
+"id": 507,
+"zh": "你知道山下變成什麼樣子嗎？星星沒了，稻子凍死，河都快淹出來了！",
+"en": "Do you know what it's like down there? No stars, frozen rice, a river about to flood!"
+},
+{
+"id": 508,
+"zh": "知道。每一件我都看著。",
+"en": "I know. I watched every bit of it."
+},
+{
+"id": 509,
+"zh": "看著，卻什麼都不做？",
+"en": "You watched and did nothing?"
+},
+{
+"id": 510,
+"zh": "我做了。我讓你來到這裡。",
+"en": "I did something. I brought you here."
+},
+{
+"id": 511,
+"zh": "這不是同一件事！",
+"en": "That's not the same thing!"
+},
+{
+"id": 512,
+"zh": "我知道。所以最後，我要用四神之力親自試你。你若撐不住，這些力量也撐不住結界。",
+"en": "I know. So, at the end, I'll test you myself with the power of the Four Gods. If you can't hold up, neither can the barrier."
+},
+{
+"id": 513,
+"zh": "好！打完以後，你給我下山，跟每個人道歉！",
+"en": "Fine! When this is over, you're coming down the mountain to apologise to every one of them!"
+},
+{
+"id": 514,
+"zh": "獵人。你一路射穿了五道門。",
+"en": "Hunter. You've shot your way through five gates."
+},
+{
+"id": 515,
+"zh": "我只是想收陷阱。",
+"en": "I only wanted my traps back."
+},
+{
+"id": 516,
+"zh": "我知道。對你而言，這全是多出來的事。",
+"en": "I know. For you, all of this was beside the point."
+},
+{
+"id": 517,
+"zh": "為了補結界，讓五個人去鬧，讓我去打。",
+"en": "To mend the barrier, you set five people loose and sent me to fight them."
+},
+{
+"id": 518,
+"zh": "結界只認勝者的力量。我離不開這裡，沒有別的辦法。",
+"en": "The barrier only accepts a victor's power. I can't leave this place. There was no other way."
+},
+{
+"id": 519,
+"zh": "有。你可以說。",
+"en": "There was. You could have said so."
+},
+{
+"id": 520,
+"zh": "說了，誰會信？一個夢裡的聲音說天要塌了。",
+"en": "And who would believe it? A voice in a dream saying the sky is falling."
+},
+{
+"id": 521,
+"zh": "下了七天雨，誰都會信。",
+"en": "After seven days of rain, anyone would."
+},
+{
+"id": 522,
+"zh": "也許你說得對。是我太習慣一個人做決定了。",
+"en": "Perhaps you're right. I've grown too used to deciding everything alone."
+},
+{
+"id": 523,
+"zh": "那就快點結束。",
+"en": "Then let's finish this."
+},
+{
+"id": 524,
+"zh": "好。四神為證，讓我看看你的箭能不能抵達天頂。",
+"en": "Very well. With the Four Gods as witness, show me whether your arrows can reach the top of the sky."
+},
+{
+"id": 525,
+"zh": "哇——好漂亮！……不對不對，我是來念你的！",
+"en": "Wow, it's so pretty! ...No, wait, I'm here to scold you!"
+},
+{
+"id": 526,
+"zh": "念我？",
+"en": "Scold me?"
+},
+{
+"id": 527,
+"zh": "你讓大家做奇怪的夢，害星星不見、雨下不停，山下的人都沒辦法好好吃飯！",
+"en": "You gave everyone weird dreams, the stars vanished, the rain won't stop, and nobody down there can eat properly!"
+},
+{
+"id": 528,
+"zh": "是我。四神結界今晚就會碎，我已經補不動了。結界的力量只跟隨勝者，所以我讓五個人各守一份，等人來拿。",
+"en": "That was me. The Barrier of the Four Gods breaks tonight, and I can't mend it anymore. Its power only follows a victor, so I had five people each keep a share until someone came to take them."
+},
+{
+"id": 529,
+"zh": "所以我一路餓肚子，都是在幫你搬東西？",
+"en": "So I've been starving the whole way just to carry your stuff?"
+},
+{
+"id": 530,
+"zh": "可以這麼說。",
+"en": "You could put it that way."
+},
+{
+"id": 531,
+"zh": "那你自己呢？你多久沒吃飯了？",
+"en": "And you? When did you last eat?"
+},
+{
+"id": 532,
+"zh": "守護者不需要吃飯。",
+"en": "A guardian doesn't need to eat."
+},
+{
+"id": 533,
+"zh": "騙人，看你的臉色就知道。",
+"en": "Liar. One look at your face says otherwise."
+},
+{
+"id": 534,
+"zh": "先把試煉做完吧。你背上的五份力量，我得確定你承受得住。",
+"en": "Let's finish the trial first. I need to be sure you can bear the five shares you carry."
+},
+{
+"id": 535,
+"zh": "好喔，那打完你要吃飯！",
+"en": "Okay, but after this, you're eating!"
+},
+{
+"id": 536,
+"zh": "安靜的孩子。你的人偶陪你走過了每一關。",
+"en": "A quiet child. Your puppets have walked every step with you."
+},
+{
+"id": 537,
+"zh": "是孩子們帶我走過來的。它們說，您的線一直牽到這裡。",
+"en": "It was the children who brought me. They say your string leads all the way here."
+},
+{
+"id": 538,
+"zh": "線……是啊。我用夢牽著五個人，也牽著你。",
+"en": "A string... Yes. I held five people with dreams, and you as well."
+},
+{
+"id": 539,
+"zh": "為什麼不放開呢？",
+"en": "Why not let go?"
+},
+{
+"id": 540,
+"zh": "四神結界快碎了。補它的力量只跟隨勝者，我已經沒力氣自己去贏，只好讓守門人各執一份，等一個人來。",
+"en": "The Barrier of the Four Gods is about to break. The power to mend it only follows a victor, and I can no longer win on my own. So I had the gatekeepers each hold a share and waited for someone to come."
+},
+{
+"id": 541,
+"zh": "大家都不是壞人，卻被當成壞人打倒了。",
+"en": "None of them were bad people, but they were beaten like villains."
+},
+{
+"id": 542,
+"zh": "是我讓他們背了這個名。等結界補好，我會親自去向他們賠罪。",
+"en": "I'm the one who put that name on them. Once the barrier is mended, I'll go and make amends to each of them myself."
+},
+{
+"id": 543,
+"zh": "孩子們說，您也該有人陪。",
+"en": "The children say you should have someone with you too."
+},
+{
+"id": 544,
+"zh": "那就讓我最後一次，用四神之力試你們。",
+"en": "Then let me test you one last time, with the power of the Four Gods."
+},
+{
+"id": 545,
+"zh": "喲，玄放你上來了。坐吧，桌子都擺好了。",
+"en": "Well, Gen let you through. Have a seat, the table's all set."
+},
+{
+"id": 546,
+"zh": "我不是來打牌的！十三枚天印，請你還給燁！",
+"en": "I'm not here to play! Please give the thirteen Heaven Seals back to Yoh!"
+},
+{
+"id": 547,
+"zh": "還，當然要還。我替他保管了五百年，就等這一天。",
+"en": "Of course they go back. I've kept them for him for five hundred years, waiting for this day."
+},
+{
+"id": 548,
+"zh": "保管？玄說是你贏走的。",
+"en": "Kept them? Gen said you won them."
+},
+{
+"id": 549,
+"zh": "是贏來的。那天燁想拿天印換一份永遠不輸的運氣，好一個人守著結界到永遠。我不能讓他換。",
+"en": "I did win them. That day Yoh wanted to trade the seals for luck that never loses, so he could guard the barrier alone forever. I couldn't let him make that trade."
+},
+{
+"id": 550,
+"zh": "一個人不可能永遠不輸，他會把自己撐壞的。所以我贏下天印，替他收著，等他願意找人幫忙。你看，他不就找了你？",
+"en": "No one alone can never lose. He'd have broken himself. So I won the seals and kept them for him until he was willing to ask for help. And look, he found you."
+},
+{
+"id": 551,
+"zh": "那現在就還給我吧！",
+"en": "Then give them to me now!"
+},
+{
+"id": 552,
+"zh": "天印很重，拿不穩的人會被壓垮。陪我打一局吧。你贏了，十三枚全帶走；輸了也沒關係，吃頓飯，下次再來。",
+"en": "The seals are heavy. Anyone who can't hold them steady gets crushed. Play one game with me. Win, and all thirteen go with you. Lose, and that's fine too: have dinner and come back another time."
+},
+{
+"id": 553,
+"zh": "臉這麼冷，很適合打牌。",
+"en": "A face that cold. Made for cards."
+},
+{
+"id": 554,
+"zh": "我不賭。天印。",
+"en": "I don't gamble. The seals."
+},
+{
+"id": 555,
+"zh": "天印會還。可是得先確定，你拿得動。",
+"en": "The seals will go back. But first I need to know you can carry them."
+},
+{
+"id": 556,
+"zh": "玄說你從沒輸過。",
+"en": "Gen says you've never lost."
+},
+{
+"id": 557,
+"zh": "沒錯。燁那天也是不肯認輸，想一個人扛下所有事。",
+"en": "That's right. Yoh wouldn't admit defeat that day either. He wanted to carry everything alone."
+},
+{
+"id": 558,
+"zh": "你留著天印，是在等他找人幫忙。",
+"en": "You kept the seals, waiting for him to find help."
+},
+{
+"id": 559,
+"zh": "你這人眼睛真利。規矩很簡單：贏我，天印你帶回去。",
+"en": "Sharp eyes. The rule is simple: beat me, and you take the seals home."
+},
+{
+"id": 560,
+"zh": "射箭也是賭。我沒射偏過。",
+"en": "Every shot is a gamble. I've never missed."
+},
+{
+"id": 561,
+"zh": "哈哈！那就看你能不能聽牌到最後！",
+"en": "Hahaha! Then let's see if you can stay one tile from winning to the very end!"
+},
+{
+"id": 562,
+"zh": "山伏也來雀莊？先說好，輸了要洗碗喔。",
+"en": "A yamabushi in a mahjong parlour? Fair warning: the loser does the dishes."
+},
+{
+"id": 563,
+"zh": "我是聞到味道來的！還有，玄說燁的天印在你這裡。",
+"en": "I followed the smell! Also, Gen says Yoh's seals are here."
+},
+{
+"id": 564,
+"zh": "在，一枚也沒少。五百年前，他想用天印換我的不敗之運。",
+"en": "They are, every one of them. Five hundred years ago he wanted to trade them for my unbeatable luck."
+},
+{
+"id": 565,
+"zh": "為什麼要換那個？",
+"en": "Why would he want that?"
+},
+{
+"id": 566,
+"zh": "他想一個人永遠不輸地守著結界。一個人哪可能永遠不輸？所以我贏了天印，替他好好收著。",
+"en": "He wanted to guard the barrier alone and never lose. How can anyone alone never lose? So I won the seals and kept them safe for him."
+},
+{
+"id": 567,
+"zh": "所以你一直在等他找人幫忙？",
+"en": "So you've been waiting for him to ask for help?"
+},
+{
+"id": 568,
+"zh": "誰知道呢。規矩是：贏我，十三枚全給你。",
+"en": "Who knows. The rule: beat me and all thirteen are yours."
+},
+{
+"id": 569,
+"zh": "那再加一桌菜！",
+"en": "Then add a full dinner on top!"
+},
+{
+"id": 570,
+"zh": "行。贏了，就是十三枚天印加十三道菜。輸了，碗歸你洗。",
+"en": "Done. Win, and it's thirteen Heaven Seals and thirteen dishes. Lose, and the dishes are yours to wash."
+},
+{
+"id": 571,
+"zh": "孩子們說，您的牌在發光。",
+"en": "The children say your tiles are glowing."
+},
+{
+"id": 572,
+"zh": "好眼光。這十三張，是燁的天印。我替他收了五百年。",
+"en": "Good eye. These thirteen are Yoh's Heaven Seals. I've kept them for him for five hundred years."
+},
+{
+"id": 573,
+"zh": "燁先生那時想用它們換什麼呢？",
+"en": "What did Yoh want to trade them for back then?"
+},
+{
+"id": 574,
+"zh": "換我的運氣。他想一個人守到永遠，永遠不輸。我不想看他那樣，就贏下了天印。",
+"en": "My luck. He wanted to guard it alone forever and never lose. I didn't want to see him like that, so I won the seals."
+},
+{
+"id": 575,
+"zh": "人偶師，你看得太清楚了。天印很重，我得確定你們拿得動。陪我打一局吧。",
+"en": "You see too clearly, puppeteer. The seals are heavy; I need to be sure you can carry them. Play a game with me."
+},
+{
+"id": 576,
+"zh": "孩子們，我們坐下吧。",
+"en": "Children, let's sit down."
+},
+{
+"id": 577,
+"zh": "打倒了窮奇，還敢往上走。",
+"en": "Beat Qiongqi and still came up."
+},
+{
+"id": 578,
+"zh": "你們就是四凶？燁在哪裡！",
+"en": "So you're the Four Perils? Where's Yoh!"
+},
+{
+"id": 579,
+"zh": "在我們身後。結界碎了，守護者倒在碎片裡。",
+"en": "Behind us. The barrier broke, and the guardian lies among the pieces."
+},
+{
+"id": 580,
+"zh": "為什麼要出來搗亂！結界壓著你們，山下的人才能好好過日子！",
+"en": "Why come out and wreck everything! The barrier held you down so people below could live in peace!"
+},
+{
+"id": 581,
+"zh": "那也不能拿山下的人出氣。",
+"en": "That still doesn't mean you can take it out on the people below."
+},
+{
+"id": 582,
+"zh": "所以啊，你身上那五份力量，正好讓我們吃個飽！",
+"en": "So anyway, those five shares of yours will make a nice full meal!"
+},
+{
+"id": 583,
+"zh": "你果然上來了。",
+"en": "So you did come up."
+},
+{
+"id": 584,
+"zh": "哇，好冷的人。檮杌，就是他打贏你？",
+"en": "Wow, what a cold one. Taowu, this is the guy who beat you?"
+},
+{
+"id": 585,
+"zh": "守護者在後面。四神倒了，結界碎了。你要怎麼做？",
+"en": "The guardian is behind us. The Four Gods have fallen, the barrier is broken. What will you do?"
+},
+{
+"id": 586,
+"zh": "把你們射回原位。用我身上的五份力量。",
+"en": "Shoot you all back where you belong. With the five shares I carry."
+},
+{
+"id": 587,
+"zh": "哈哈哈！四箭？那就一箭一箭試試！",
+"en": "Hahaha! Four arrows? Then let's try them one at a time!"
+},
+{
+"id": 588,
+"zh": "還沒！我還要找燁！",
+"en": "Not yet! I still have to find Yoh!"
+},
+{
+"id": 589,
+"zh": "這山伏怎麼回事，一點都不怕。",
+"en": "What's with this yamabushi? Not scared in the slightest."
+},
+{
+"id": 590,
+"zh": "他心裡沒有怕，只有餓。",
+"en": "There's no fear in him. Only hunger."
+},
+{
+"id": 591,
+"zh": "結界碎了，守護者倒了，我們出來了。你一個人能做什麼？",
+"en": "The barrier's broken, the guardian has fallen, and we're out. What can you do alone?"
+},
+{
+"id": 592,
+"zh": "把你們打回去，把燁叫起來，然後大家一起吃飯！你們也可以來！",
+"en": "Beat you back, wake Yoh up, and then we all eat together! You can come too!"
+},
+{
+"id": 593,
+"zh": "這、這是在請我們吃飯？",
+"en": "Is- is he inviting us to dinner?"
+},
+{
+"id": 594,
+"zh": "孩子們都在。",
+"en": "The children are all here."
+},
+{
+"id": 595,
+"zh": "怕。可是孩子們說，你們也很寂寞。",
+"en": "I am. But the children say you're lonely too."
+},
+{
+"id": 596,
+"zh": "寂寞？被壓在結界底下幾千年，只剩下恨。",
+"en": "Lonely? After thousands of years under the barrier, all that's left is hate."
+},
+{
+"id": 597,
+"zh": "那麼，等一切結束，請和燁先生把話說清楚。",
+"en": "Then when this is over, please talk it out with Yoh."
+},
+{
+"id": 598,
+"zh": "說話……我們說的話，從來沒有人聽。若你贏了，我們就聽你說。",
+"en": "Talk... No one has ever listened to what we say. If you win, we'll listen to you."
+},
+{
+"id": 599,
+"zh": "梅、蘭、竹、菊，竟一一敗在閣下手上。",
+"en": "Plum, orchid, bamboo, chrysanthemum... each one beaten by you."
+},
+{
+"id": 600,
+"zh": "奇怪。在下的靈氣沒有回到山裡，反而流到閣下身上了。",
+"en": "Strange. My spirit did not return to the mountain. It flowed into you instead."
+},
+{
+"id": 601,
+"zh": "我身上？難怪從剛才開始一直在發燙。",
+"en": "Into me? So that's why I've felt hot since a moment ago."
+},
+{
+"id": 602,
+"zh": "閣下一路打倒的人，他們的力量恐怕都在閣下這裡。往五行仙壇去吧，玄會告訴你為什麼。",
+"en": "The power of everyone you defeated on your way is probably with you now. Go to the Altar of the Five Elements. Gen will tell you why."
+},
+{
+"id": 603,
+"zh": "好。謝了，書生。",
+"en": "Got it. Thanks, scholar."
+},
+{
+"id": 604,
+"zh": "墨竹。在下名叫墨竹。",
+"en": "Mochiku. My name is Mochiku."
+},
+{
+"id": 605,
+"zh": "好箭。在下輸了。",
+"en": "Fine archery. I have lost."
+},
+{
+"id": 606,
+"zh": "你的氣，往我這邊來了。",
+"en": "Your spirit is coming my way."
+},
+{
+"id": 607,
+"zh": "閣下也感覺到了？星、季、雲，加上在下的草木。閣下一路收集的，恐怕不是巧合。",
+"en": "You feel it too? Stars, seasons, clouds, and now my plants. What you have been gathering is no coincidence."
+},
+{
+"id": 608,
+"zh": "玄在哪。",
+"en": "Where's Gen?"
+},
+{
+"id": 609,
+"zh": "往上，五行仙壇。他說話喜歡繞圈子，請耐著性子。",
+"en": "Up the mountain, at the Altar of the Five Elements. He likes to talk in circles. Be patient with him."
+},
+{
+"id": 610,
+"zh": "在下的庭園，被閣下踩得一塌糊塗。",
+"en": "You have trampled my garden into a ruin."
+},
+{
+"id": 611,
+"zh": "對不起嘛～咦，我怎麼又餓了，剛剛才吃過饅頭。",
+"en": "Sorry~ Huh, why am I hungry again? I just ate a bun."
+},
+{
+"id": 612,
+"zh": "那不是餓。在下的草木之氣流進了閣下體內，還有星辰、四時、天候。",
+"en": "That is not hunger. My plant spirit has flowed into you, along with the stars, the seasons and the weather."
+},
+{
+"id": 613,
+"zh": "我吃了那麼多東西喔？",
+"en": "I ate all that?"
+},
+{
+"id": 614,
+"zh": "算是吧。五行仙壇的玄知道這是怎麼回事，去問他。",
+"en": "In a sense. Gen of the Altar of the Five Elements knows what this means. Go and ask him."
+},
+{
+"id": 615,
+"zh": "好！順便問他有沒有吃的。",
+"en": "Okay! I'll ask if he has any food while I'm at it."
+},
+{
+"id": 616,
+"zh": "人偶師，在下的四君子都向你低頭了。",
+"en": "Puppeteer, all four of my gentlemen bow to you."
+},
+{
+"id": 617,
+"zh": "孩子們說，你的花其實很溫柔。",
+"en": "The children say your flowers are actually gentle."
+},
+{
+"id": 618,
+"zh": "多謝。那聲音說，要守到有人來取。在下一直以為，取的是天。",
+"en": "Thank you. The voice told me to keep it until someone came to take it. I always assumed that someone was heaven."
+},
+{
+"id": 619,
+"zh": "不是嗎？",
+"en": "It isn't?"
+},
+{
+"id": 620,
+"zh": "靈氣現在在閣下身上。也許，等的就是你。去五行仙壇問玄吧。",
+"en": "The spirit is with you now. Perhaps it was you it was waiting for. Go ask Gen at the Altar of the Five Elements."
+},
+{
+"id": 621,
+"zh": "孩子們，我們走。",
+"en": "Children, let's go."
+},
+{
+"id": 622,
+"zh": "五行已盡。卦象沒錯，你裝得下。",
+"en": "The five elements are spent. The divination was right. You can hold it."
+},
+{
+"id": 623,
+"zh": "身體好燙……這就是五份力量？",
+"en": "I'm burning up... Is this the five shares?"
+},
+{
+"id": 624,
+"zh": "是。往上走，雲會讓路。燁就在天宮等。",
+"en": "It is. Go up. The clouds will part for you. Yoh is waiting in the palace."
+},
+{
+"id": 625,
+"zh": "你們被他這樣用，不生氣嗎？",
+"en": "Doesn't it make you angry, being used like that?"
+},
+{
+"id": 626,
+"zh": "我們都夢到了同一個快要崩掉的世界。能撐住它，當一次棋子也沒什麼。",
+"en": "We all dreamed of the same world about to collapse. If it holds, being a game piece once is nothing."
+},
+{
+"id": 627,
+"zh": "我會氣。我會替你們問他。",
+"en": "It makes me angry. I'll ask him for all of you."
+},
+{
+"id": 628,
+"zh": "去吧。天門之夜就快到了。",
+"en": "Go. The Night of the Heaven's Gate is almost here."
+},
+{
+"id": 629,
+"zh": "金克木，箭穿五行。卦象沒騙我。",
+"en": "Metal cuts Wood; an arrow pierced the five elements. The divination didn't lie."
+},
+{
+"id": 630,
+"zh": "往上。雲會讓路。",
+"en": "Up. The clouds will part."
+},
+{
+"id": 631,
+"zh": "你們甘心被他用？",
+"en": "You're fine with being used by him?"
+},
+{
+"id": 632,
+"zh": "棋盤要是毀了，就沒有棋子可言。我們只是選了守住棋盤的那一步。",
+"en": "If the board is destroyed, there are no pieces left. We just chose the move that keeps the board."
+},
+{
+"id": 633,
+"zh": "我不喜歡被人下。但這一步，我自己走。",
+"en": "I don't like being played. But this move, I'll make myself."
+},
+{
+"id": 634,
+"zh": "你怎麼知道！肚子一直叫！",
+"en": "How did you know! My stomach won't stop growling!"
+},
+{
+"id": 635,
+"zh": "那是五份力量在你體內打轉。上天宮吧。",
+"en": "That's five shares of power swirling inside you. Go up to the palace."
+},
+{
+"id": 636,
+"zh": "燁會請我吃飯嗎？",
+"en": "Will Yoh feed me?"
+},
+{
+"id": 637,
+"zh": "卦象沒說。",
+"en": "The divination didn't say."
+},
+{
+"id": 638,
+"zh": "那我自己跟他講！",
+"en": "Then I'll ask him myself!"
+},
+{
+"id": 639,
+"zh": "五行相生，最後都流到了你身上。",
+"en": "The five elements gave rise to one another, and in the end they all flowed into you."
+},
+{
+"id": 640,
+"zh": "孩子們說，好重。",
+"en": "The children say it's heavy."
+},
+{
+"id": 641,
+"zh": "一個人扛……孩子們說，那一定很冷。",
+"en": "Carrying it alone... The children say that must be cold."
+},
+{
+"id": 642,
+"zh": "上天宮吧。你和你的孩子們，也許能替他分一些。",
+"en": "Go up to the palace. You and your children might take some of it off him."
+},
+{
+"id": 643,
+"zh": "我們一起去。",
+"en": "We'll go together."
+},
+{
+"id": 644,
+"zh": "勝負已分。四神之力，現在都在你身上了。",
+"en": "It's decided. The power of the Four Gods is all yours now."
+},
+{
+"id": 645,
+"zh": "那結界呢？補得起來嗎？",
+"en": "And the barrier? Can it be mended?"
+},
+{
+"id": 646,
+"zh": "已經在補了。天門會在今晚安靜地開，再安靜地關上。",
+"en": "It's already mending. The gate will open quietly tonight and close just as quietly."
+},
+{
+"id": 647,
+"zh": "那你呢？力量都給我了，你會不見嗎？",
+"en": "What about you? You gave me all your power. Will you disappear?"
+},
+{
+"id": 648,
+"zh": "不會，只是要睡一陣子。還有一件事——結界最舊的那道裂痕，不是今晚才有的。",
+"en": "No. I'll just sleep for a while. One more thing: the oldest crack in the barrier wasn't made tonight."
+},
+{
+"id": 649,
+"zh": "什麼意思？",
+"en": "What do you mean?"
+},
+{
+"id": 650,
+"zh": "那是我五百年前犯的錯。改天再說吧。",
+"en": "It's a mistake I made five hundred years ago. Another time."
+},
+{
+"id": 651,
+"zh": "下次有事，直接說！別再讓大家打架了！",
+"en": "Next time, just tell us! Don't make everyone fight again!"
+},
+{
+"id": 652,
+"zh": "我答應你。",
+"en": "I promise."
+},
+{
+"id": 653,
+"zh": "好箭。結界穩住了。",
+"en": "Fine shooting. The barrier is holding."
+},
+{
+"id": 654,
+"zh": "我會記著。",
+"en": "I'll remember that."
+},
+{
+"id": 655,
+"zh": "不用記。玄說，他們是自己選的。",
+"en": "No need. Gen said they chose it themselves."
+},
+{
+"id": 656,
+"zh": "少囉嗦。陷阱還在山下，我要走了。",
+"en": "Spare me. My traps are still down there. I'm leaving."
+},
+{
+"id": 657,
+"zh": "結界最舊的那道裂，我還補不了。若你哪天又路過天宮——",
+"en": "There's an old crack in the barrier I still can't mend. If you ever pass by the palace again—"
+},
+{
+"id": 658,
+"zh": "看情況。",
+"en": "We'll see."
+},
+{
+"id": 659,
+"zh": "結束了。天門之夜會平安過去。",
+"en": "It's over. The Night of the Heaven's Gate will pass safely."
+},
+{
+"id": 660,
+"zh": "你一路打上來，就為了這個？",
+"en": "You fought all the way up here for that?"
+},
+{
+"id": 661,
+"zh": "還有大家！他們都是因為你才那麼累的，你要好好跟他們說謝謝。",
+"en": "And for everyone! They got worn out because of you. You have to thank them properly."
+},
+{
+"id": 662,
+"zh": "是啊。我欠他們一句話。",
+"en": "Yes. I owe them that."
+},
+{
+"id": 663,
+"zh": "那就一起吃飯的時候說！",
+"en": "Then say it over dinner, all together!"
+},
+{
+"id": 664,
+"zh": "好。等我醒來。",
+"en": "All right. Once I wake up."
+},
+{
+"id": 665,
+"zh": "人偶師，謝謝你。結界穩住了。",
+"en": "Thank you, puppeteer. The barrier is holding."
+},
+{
+"id": 666,
+"zh": "孩子們說，您的聲音不那麼寂寞了。",
+"en": "The children say your voice doesn't sound so lonely anymore."
+},
+{
+"id": 667,
+"zh": "五百年來，我一直以為只能靠自己。",
+"en": "For five hundred years, I thought I could only rely on myself."
+},
+{
+"id": 668,
+"zh": "那以後，讓孩子們也來看您。",
+"en": "Then from now on, let the children visit you too."
+},
+{
+"id": 669,
+"zh": "好。人偶師，你的孩子們有沒有注意到，更遠的地方還有一點光？",
+"en": "I'd like that. Puppeteer, have your children noticed a faint light further off?"
+},
+{
+"id": 670,
+"zh": "有。它們一直在看。",
+"en": "They have. They keep looking at it."
+},
+{
+"id": 671,
+"zh": "那是我還沒還清的債。等我醒來，再告訴你。",
+"en": "That's a debt I haven't repaid. I'll tell you about it when I wake."
+},
+{
+"id": 672,
+"zh": "和了！……不對，是你和了。十三枚天印，拿去。",
+"en": "Mahjong! ...No, wait, you won. The thirteen seals are yours."
+},
+{
+"id": 673,
+"zh": "就這樣？你不賴帳？",
+"en": "Just like that? No welching?"
+},
+{
+"id": 674,
+"zh": "賭品要好。而且這局，我等了五百年。",
+"en": "A gambler keeps his word. Besides, I've waited five hundred years for this game."
+},
+{
+"id": 675,
+"zh": "等燁找到可以幫他的人？",
+"en": "Waiting for Yoh to find someone to help him?"
+},
+{
+"id": 676,
+"zh": "你要這麼想也行。天印拿回去，最舊的裂痕也會合上。",
+"en": "Think of it that way if you like. Take the seals back, and the oldest crack will close."
+},
+{
+"id": 677,
+"zh": "下次帶他來打牌。三缺一。",
+"en": "Bring him to play next time. We're one short for a table."
+},
+{
+"id": 678,
+"zh": "漂亮。每一箭都聽牌。",
+"en": "Beautiful. Every shot one tile from winning."
+},
+{
+"id": 679,
+"zh": "拿去，十三枚，一枚不少。",
+"en": "Here. Thirteen, not one missing."
+},
+{
+"id": 680,
+"zh": "你早就想還了。",
+"en": "You wanted to give them back all along."
+},
+{
+"id": 681,
+"zh": "我在等值得還的人。那傢伙終於肯讓別人幫忙了。",
+"en": "I was waiting for someone worth giving them to. That fool finally let someone help him."
+},
+{
+"id": 682,
+"zh": "你們兩個，都很麻煩。",
+"en": "You two are both a pain."
+},
+{
+"id": 683,
+"zh": "哈哈！這句我收下。改天來打牌。",
+"en": "Hahaha! I'll take that. Come play sometime."
+},
+{
+"id": 684,
+"zh": "輸了輸了！說好的，十三枚天印，還有十三道菜！",
+"en": "I lose, I lose! As promised: thirteen Heaven Seals and thirteen dishes!"
+},
+{
+"id": 685,
+"zh": "耶！真的有菜！",
+"en": "Yay! There really is food!"
+},
+{
+"id": 686,
+"zh": "天和閣的廚房可是天界第一。",
+"en": "The Tenhou Pavilion's kitchen is the best in the heavens."
+},
+{
+"id": 687,
+"zh": "那等燁醒來，也帶他來吃！",
+"en": "Then once Yoh wakes up, I'll bring him here to eat too!"
+},
+{
+"id": 688,
+"zh": "他？他五百年沒踏進這裡了。",
+"en": "Him? He hasn't set foot here in five hundred years."
+},
+{
+"id": 689,
+"zh": "那就更要來啦，五百年沒吃，一定很餓。",
+"en": "All the more reason. Five hundred years without eating, he must be starving."
+},
+{
+"id": 690,
+"zh": "你這山伏……好，我把位子留著。",
+"en": "You yamabushi... Fine. I'll keep a seat for him."
+},
+{
+"id": 691,
+"zh": "你贏了，人偶師。天印請帶回去吧。",
+"en": "You win, puppeteer. Please take the seals back."
+},
+{
+"id": 692,
+"zh": "孩子們說，您其實很捨不得。",
+"en": "The children say you don't really want to let them go."
+},
+{
+"id": 693,
+"zh": "陪了我五百年的東西，哪有捨得的。",
+"en": "They've kept me company for five hundred years. Of course I don't."
+},
+{
+"id": 694,
+"zh": "那您可以去天宮看它們。和燁先生一起。",
+"en": "Then you can visit them at the palace. With Yoh."
+},
+{
+"id": 695,
+"zh": "你真是溫柔得可怕。好，就這麼說定了。",
+"en": "You're frighteningly kind. All right, it's a deal."
+},
+{
+"id": 696,
+"zh": "輸了。正直的人，原來也能活著上來啊。",
+"en": "We lost. So honest people can make it up here alive after all."
+},
+{
+"id": 697,
+"zh": "我會把你們封回去。可是這次不是用恨，是用約定。",
+"en": "I'm going to seal you back. But this time not with hate. With a promise."
+},
+{
+"id": 698,
+"zh": "下一次天門之夜，我會上來看你們。不會再讓你們被忘掉。",
+"en": "On the next Night of the Heaven's Gate, I'll come up to see you. I won't let you be forgotten again."
+},
+{
+"id": 699,
+"zh": "那、那順便帶點吃的！",
+"en": "Th- then bring some food while you're at it!"
+},
+{
+"id": 700,
+"zh": "結界重新亮起來了。守護者也快醒了。",
+"en": "The barrier is lighting up again. The guardian will wake soon."
+},
+{
+"id": 701,
+"zh": "我退了。第一次。",
+"en": "I backed down. For the first time."
+},
+{
+"id": 702,
+"zh": "你沒退。你只是輸了。",
+"en": "You didn't back down. You just lost."
+},
+{
+"id": 703,
+"zh": "這兩個有什麼不一樣？",
+"en": "What's the difference?"
+},
+{
+"id": 704,
+"zh": "退了就不會再來。輸了，下次還能再比。",
+"en": "Back down, and you never come again. Lose, and you can have another go next time."
+},
+{
+"id": 705,
+"zh": "哈！這射手原來會說人話。",
+"en": "Ha! So the archer can talk like a person."
+},
+{
+"id": 706,
+"zh": "結界合上了。我們回去睡吧。這一次，不是被壓著，是自己躺下。",
+"en": "The barrier has closed. Let's go back to sleep. This time not held down, but lying down ourselves."
+},
+{
+"id": 707,
+"zh": "吃、吃不下了……我認輸。",
+"en": "I- I can't eat another bite... I give up."
+},
+{
+"id": 708,
+"zh": "好耶！那等燁醒了，大家一起吃飯！",
+"en": "Yay! Then once Yoh wakes up, we'll all eat together!"
+},
+{
+"id": 709,
+"zh": "被封住的傢伙要怎麼吃飯啦！",
+"en": "How are sealed-up monsters supposed to eat dinner!"
+},
+{
+"id": 710,
+"zh": "奇怪的人類。",
+"en": "Strange human."
+},
+{
+"id": 711,
+"zh": "那就約好了。結界合上之前，讓我們記住這個味道。",
+"en": "Then it's a promise. Before the barrier closes, let us remember this taste."
+},
+{
+"id": 712,
+"zh": "是孩子們在跳。現在，可以說話了嗎？",
+"en": "It was the children dancing. Can we talk now?"
+},
+{
+"id": 713,
+"zh": "我們只是想被看見。",
+"en": "We only wanted to be seen."
+},
+{
+"id": 714,
+"zh": "孩子們會記得你們。燁先生醒來，也會聽的。",
+"en": "The children will remember you. When Yoh wakes, he'll listen too."
+},
+{
+"id": 715,
+"zh": "謝謝你，人偶師。結界合上了。晚安。",
+"en": "Thank you, puppeteer. The barrier is closing. Good night."
+},
+{
+"id": 716,
+"zh": "結界補好了，你卻還往上走。",
+"en": "The barrier is mended, and yet you keep climbing."
+},
+{
+"id": 717,
+"zh": "燁說，最舊的那道裂痕是他五百年前犯的錯。我想知道是什麼錯。",
+"en": "Yoh said the oldest crack was a mistake he made five hundred years ago. I want to know what it was."
+},
+{
+"id": 718,
+"zh": "他連這個都跟你說了。前面是天和閣，主人叫一索。五百年前，燁跟他賭了一局，十三枚天印就留在了那裡。最早的裂痕，就是從那時開始的。",
+"en": "He even told you that. Ahead is the Tenhou Pavilion. Its master is called Isso. Five hundred years ago Yoh played a game with him, and the thirteen Heaven Seals stayed there. That's when the first crack appeared."
+},
+{
+"id": 719,
+"zh": "那我去把天印拿回來！",
+"en": "Then I'll go get the seals back!"
+},
+{
+"id": 720,
+"zh": "一索不會白白交出來。他只認牌桌上的輸贏，而他從來沒輸過。",
+"en": "Isso won't just hand them over. He only trusts what's decided at the table, and he has never lost."
+},
+{
+"id": 721,
+"zh": "那贏就好啦！",
+"en": "Then I'll just win!"
+},
+{
+"id": 722,
+"zh": "說得容易。你連我這三卦都過不了，就別去讓他看笑話。",
+"en": "Easy to say. If you can't get past my three divinations, don't go and make a fool of yourself in front of him."
+},
+{
+"id": 723,
+"zh": "你的箭，還想往哪裡射？",
+"en": "Where else do you mean to shoot?"
+},
+{
+"id": 724,
+"zh": "燁說還有一道裂沒補。我順路。",
+"en": "Yoh said there's a crack left. It's on my way."
+},
+{
+"id": 725,
+"zh": "順路……前面是天和閣。一索手上有十三枚天印，是五百年前從燁那裡贏來的，結界缺的就是它們。",
+"en": "On your way... Ahead is the Tenhou Pavilion. Isso holds thirteen Heaven Seals he won from Yoh five hundred years ago. They're what the barrier is missing."
+},
+{
+"id": 726,
+"zh": "他不收箭，只收牌。要拿回天印，得在他的牌桌上贏他。",
+"en": "He doesn't take arrows, only tiles. To get the seals back, you have to beat him at his table."
+},
+{
+"id": 727,
+"zh": "我不輸。",
+"en": "I won't lose."
+},
+{
+"id": 728,
+"zh": "每個坐上他牌桌的人都這麼說。讓我用三卦，看看你的運。",
+"en": "Everyone who sits at his table says that. Let me read your luck with three divinations."
+},
+{
+"id": 729,
+"zh": "山伏，你又來做什麼？",
+"en": "Yamabushi, what are you doing here again?"
+},
+{
+"id": 730,
+"zh": "燁睡著了，沒人請我吃飯～我聞到前面有很香的味道，就一路走過來了！",
+"en": "Yoh fell asleep and nobody's feeding me~ I smelled something delicious up ahead, so I followed it!"
+},
+{
+"id": 731,
+"zh": "那是天和閣的廚房。主人一索是個愛賭的雀聖，五百年前，燁的十三枚天印輸給了他。",
+"en": "That's the kitchen of the Tenhou Pavilion. Its master, Isso, is a mahjong saint who loves a gamble. Five hundred years ago Yoh's thirteen Heaven Seals went to him."
+},
+{
+"id": 732,
+"zh": "天印是什麼？好吃嗎？",
+"en": "What's a Heaven Seal? Is it tasty?"
+},
+{
+"id": 733,
+"zh": "不能吃。是補結界最早那道裂痕要用的東西。你一進去，一索就會要你上牌桌，不贏他，他是不會交出來的。",
+"en": "You can't eat it. It's what the barrier's oldest crack needs. The moment you walk in, Isso will have you at his table, and he won't hand them over unless you win."
+},
+{
+"id": 734,
+"zh": "那我不要賭，我只要吃飯！",
+"en": "Then I won't gamble. I just want to eat!"
+},
+{
+"id": 735,
+"zh": "他不會只請你吃飯。先讓我看看，你有沒有本事坐上那張桌子。",
+"en": "He won't just feed you. First, let me see if you're good enough to sit at that table."
+},
+{
+"id": 736,
+"zh": "燁先生說的那點光，孩子們找到了。在前面。",
+"en": "The children found the faint light Yoh spoke of. It's up ahead."
+},
+{
+"id": 737,
+"zh": "天和閣。那光是十三枚天印。五百年前燁跟主人一索對賭，天印就留在那裡了。",
+"en": "The Tenhou Pavilion. That light is thirteen Heaven Seals. Five hundred years ago Yoh gambled against its master, Isso, and the seals stayed there."
+},
+{
+"id": 738,
+"zh": "孩子們想把它們帶回去，讓燁先生不用再背這個債。",
+"en": "The children want to bring them back, so Yoh won't have to carry that debt anymore."
+},
+{
+"id": 739,
+"zh": "一索只用牌局說話。贏不了他，天印一枚也帶不走。",
+"en": "Isso only speaks through games. If you can't beat him, you won't take a single seal."
+},
+{
+"id": 740,
+"zh": "我會怕。可是孩子們想去。",
+"en": "I'm scared. But the children want to go."
+},
+{
+"id": 741,
+"zh": "那就先過我這三卦吧。",
+"en": "Then get through my three divinations first."
+},
+{
+"id": 742,
+"zh": "天宮是你們弄塌的？",
+"en": "Did you lot bring the palace down?"
+},
+{
+"id": 743,
+"zh": "是結界自己碎的，我們只是出來透透氣。我是窮奇——吵架的時候，我專吃講理的那一邊。",
+"en": "The barrier broke on its own. We just came out for some air. I'm Qiongqi. When people argue, I eat whoever's in the right."
+},
+{
+"id": 744,
+"zh": "燁在哪裡！",
+"en": "Where's Yoh!"
+},
+{
+"id": 745,
+"zh": "上面，和我的兄弟們一起。饕餮、檮杌、混沌。好心勸你：回頭吧，正直的人在上面活不久。",
+"en": "Up there, with my brothers. Taotie, Taowu, Hundun. A friendly warning: turn back. Honest people don't last long up there."
+},
+{
+"id": 746,
+"zh": "射手。你也是來把我們壓回去的？",
+"en": "Archer. Have you come to push us back under too?"
+},
+{
+"id": 747,
+"zh": "檮杌。四神鎮著的四凶之一。不聽教、不回頭——你們人是這麼說我的。",
+"en": "Taowu. One of the Four Perils the Four Gods held down. Won't be taught, won't turn back. That's what you humans say about me."
+},
+{
+"id": 748,
+"zh": "在上面，倒在我兄弟們中間。饕餮、混沌、窮奇。你去了也沒用。",
+"en": "Up there, fallen among my brothers. Taotie, Hundun, Qiongqi. Going won't help you."
+},
+{
+"id": 749,
+"zh": "嗯？好香……你身上有五份力量的味道。",
+"en": "Hm? Something smells good... You smell of five shares of power."
+},
+{
+"id": 750,
+"zh": "你是誰？天宮怎麼塌成這樣……燁呢？",
+"en": "Who are you? Why has the palace collapsed like this... Where's Yoh?"
+},
+{
+"id": 751,
+"zh": "我是饕餮。結界昨晚碎了，那個守護者也倒了。壓在四神底下幾千年，總算能出來吃頓飽的。",
+"en": "I'm Taotie. The barrier broke last night and the guardian fell with it. Thousands of years under the Four Gods, and finally I can eat my fill."
+},
+{
+"id": 752,
+"zh": "你在吃什麼？那是天宮的柱子耶！",
+"en": "What are you eating? That's one of the palace's pillars!"
+},
+{
+"id": 753,
+"zh": "柱子、雲、星星，什麼都能吃。上面還有我的兄弟們——檮杌、混沌、窮奇。回頭吧，他們沒我這麼好說話。",
+"en": "Pillars, clouds, stars, it's all food. My brothers are further up: Taowu, Hundun, Qiongqi. Turn back. They're not as easygoing as me."
+},
+{
+"id": 754,
+"zh": "才不要！我要把燁找出來！",
+"en": "No way! I'm going to find Yoh!"
+},
+{
+"id": 755,
+"zh": "那就比比看，誰的胃口比較大！",
+"en": "Then let's see whose appetite is bigger!"
+},
+{
+"id": 756,
+"zh": "人偶。你帶著好多人偶。",
+"en": "Puppets. You've brought so many puppets."
+},
+{
+"id": 757,
+"zh": "孩子們說，您沒有臉，可是您在笑。",
+"en": "The children say you have no face, but you're smiling."
+},
+{
+"id": 758,
+"zh": "我是混沌。沒有眼睛，也看得見你；沒有耳朵，也聽見了結界碎掉的聲音。",
+"en": "I am Hundun. With no eyes, I still see you; with no ears, I still heard the barrier break."
+},
+{
+"id": 759,
+"zh": "燁先生在哪裡？",
+"en": "Where is Yoh?"
+},
+{
+"id": 760,
+"zh": "他倒下了。四神一倒，我們四個就出來了。兄弟們在上面——饕餮、檮杌、窮奇。",
+"en": "He fell. When the Four Gods fell, the four of us came out. My brothers are above: Taotie, Taowu, Qiongqi."
+},
+{
+"id": 761,
+"zh": "那就陪我跳一支舞，人偶師。跳完還站得住，就往上走。",
+"en": "Then dance with me, puppeteer. If you're still standing when it ends, go on up."
+},
+{
+"id": 762,
+"zh": "Ending No.01　星光回到參道",
+"en": "Ending No.01  The Stars Return to the Shrine Path"
+},
+{
+"id": 763,
+"zh": "天門之夜過去了。",
+"en": "The Night of the Heaven's Gate came and went."
+},
+{
+"id": 764,
+"zh": "隔天傍晚，村子上空的星星一顆一顆亮了回來。",
+"en": "The next evening, the stars over the village lit up again, one by one."
+},
+{
+"id": 765,
+"zh": "神社的婆婆對著星空算出了祭典的日子，然後回頭把蓮罵了一頓。",
+"en": "The old lady at the shrine worked out the festival day from the sky, then turned around and gave Ren an earful."
+},
+{
+"id": 766,
+"zh": "「一個人跑上天宮？你知道大家找了你多久！」",
+"en": "“Running off to the Heavenly Palace alone? Do you know how long everyone spent looking for you!”"
+},
+{
+"id": 767,
+"zh": "蓮被罵得抬不起頭，嘴角卻怎麼也壓不下來。",
+"en": "Ren couldn't lift his head under the scolding, but he couldn't stop smiling either."
+},
+{
+"id": 768,
+"zh": "那天晚上，他把天上發生的事，一件一件說給婆婆聽。",
+"en": "That night, he told her everything that had happened up there, one thing at a time."
+},
+{
+"id": 769,
+"zh": "幾天後，一個背著畫具的男人來到村口，說是來替凍壞的稻田道歉。",
+"en": "A few days later, a man carrying painting gear came to the village gate, saying he'd come to apologise for the frozen rice fields."
+},
+{
+"id": 770,
+"zh": "他在神社的牆上，畫了一整面的秋收。",
+"en": "He painted an entire autumn harvest across the shrine wall."
+},
+{
+"id": 771,
+"zh": "雨在那天就停了。",
+"en": "The rain had stopped that very day."
+},
+{
+"id": 772,
+"zh": "據說有人在雲上聽見誰在抱怨：「早說嘛。」",
+"en": "They say someone up in the clouds was heard grumbling: “Should've just said so.”"
+},
+{
+"id": 773,
+"zh": "天宮的守護者還在睡。",
+"en": "The guardian of the Heavenly Palace is still asleep."
+},
+{
+"id": 774,
+"zh": "蓮在神社的日曆上，把明年的天門之夜圈了起來。",
+"en": "On the shrine calendar, Ren circled next year's Night of the Heaven's Gate."
+},
+{
+"id": 775,
+"zh": "這一次，他要自己走上去，把話說清楚。",
+"en": "This time he'll walk up there himself, and they'll talk it through properly."
+},
+{
+"id": 776,
+"zh": "Ending No.02　收回陷阱的早晨",
+"en": "Ending No.02  The Morning He Collected His Traps"
+},
+{
+"id": 777,
+"zh": "天門之夜過後的早晨，雨停了。",
+"en": "The morning after the Night of the Heaven's Gate, the rain had stopped."
+},
+{
+"id": 778,
+"zh": "蒼沿著獸道，把放了好幾天的陷阱一個一個收回來。",
+"en": "Sou followed the animal trails and brought in the traps he'd left out for days, one after another."
+},
+{
+"id": 779,
+"zh": "大多數都空著。只有最後一個，困著一隻濕透的兔子。",
+"en": "Most were empty. Only the last one held a rabbit, soaked to the skin."
+},
+{
+"id": 780,
+"zh": "他看了一會兒，把牠放了。",
+"en": "He looked at it for a while, then let it go."
+},
+{
+"id": 781,
+"zh": "回到村子時，三間被雷劈壞的屋頂上，站著一個人正罵罵咧咧地補瓦。",
+"en": "Back in the village, someone was standing on the three lightning-struck roofs, swearing as he patched the tiles."
+},
+{
+"id": 782,
+"zh": "「看什麼看！我只是剛好路過！」",
+"en": "“What are you looking at! I just happened to be passing by!”"
+},
+{
+"id": 783,
+"zh": "蒼什麼也沒說，替他把梯子扶穩了。",
+"en": "Sou said nothing and held the ladder steady for him."
+},
+{
+"id": 784,
+"zh": "後來，有人在天宮的門口發現一支插在石縫裡的箭。",
+"en": "Later, someone found an arrow lodged in a crack in the stone at the palace gate."
+},
+{
+"id": 785,
+"zh": "箭上綁著一張紙條，只寫了兩個字：「醒了？」",
+"en": "Tied to it was a note with just two words: “Awake yet?”"
+},
+{
+"id": 786,
+"zh": "Ending No.03　留一半的便當",
+"en": "Ending No.03  Half a Lunch Box"
+},
+{
+"id": 787,
+"zh": "晴終於下了山，在看到的第一間飯館裡吃了三大碗飯。",
+"en": "Haru finally made it down the mountain and ate three huge bowls of rice at the first eatery he saw."
+},
+{
+"id": 788,
+"zh": "老闆問他從哪裡來。他想了想，說：「天上。」",
+"en": "The owner asked where he'd come from. He thought about it and said, “The sky.”"
+},
+{
+"id": 789,
+"zh": "回程經過四君子庭園，墨竹板著臉，塞給他一籃筍子。",
+"en": "On his way back past the Garden of the Four Gentlemen, Mochiku, straight-faced, pushed a basket of bamboo shoots into his hands."
+},
+{
+"id": 790,
+"zh": "「不是給你吃的。是拿去給天宮那位的。」",
+"en": "“These are not for you. Take them to the one in the palace.”"
+},
+{
+"id": 791,
+"zh": "於是晴背著便當和筍子，又爬了一次天宮。",
+"en": "So Haru shouldered a lunch box and the shoots and climbed to the Heavenly Palace once more."
+},
+{
+"id": 792,
+"zh": "守護者還在睡。晴在他身邊坐下，打開了便當。",
+"en": "The guardian was still asleep. Haru sat down beside him and opened the lunch box."
+},
+{
+"id": 793,
+"zh": "「一個人吃不好吃啦。等你醒來，我們再一起吃。」",
+"en": "“Food doesn't taste good eaten alone. When you wake up, we'll eat together.”"
+},
+{
+"id": 794,
+"zh": "他留下一半，自己吃掉另外一半。",
+"en": "He left half, and ate the other half himself."
+},
+{
+"id": 795,
+"zh": "下山的時候，晴發現自己第一次不覺得餓。",
+"en": "On the way down, Haru noticed that, for the first time, he wasn't hungry."
+},
+{
+"id": 796,
+"zh": "Ending No.04　借出去的孩子",
+"en": "Ending No.04  The Child He Lent Out"
+},
+{
+"id": 797,
+"zh": "回到家，雪把孩子們一個一個放回架上。",
+"en": "Back home, Yuki set the children back on their shelf, one by one."
+},
+{
+"id": 798,
+"zh": "有一個的線磨斷了，是在天宮最後那一場弄斷的。",
+"en": "One of them had a worn-through string, snapped in that last fight at the palace."
+},
+{
+"id": 799,
+"zh": "他花了一整晚重新穿線。",
+"en": "He spent the whole night restringing it."
+},
+{
+"id": 800,
+"zh": "天亮時，他手邊多了一個新的人偶，穿著白衣，看起來有點像某個人。",
+"en": "By dawn there was a new puppet beside him, dressed in white, looking a little like someone he knew."
+},
+{
+"id": 801,
+"zh": "雪帶著那個人偶，再一次走上天宮。",
+"en": "Yuki carried that puppet up to the Heavenly Palace once more."
+},
+{
+"id": 802,
+"zh": "守護者睡得很沉，身邊空空的。",
+"en": "The guardian was sleeping deeply, with no one beside him."
+},
+{
+"id": 803,
+"zh": "他把人偶放在守護者手邊，替它理好衣角。",
+"en": "He placed the puppet by the guardian's hand and straightened its sleeves."
+},
+{
+"id": 804,
+"zh": "「孩子們說，這樣您就不是一個人了。」",
+"en": "“The children say this way, you won't be alone.”"
+},
+{
+"id": 805,
+"zh": "下山的路上，五行仙壇的方士對他點了點頭。",
+"en": "On the way down, the sorcerer of the Altar of the Five Elements gave him a nod."
+},
+{
+"id": 806,
+"zh": "「人偶師，你又多了一個孩子。」",
+"en": "“Puppeteer, you've gained another child.”"
+},
+{
+"id": 807,
+"zh": "「不。那是借給燁先生的。」",
+"en": "“No. That one is on loan to Yoh.”"
+},
+{
+"id": 808,
+"zh": "全劇終",
+"en": "The End"
+},
+{
+"id": 809,
+"zh": "感謝遊玩",
+"en": "Thank you for playing"
+},
+{
+"id": 810,
+"zh": "Z　繼續",
+"en": "Z  Continue"
+}
+]

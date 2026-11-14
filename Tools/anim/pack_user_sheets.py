@@ -31,10 +31,12 @@ CHARS = {
     "boss7":  ("Extra_Boss_Game_Sprites/ExtraBoss_{a}_12frames_4x3.png", "grid"),
     "beast1": ("Extra_IF_Boss_Sprites/饕餮_Taotie_{a}_12frames_4x3.png", "grid"),
     "beast2": ("Extra_IF_Boss_Sprites/檮杌_Taowu_{a}_12frames_4x3.png", "grid"),
-    "beast3": ("Extra_IF_Boss_Sprites/混沌_Hundun_{a}_12frames_4x3.png", "grid"),
+    "beast3": ("Extra_IF_Boss_Sprites/混沌new_Hundun_{a}_12frames_4x3.png", "grid"),   # redrawn: the mask stays on his face
     "beast4": ("Extra_IF_Boss_Sprites/窮奇_Qiongqi_{a}_12frames_4x3.png", "grid"),
 }
 ANIMS = ("idle", "left", "right")
+# sheets whose left and right files are the wrong way round (the "left" sheet leans right)
+SWAP_LR = {"sou"}
 
 
 def split(path, layout):
@@ -74,6 +76,14 @@ def clean_soft_halo(fr):
     the halo is see-through while the figure and ribbons are nearly opaque. Ramp alpha 150..230."""
     a = fr[..., 3].astype(np.float32)
     fr[..., 3] = (np.clip((a - 150) / 80, 0, 1) * 255).astype(np.uint8)
+    return fr
+
+
+def clean_glow(fr):
+    """A soft white glow baked in around the figure: keep only what is within 6 px of something solid."""
+    from scipy.ndimage import binary_dilation
+    a = fr[..., 3]
+    a[~binary_dilation(a > 170, iterations=6)] = 0
     return fr
 
 
@@ -129,16 +139,18 @@ def main(names):
     for name in names:
         pat, layout = CHARS[name]
         frames = {a: split(os.path.join(SRC, pat.format(a=a)), layout) for a in ANIMS}
+        if name in SWAP_LR:
+            frames["left"], frames["right"] = frames["right"], frames["left"]
         if name == "boss1":
             frames = {a: [clean_glow(f) for f in fs] for a, fs in frames.items()}
         if name == "boss2":
             frames = {a: [clean_white(f) for f in fs] for a, fs in frames.items()}
         if name.startswith("beast"):
             frames = {a: [clean_dust(f) for f in fs] for a, fs in frames.items()}
+        if name == "beast3":
+            frames["left"] = [clean_glow(f) for f in frames["left"]]
         if name == "beast1":
             frames["left"] = [clean_pale_halo(f) for f in frames["left"]]
-        if name == "beast3":
-            frames["idle"] = [clean_soft_halo(f) for f in frames["idle"]]
         # all frames of one character share a canvas size within one source sheet; anchor on idle frame 0
         x0, y0, x1, y1 = bbox(frames["idle"][0])
         s = REF_H / (y1 - y0)

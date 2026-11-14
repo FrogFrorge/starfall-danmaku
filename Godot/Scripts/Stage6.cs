@@ -158,7 +158,6 @@ public partial class DanmakuWorld
 		PlaceBoss(new FVector2f(FieldW * 0.5f + FMath.Sin(T * 0.03f) * 100f, 100f + FMath.Abs(FMath.Sin(T * 0.03f)) * 20f));
 		S6_TigerPart(T, 1.65f * BeastK(Difficulty));
 		// Lunatic: the tiger also pounces with a fan of claws between strikes
-		if (Difficulty >= 3 && Every(T, 70, 35)) Fan(Boss.Pos, 5, 32f, 3f, AimAngle(Boss.Pos), EBulletShape.Comet, ColTiger);
 	}
 
 	public void S6_NonSpell3(int T)
@@ -184,7 +183,6 @@ public partial class DanmakuWorld
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 100f));
 		S6_TortoisePart(T, 1.7f * BeastK(Difficulty));
 		// the shell also sheds slow aimed scales between rings
-		if (Every(T, 40, 20)) Fan(Boss.Pos, Cnt(5), 40f, 1.6f, AimAngle(Boss.Pos), EBulletShape.Water, ColTortoise);
 	}
 
 	public void S6_NonSpell4(int T)

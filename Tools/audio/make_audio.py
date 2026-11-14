@@ -329,28 +329,34 @@ def sweep(f0, f1, dur, shape="sin", curve=3.0):
     return np.sin(ph)
 
 
+def save_sfx(name, x):
+    """Every sound effect goes through this: the top end is rolled off so nothing sounds shrill when it repeats
+    hundreds of times a minute (shots, grazes, items)."""
+    save(name, normalize(lowpass(lowpass(x, 3800, 2), 6000, 2), 0.85))
+
+
 def make_sfx():
     t = t_axis
     # player shot: soft papery tick
     d = 0.05; x = highpass(rng.uniform(-1, 1, len(t(d))), 2500) * np.exp(-t(d) * 90) * 0.6 + sweep(1900, 1200, d) * np.exp(-t(d) * 70) * 0.4
-    save("sfx_shot.wav", normalize(x, 0.6))
+    save_sfx("sfx_shot.wav", normalize(x, 0.6))
     # enemy shot: short glassy "tan"
     d = 0.09; x = sweep(1100, 700, d, "tri") * np.exp(-t(d) * 40) + bell(2200, d, 1.0, 2.0) * 0.3
-    save("sfx_enemy_shot.wav", normalize(x, 0.6))
+    save_sfx("sfx_enemy_shot.wav", normalize(x, 0.6))
     # graze
     d = 0.06; x = bandpass(rng.uniform(-1, 1, len(t(d))), 5000, 12000) * np.exp(-t(d) * 60) + np.sin(2 * np.pi * 3200 * t(d)) * np.exp(-t(d) * 80) * 0.4
-    save("sfx_graze.wav", normalize(x, 0.6))
+    save_sfx("sfx_graze.wav", normalize(x, 0.6))
     # item pickup
     d = 0.14; x = bell(midi(96), d, 1.2, 2.0) + 0.5 * bell(midi(103), d, 1.0, 2.0)
-    save("sfx_item.wav", normalize(x * env_adsr(len(t(d)), 0.002, 0.03, 0.6, 0.06), 0.6))
+    save_sfx("sfx_item.wav", normalize(x * env_adsr(len(t(d)), 0.002, 0.03, 0.6, 0.06), 0.6))
     # enemy destroyed: paper burst
     d = 0.3; x = lowpass(rng.uniform(-1, 1, len(t(d))), 3000) * np.exp(-t(d) * 14) + sweep(500, 90, d) * np.exp(-t(d) * 12) * 0.7
-    save("sfx_enemy_die.wav", normalize(reverb(x, 0.2), 0.8))
+    save_sfx("sfx_enemy_die.wav", normalize(reverb(x, 0.2), 0.8))
     # player hit: descending "pichuun"
     d = 0.7
     x = sweep(1400, 160, d, "square", 2.0) * (1 + 0.3 * np.sin(2 * np.pi * 28 * t(d))) * np.exp(-t(d) * 3.5)
     x += lowpass(rng.uniform(-1, 1, len(t(d))), 2500) * np.exp(-t(d) * 6) * 0.4
-    save("sfx_player_die.wav", normalize(reverb(lowpass(x, 5000), 0.3), 0.85))
+    save_sfx("sfx_player_die.wav", normalize(reverb(lowpass(x, 5000), 0.3), 0.85))
     # bomb: deep boom + rising shimmer
     d = 2.0
     boom = sweep(90, 35, d, "sin", 4.0) * np.exp(-t(d) * 2.2)
@@ -358,7 +364,7 @@ def make_sfx():
     shimmer = np.zeros(len(t(d)))
     for k, n in enumerate([74, 77, 81, 84, 86, 89]):
         mix_at(shimmer, bell(midi(n), 1.4, 2.0, 2.0), 0.08 * k, 0.25)
-    save("sfx_bomb.wav", normalize(reverb(boom + rumble + shimmer, 0.35), 0.9))
+    save_sfx("sfx_bomb.wav", normalize(reverb(boom + rumble + shimmer, 0.35), 0.9))
     # spell card declaration: swelling noise + upward bell arpeggio
     d = 1.6
     swell = bandpass(rng.uniform(-1, 1, len(t(d))), 800, 6000) * np.clip(t(d) / 0.5, 0, 1) * np.exp(-np.clip(t(d) - 0.5, 0, None) * 5) * 0.5
@@ -366,7 +372,7 @@ def make_sfx():
     for k, n in enumerate([69, 72, 76, 79, 83, 88]):
         mix_at(arp, bell(midi(n), 1.2, 3.0, 1.4), 0.35 + 0.07 * k, 0.3)
     mix_at(arp, taiko(1.0), 0.35, 0.8)
-    save("sfx_spell.wav", normalize(reverb(swell + arp, 0.35), 0.85))
+    save_sfx("sfx_spell.wav", normalize(reverb(swell + arp, 0.35), 0.85))
     # spell card captured: bright fanfare
     d = 1.4
     x = np.zeros(len(t(d)))
@@ -374,26 +380,26 @@ def make_sfx():
         mix_at(x, koto(midi(n), 1.0, 0.997, 7000), 0.09 * k, 0.5)
         mix_at(x, bell(midi(n + 12), 1.0, 1.5, 2.0), 0.09 * k, 0.25)
     mix_at(x, pad([midi(72), midi(76), midi(79)], 1.1), 0.36, 0.6)
-    save("sfx_spell_get.wav", normalize(reverb(x, 0.3), 0.85))
+    save_sfx("sfx_spell_get.wav", normalize(reverb(x, 0.3), 0.85))
     # phase break / bullets cancelled: glassy sweep
     d = 0.9
     x = bandpass(rng.uniform(-1, 1, len(t(d))), 2000, 12000) * np.exp(-t(d) * 5) * 0.5
     for k in range(10):
         f = rng.uniform(1500, 5000)
         mix_at(x, np.sin(2 * np.pi * f * t(0.6)) * np.exp(-t(0.6) * rng.uniform(5, 12)), rng.uniform(0, 0.2), 0.15)
-    save("sfx_break.wav", normalize(reverb(x, 0.3), 0.75))
+    save_sfx("sfx_break.wav", normalize(reverb(x, 0.3), 0.75))
     # menu
-    d = 0.09; save("sfx_menu_move.wav", normalize(koto(midi(84), d + 0.1, 0.99, 8000)[: len(t(d + 0.05))], 0.5))
+    d = 0.09; save_sfx("sfx_menu_move.wav", normalize(koto(midi(84), d + 0.1, 0.99, 8000)[: len(t(d + 0.05))], 0.5))
     d = 0.35; x = np.zeros(len(t(d))); mix_at(x, bell(midi(79), 0.3, 1.5, 2.0), 0); mix_at(x, bell(midi(86), 0.25, 1.5, 2.0), 0.07)
-    save("sfx_menu_ok.wav", normalize(x, 0.6))
-    d = 0.25; save("sfx_menu_back.wav", normalize(koto(midi(67), d, 0.99, 4000) * 0.8 + koto(midi(62), d, 0.99, 4000) * 0.4, 0.5))
-    d = 0.4; save("sfx_pause.wav", normalize(bell(midi(74), d, 1.0, 1.0), 0.5))
+    save_sfx("sfx_menu_ok.wav", normalize(x, 0.6))
+    d = 0.25; save_sfx("sfx_menu_back.wav", normalize(koto(midi(67), d, 0.99, 4000) * 0.8 + koto(midi(62), d, 0.99, 4000) * 0.4, 0.5))
+    d = 0.4; save_sfx("sfx_pause.wav", normalize(bell(midi(74), d, 1.0, 1.0), 0.5))
     # Sou's bow laser: seamless 1 s loop (all components periodic in 1 s)
     tt = t_axis(1.0)
     hum = (np.sin(2 * np.pi * 110 * tt) * 0.5 + np.sin(2 * np.pi * 220 * tt) * 0.35 + np.sin(2 * np.pi * 663 * tt) * 0.15)
     hum *= 0.75 + 0.25 * np.sin(2 * np.pi * 30 * tt)
     crackle = np.sin(2 * np.pi * 1760 * tt) * (0.5 + 0.5 * np.sin(2 * np.pi * 7 * tt)) * 0.12
-    save("sfx_laser_loop.wav", normalize(hum + crackle, 0.5))
+    save_sfx("sfx_laser_loop.wav", normalize(hum + crackle, 0.5))
 
 
 if __name__ == "__main__":

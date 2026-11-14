@@ -306,6 +306,19 @@ public partial class DanmakuWorld
 		}
 	}
 
+	/** A random point just outside the field, anywhere along its edge (each side in proportion to its length). */
+	public FVector2f RandomEdgePoint(float Margin)
+	{
+		float W = FieldW, H = FieldH;
+		float R = Rng.FRandRange(0f, 2f * (W + H));
+		if (R < W) return new FVector2f(R, -Margin);
+		R -= W;
+		if (R < W) return new FVector2f(R, H + Margin);
+		R -= W;
+		if (R < H) return new FVector2f(-Margin, R);
+		return new FVector2f(W + Margin, R - H);
+	}
+
 	public void ElementVolley(int Element, int T, float Intensity)
 	{
 		// One element of the five-element cycle. Intensity < 1 thins it out (used when elements overlap).

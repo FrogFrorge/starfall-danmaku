@@ -70,9 +70,9 @@ public partial class DanmakuWorld
 			int N = Cnt(18);
 			for (int i = 0; i < N; ++i) Fire(Boss.Pos, 1.1f, Aim + 180f / N + 360f * i / N, EBulletShape.Tile, ColChun);
 		}
-		if (Every(T, 5, 2))
+		if (Every(T, 10, 2))
 		{
-			// discards tumbling down from the top
+			// discards tumbling down from the top, half as many as they used to be
 			FBullet D = FireVec(new FVector2f(Rng.FRandRange(8f, FieldW - 8f), -8f), new FVector2f(Rng.FRandRange(-0.4f, 0.4f), 1.2f), EBulletShape.Tile, ColHaku);
 			D.Gravity = new FVector2f(0f, 0.012f);
 			D.Spin = Rng.FRandRange(-6f, 6f);
@@ -122,22 +122,27 @@ public partial class DanmakuWorld
 	public void EX_Chiitoi(int T)
 	{
 		PatrolBoss(T);
-		if (Every(T, 40, 0))
+		if (Every(T, 75, 0))
 		{
-			float Aim = AimAngle(Boss.Pos);
-			for (int p = 0; p < 7; ++p)
+			// seven pairs come down from the top, like 地和 upside down. Each pair is one white tile and one red one:
+			// they start together and open up as they fall, the white down-left and the red down-right, both at the
+			// same speed. A tile that leaves one side comes back from the other, so all fourteen stay on the table.
+			const int Pairs = 7;
+			float Base = Rng.FRandRange(0f, FieldW / Pairs);
+			for (int p = 0; p < Pairs; ++p)
 			{
-				float A = Aim + (p - 3) * 16f;
-				foreach (float Sgn in new[] { -1f, 1f })
+				float X = Base + p * (FieldW / Pairs);
+				for (int k = 0; k < 2; ++k)
 				{
-					FBullet B = Fire(Boss.Pos, 2.3f, A, EBulletShape.Tile, p % 2 != 0 ? ColChun : ColIvory);
-					B.Behavior = BehCurveAfter;
-					B.Timer = 30;
-					B.Param2 = Sgn * 0.6f;
+					bool bRed = k != 0;
+					FBullet B = Fire(new FVector2f(X + k * 3f, -6f), 2f, bRed ? 38f : 142f,
+						EBulletShape.Tile, bRed ? ColChun : ColIvory);
+					B.bWrapX = true;
 				}
 			}
 		}
-		if (Every(T, 20, 10)) Fire(Boss.Pos, 1.6f, Rng.FRandRange(0f, 360f), EBulletShape.Medium, ColHaku);
+		// the round bullets between the pairs
+		if (Every(T, 10, 5)) Fire(Boss.Pos, 1.6f, Rng.FRandRange(0f, 360f), EBulletShape.Medium, ColHaku);
 	}
 
 	public void EX_NonSpell3(int T)
@@ -326,7 +331,7 @@ public partial class DanmakuWorld
 			{
 				ShowMessage("「" + Tr(EX_TenhouPhaseNames[H]) + "」", "", 90);
 				// the card's title keeps its 天和 and stacks each new hand after it: 終局「天和」「地和」「人和」
-				Boss.SpellName += IsEnglish() ? " \"" + Tr(EX_TenhouPhaseNames[H]) + "\"" : "「" + EX_TenhouPhaseNames[H] + "」";
+				Boss.SpellName += QuoteName(EX_TenhouPhaseNames[H]);
 				AddParticle(Boss.Pos, FVector2f.Zero, 420f, new FLinearColor(1f, 0.85f, 0.45f), 40, true);
 				Sfx(ESfx.Spell);
 			}
@@ -429,6 +434,5 @@ public partial class DanmakuWorld
 				AddBeam(Boss.Pos, Base + g * 45f, 7f, 64, 10, 36, new FLinearColor(1f, 0.85f, 0.45f), 3);
 			}
 		}
-		if (Every(T, 20, 10)) Ring(Boss.Pos, 20, 1.6f, Rng.FRandRange(0f, 30f), EBulletShape.Small, MBElem[(T / 20) % 5]);
 	}
 }

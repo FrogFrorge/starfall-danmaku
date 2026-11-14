@@ -27,6 +27,9 @@ public sealed class DanmakuAudio
 		new("sfx_menu_ok.wav",     0.55f, 0f),      // MenuOk
 		new("sfx_menu_back.wav",   0.45f, 0f),      // MenuBack
 		new("sfx_pause.wav",       0.50f, 0f),      // Pause
+		new("sfx_thunder.wav",     0.80f, 0.12f),   // Thunder (嵐's lightning strike; Tools/audio/make_sfx_nature.py)
+		new("sfx_bamboo.wav",      0.55f, 0.08f),   // Bamboo (墨竹's bamboo shoot rising: wind)
+		new("sfx_bamboo_hit.wav",  0.65f, 0.08f),   // BambooHit (the shoot hitting the top)
 	};
 	static readonly string[] GMusic = { "bgm_title.wav", "bgm_stage.wav", "bgm_boss.wav" };
 	const float MusicVolume = 0.5f;

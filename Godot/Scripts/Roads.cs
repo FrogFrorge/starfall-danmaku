@@ -97,9 +97,9 @@ public partial class DanmakuWorld
 	{
 		FEnemy E = Sentry(new FVector2f(FieldW * 0.5f, -20f), 1, 70, 480, 160f);
 		E.bCarry1Up = true;
+		E.bDead = false;   // the 1UP carrier still comes while a fox mask is on screen
 		E.bRevenge = false;
-		E.Color = new FLinearColor(1f, 0.55f, 0.75f);
-		E.DropPower = 0;
+		E.DropPower = 0;   // looks like any fairy; the 1UP and a big power item only appear when it is shot down
 		return E;
 	}
 

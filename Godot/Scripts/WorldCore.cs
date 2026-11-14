@@ -32,9 +32,9 @@ static class WorldCoreLocals
 		switch (C)
 		{
 		case ECharacter.Ren:  return 120;
-		case ECharacter.Sou:  return 240;
-		case ECharacter.Haru: return 300;
-		case ECharacter.Yuki: return 240;
+		case ECharacter.Sou:  return 320;   // about 20 frames of arrow flight, then 300 frames of thunder
+		case ECharacter.Haru: return 480;
+		case ECharacter.Yuki: return 180;
 		}
 		return 150;
 	}
@@ -236,6 +236,7 @@ public partial class DanmakuWorld
 		FParse.Value(Cmd, "DanmakuBotSkill=", ref BotSkill);
 		bBotNoSpellBomb = FParse.Param(Cmd, "DanmakuBotNoSpellBomb");
 		bDemoLocked = FParse.Param(Cmd, "DanmakuLocked");
+		bDemoFocus = FParse.Param(Cmd, "DanmakuFocus");   // hold focus the whole time, to look at the focused shot
 		if (FParse.Param(Cmd, "DanmakuListSpells"))
 		{
 			// -DanmakuListSpells: writes Saved/SpellList.txt (the -DanmakuSpell=N index of every card)
@@ -243,6 +244,8 @@ public partial class DanmakuWorld
 			for (int i = 0; i < GetSpellEntryCount(); ++i) SB.Append(i).Append('\t').Append(GetSpellEntryLabel(i)).Append('\t').Append(GetSpellEntryName(i)).Append('\n');
 			Paths.SaveString(SB.ToString(), Paths.ProjectSavedDir() + "SpellList.txt");
 		}
+		if (FParse.Param(Cmd, "DanmakuDumpText")) DumpText();
+		bLangPicker = FParse.Param(Cmd, "DanmakuLangPicker");   // screenshot the language window
 		bMeasure = bBot && FParse.Param(Cmd, "DanmakuMeasure");
 		bSweep = bMeasure && FParse.Param(Cmd, "DanmakuSweep");
 		bRoadMeasure = bMeasure && FParse.Param(Cmd, "DanmakuRoadMeasure");
@@ -257,7 +260,7 @@ public partial class DanmakuWorld
 		FParse.Value(Cmd, "DanmakuStage=", ref DemoStage);
 		FParse.Value(Cmd, "DanmakuHPScale=", ref DemoHPScale);
 		string Lang = "";
-		if (FParse.Value(Cmd, "DanmakuLang=", ref Lang)) SetLanguage(Lang.StartsWith("en", StringComparison.OrdinalIgnoreCase) ? 1 : 0);
+		if (FParse.Value(Cmd, "DanmakuLang=", ref Lang)) SetLanguage(LanguageFromCode(Lang));
 		DemoStartPhase = FMath.Max(0, DemoStartPhase);
 		DemoCharacter = FMath.Clamp(DemoCharacter, 0, NumCharacters - 1);
 		SelectedCharacter = DemoCharacter;
@@ -267,7 +270,8 @@ public partial class DanmakuWorld
 		{
 			int DemoSpell = -1;
 			FParse.Value(Cmd, "DanmakuSpell=", ref DemoSpell);
-			if (FParse.Param(Cmd, "DanmakuSelect")) { State = EDanmakuState.CharSelect; StateTimer = 0; }
+			if (bLangPicker) { State = EDanmakuState.Title; StateTimer = 0; }
+			else if (FParse.Param(Cmd, "DanmakuSelect")) { State = EDanmakuState.CharSelect; StateTimer = 0; }
 			else if (FParse.Param(Cmd, "DanmakuMusicRoom")) { State = EDanmakuState.MusicRoom; StateTimer = 0; MusicCursor = FMath.Max(0, DemoSpell); MusicPlaying = MusicTracks[FMath.Clamp(MusicCursor, 0, MusicTracks.Length - 1)].Track; }
 			else if (FParse.Value(Cmd, "DanmakuEnding=", ref EndingPage)) { State = EDanmakuState.EndingScene; StateTimer = 0; Player.Character = (ECharacter)DemoCharacter; }
 			else if (FParse.Param(Cmd, "DanmakuOptions")) { State = EDanmakuState.Options; StateTimer = 0; OptionCursor = 1; }
@@ -395,12 +399,23 @@ public partial class DanmakuWorld
 			switch (State)
 			{
 			case EDanmakuState.Title:
+				if (bLangPicker)
+				{
+					// language window: English, 繁體中文, 日本語, Français
+					int N = LanguageOrder.Length;
+					if (bEdgeUp)   { LangPickCursor = (LangPickCursor + N - 1) % N; Sfx(ESfx.MenuMove); }
+					if (bEdgeDown) { LangPickCursor = (LangPickCursor + 1) % N; Sfx(ESfx.MenuMove); }
+					if (bEdgeStart) { SetLanguage(LanguageOrder[LangPickCursor]); bLangPicker = false; Sfx(ESfx.MenuOk); }
+					else if (bEdgeBomb) { bLangPicker = false; Sfx(ESfx.MenuBack); }
+					break;
+				}
 				if (bDemo && StateTimer > 150) bEdgeStart = true;
 				if (bEdgeUp)   { TitleCursor = (TitleCursor + TitleItems - 1) % TitleItems; Sfx(ESfx.MenuMove); }
 				if (bEdgeDown) { TitleCursor = (TitleCursor + 1) % TitleItems; Sfx(ESfx.MenuMove); }
 				if (TitleCursor == 7 && ((bEdgeStart && StateTimer > 10) || bEdgeLeft || bEdgeRight))
 				{
-					SetLanguage(1 - GetLanguage());
+					bLangPicker = true;
+					LangPickCursor = System.Math.Max(0, System.Array.IndexOf(LanguageOrder, GetLanguage()));
 					Sfx(ESfx.MenuOk);
 				}
 				else if (bEdgeStart && StateTimer > 10 && TitleCursor == 5)
@@ -721,7 +736,7 @@ public partial class DanmakuWorld
 	public void UpdateDemo()
 	{
 		CurInput.bShoot = true;
-		CurInput.bFocus = (Frame / 300) % 2 == 1;
+		CurInput.bFocus = bDemoFocus || (Frame / 300) % 2 == 1;
 		FVector2f Target = new FVector2f(FieldW * 0.5f + FMath.Sin(Frame * 0.013f) * 120f, 380f);
 		FVector2f D = Target - Player.Pos;
 		CurInput.Move = new FVector2f(FMath.Clamp(D.X * 0.2f, -1f, 1f), FMath.Clamp(D.Y * 0.2f, -1f, 1f));
@@ -739,9 +754,10 @@ public partial class DanmakuWorld
 	}
 
 	// Per character (Ren, Sou, Haru, Yuki): the frame of the left / right animation where the lean is
-	// fullest, and the one closest to standing straight (printed by Tools/anim/pack_user_sheets.py).
+	// fullest, and the one closest to standing straight (printed by Tools/anim/pack_user_sheets.py, then checked by eye:
+	// 蓮's right sheet starts standing at frame 0 and turns fully by frame 8, which the script misread).
 	static readonly int[] LeftPeak = { 7, 9, 4, 4 }, LeftMid = { 11, 0, 11, 11 };
-	static readonly int[] RightPeak = { 1, 9, 1, 1 }, RightMid = { 8, 0, 5, 5 };
+	static readonly int[] RightPeak = { 8, 9, 1, 1 }, RightMid = { 0, 0, 5, 5 };
 	public const int AnimIdleStep = 6, AnimLeanStep = 3;   // sim frames per sheet frame
 
 	/** Lean animation: play into the lean from its middle frame, hold the fullest frame while the key
@@ -780,6 +796,56 @@ public partial class DanmakuWorld
 			P.AnimFrame = (P.AnimFrame + 11) % 12;
 			break;
 		}
+	}
+
+	/** -DanmakuDumpText: Saved/AllText.tsv (every translatable string: Chinese, English) and Saved/Dialogue.tsv
+	 *  (every conversation the game shows, in order: scene, route, speaker, Chinese, English). Used by Tools/loc. */
+	static void DumpText()
+	{
+		static string Clean(string T) => (T ?? "").Replace("\t", " ").Replace("\n", " ");
+		var All = new System.Text.StringBuilder();
+		foreach (var P in AllTextPairs()) All.Append(Clean(P.Zh)).Append('\t').Append(Clean(P.En)).Append('\n');
+		Paths.SaveString(All.ToString(), Paths.ProjectSavedDir() + "AllText.tsv");
+
+		var D = new System.Text.StringBuilder();
+		string[] Route = { "蓮", "蒼", "晴", "雪" };
+		string[] Beasts = { "饕餮", "檮杌", "混沌", "窮奇" };
+		void Talk(string Scene, string BossName, List<FDialogueLine>[] Lines)
+		{
+			for (int c = 0; c < 4; ++c)
+				foreach (var L in Lines[c])
+				{
+					string Who = L.Speaker == 0 ? Route[c] : L.Speaker == 1 ? BossName : Beasts[FMath.Clamp(L.Speaker - 2, 0, 3)];
+					D.Append(Scene).Append('\t').Append(Route[c]).Append('\t').Append(Who).Append('\t')
+					 .Append(Clean(L.Text)).Append('\t').Append(Clean(Table().TryGetValue(L.Text, out var En) ? En : "")).Append('\n');
+				}
+		}
+		string[] StageName = { "第一面", "第二面", "第三面", "第四面", "第五面", "第六面", "Extra", "Extra-IF" };
+		for (int s = 0; s <= IfStage; ++s)
+		{
+			FBossDef B = FindBossDef(s);
+			if (B == null) continue;
+			if (B.Midboss != null) Talk(StageName[s] + " 道中 " + B.Midboss.Name, B.Midboss.Name, B.Midboss.Dialogue);
+			for (int c = 0; c < 4; ++c)
+			{
+				FBossDef M = B.CharMidboss[c];
+				if (M == null) continue;
+				var Only = new List<FDialogueLine>[] { new(), new(), new(), new() };
+				Only[c].AddRange(M.Dialogue[c]);
+				Talk(StageName[s] + " 道中 " + M.Name, M.Name, Only);
+			}
+			Talk(StageName[s] + " 戰前 " + (s == IfStage ? "四凶" : B.Name), B.Name, B.Dialogue);
+			Talk(StageName[s] + " 戰後 " + (s == IfStage ? "四凶" : B.Name), B.Name, B.Ending);
+		}
+		for (int c = 0; c < Story.Endings.Length && c < 4; ++c)
+		{
+			var E = Story.Endings[c];
+			D.Append("結局").Append('\t').Append(Route[c]).Append('\t').Append("（標題）").Append('\t').Append(Clean(E.Title)).Append('\t').Append(Clean(E.TitleEn)).Append('\n');
+			foreach (var Pg in E.Pages)
+				foreach (var L in Pg.Lines)
+					D.Append("結局").Append('\t').Append(Route[c]).Append('\t').Append("（旁白）").Append('\t').Append(Clean(L.Zh)).Append('\t').Append(Clean(L.En)).Append('\n');
+		}
+		Paths.SaveString(D.ToString(), Paths.ProjectSavedDir() + "Dialogue.tsv");
 	}
 
 	public void UpdatePlayer()
@@ -832,15 +898,15 @@ public partial class DanmakuWorld
 		if (P.Character == ECharacter.Yuki)
 		{
 			UpdateDolls(P.Pos - Prev);
-			// lost puppets come back one at a time, a minute apart
-			if (P.DollsAlive < NumDolls && --P.DollRespawn <= 0)
+			// one puppet per power level: a new level brings a puppet out, spending power takes one away
+			int Want = PowerLevel();
+			while (P.DollsAlive < Want)
 			{
 				P.Dolls[P.DollsAlive] = P.Pos;
 				++P.DollsAlive;
-				P.DollRespawn = P.DollsAlive < NumDolls ? DollRespawnFrames : 0;
-				Popup(Tr("式神復活") + $"　{P.DollsAlive}/{NumDolls}", new FLinearColor(0.9f, 0.75f, 1f));
-				AddParticle(P.Pos, FVector2f.Zero, 80f, new FLinearColor(0.9f, 0.7f, 1f), 24, true);
+				AddParticle(P.Pos, FVector2f.Zero, 60f, new FLinearColor(0.9f, 0.7f, 1f), 18, true);
 			}
+			if (P.DollsAlive > Want) P.DollsAlive = Want;
 		}
 
 		if (P.RespawnTimer > 0) return;
@@ -851,14 +917,11 @@ public partial class DanmakuWorld
 		if (CurInput.bShoot && !IsInDialogue())
 		{
 			P.bShooting = true;
-			if (P.Character == ECharacter.Sou)
-			{
-				UpdateLaser();
-			}
-			else if (P.ShotCooldown == 0)
+			if (P.ShotCooldown == 0)
 			{
 				FirePlayerShots();
-				P.ShotCooldown = P.Character == ECharacter.Ren ? 5 : 6;
+				// 蓮 fires every 3 frames while focused (half the talismans), every 6 otherwise; everyone else every 6
+				P.ShotCooldown = P.Character == ECharacter.Ren && P.bFocus ? 3 : 6;
 			}
 		}
 	}
@@ -896,83 +959,101 @@ public partial class DanmakuWorld
 	{
 		Sfx(ESfx.Shot);
 		FDanmakuPlayer P = Player;
-		// Touhou-style power: every whole level of 靈力 adds shots (per-shot damage stays the same).
-		// Full power keeps the old full-power damage: 蓮 120, 晴 ~92, 雪 98 (all puppets), 蒼 105 per second.
+		// Damage per second at power 1 / 2 / 3 / 4 (enemies and bosses alike):
+		//   蓮 60 / 80 / 100 / 120 (focused: the same)   蒼 60 / 73 / 90 / 120
+		//   晴 60 + 15 x 靈力 = 75 .. 120, counting the decimals (eighteen charms share it; the fan is wide)
+		//   雪 40 / 60 / 80 / 120
 		int Lv = PowerLevel();
 		switch (P.Character)
 		{
 		case ECharacter.Ren:
 		{
-			// a talisman fan: 3 / 4 / 5 / 6 talismans; focus narrows it
-			int N = 2 + Lv;
-			float Spread = P.bFocus ? 2.5f : 7f;
-			for (int i = 0; i < N; ++i)
+			if (P.bFocus)
 			{
-				float C = i - (N - 1) * 0.5f;
-				AddShot(P.Pos + new FVector2f(C * 3f, -10f), -90f + C * Spread, 15f, 1.667f, EShotType.Talisman);
+				// focused: a tight fan of half as many talismans (1 / 2 / 2 / 3) every 3 frames; at levels 1 and 3,
+				// where half isn't whole, each talisman hits harder so the damage per second stays the same
+				int N = (2 + Lv) / 2;
+				float Dmg = Lv == 1 ? 3f : Lv == 3 ? 2.5f : 2f;
+				for (int i = 0; i < N; ++i)
+				{
+					float C = i - (N - 1) * 0.5f;
+					AddShot(P.Pos + new FVector2f(C * 3f, -10f), -90f + C * 2.5f, 15f, Dmg, EShotType.Talisman);
+				}
+				break;
+			}
+			// two straight talismans and one homing charm per power level, 2 damage each, every 6 frames
+			AddShot(P.Pos + new FVector2f(-7f, -10f), -90f, 15f, 2f, EShotType.Talisman);
+			AddShot(P.Pos + new FVector2f(7f, -10f), -90f, 15f, 2f, EShotType.Talisman);
+			foreach (float A in RenHomingAngles[Lv - 1])
+			{
+				AddShot(P.Pos + new FVector2f(A * 0.3f, -6f), -90f + A, 11f, 2f, EShotType.Homing);
 			}
 			break;
 		}
 		case ECharacter.Haru:
-			// two rows always; a homing charm every other volley at Lv2, every volley at Lv3, and a second one at Lv4
-			AddShot(P.Pos + new FVector2f(-7f, -10f), -90f, 15f, 2.8f, EShotType.Straight);
-			AddShot(P.Pos + new FVector2f(7f, -10f), -90f, 15f, 2.8f, EShotType.Straight);
-			if (Lv >= 3 || (Lv == 2 && (Frame / 6) % 2 == 0))
+		{
+			// always eighteen charms: two straight up and eight pairs fanning out, every 6 frames. The volley is
+			// worth 6 + 1.5 x 靈力, split evenly between them, so he does 60 + 15 x 靈力 a second wherever the fan
+			// lands (75 at 1.00 靈力 up to 120 at 4.00) — and unlike everyone else that counts the decimals too.
+			// Focused, the same eighteen charms close into half the angle.
+			float Step = P.bFocus ? 2.5f : 5f;
+			float Dmg = (6f + 1.5f * FMath.Clamp(P.Power, 1f, 4f)) / 18f;
+			float Inward = 0f;
+			if (P.bFocus)
 			{
-				AddShot(P.Pos + new FVector2f(0f, -6f), -90f + Rng.FRandRange(-35f, 35f), 8f, 2.4f, EShotType.Homing);
+				// focused, the two halves slide 2.5 degrees inward every volley until they lie on top of each other
+				// (11.25 degrees in, where each left charm meets a right one), then open back out: a slow sway
+				int Phase = P.SprayToggle % 10;
+				Inward = FMath.Min(11.25f, 2.5f * (Phase <= 5 ? Phase : 10 - Phase));
+				P.SprayToggle = (P.SprayToggle + 1) % 10;
 			}
-			if (Lv >= 4 && (Frame / 6) % 2 != 0)
+			for (int s = -1; s <= 1; s += 2) AddShot(P.Pos + new FVector2f(7f * s, -10f), -90f, 15f, Dmg, EShotType.Straight);
+			for (int k = 1; k <= 8; ++k)
 			{
-				AddShot(P.Pos + new FVector2f(0f, -6f), -90f + Rng.FRandRange(-35f, 35f), 8f, 2.4f, EShotType.Homing);
+				for (int s = -1; s <= 1; s += 2)
+				{
+					AddShot(P.Pos + new FVector2f(6f * s, -8f), -90f + s * (k * Step - Inward), 14f, Dmg, EShotType.Straight);
+				}
 			}
 			break;
+		}
 		case ECharacter.Yuki:
 		{
-			// Yuki's own shot widens into a fan of 1 / 2 / 3 / 4; each puppet always fires one.
-			// With all four puppets the puppets hit 20% harder and Yuki himself 20% softer.
-			bool bFull = P.DollsAlive >= NumDolls;
-			for (int i = 0; i < Lv; ++i)
-			{
-				float C = i - (Lv - 1) * 0.5f;
-				AddShot(P.Pos + new FVector2f(C * 6f, -10f), -90f + C * 4f, 15f, 1.225f * (bFull ? 0.8f : 1f), EShotType.Straight);
-			}
+			// one shot of his own and one per puppet (puppets = power level), 2 damage each;
+			// at full power (4.00) the puppets hit for 2.8 and Yuki himself for 0.8
+			bool bFull = P.Power >= 4f;
+			AddShot(P.Pos + new FVector2f(0f, -10f), -90f, 15f, bFull ? 0.8f : 2f, EShotType.Straight);
 			for (int i = 0; i < P.DollsAlive; ++i)
 			{
-				AddShot(P.Dolls[i] + new FVector2f(0f, -6f), -90f, 13f, 1.225f * (bFull ? 1.2f : 1f), EShotType.Doll);
+				AddShot(P.Dolls[i] + new FVector2f(0f, -6f), -90f, 13f, YukiDollDamage(), EShotType.Doll);
 			}
 			break;
 		}
 		case ECharacter.Sou:
-			break;   // laser, see UpdateLaser
+		{
+			// one arrow every 6 frames, focused or not: 3 + power level damage; every (4 - power level) arrows the
+			// next one pierces for 12 instead (at full power every arrow pierces)
+			int Every = 4 - Lv;
+			bool bPierce = Every <= 0 || P.ArrowCount >= Every;
+			P.ArrowCount = bPierce ? 0 : P.ArrowCount + 1;
+			AddShot(P.Pos + new FVector2f(0f, -14f), -90f, 18f, bPierce ? 12f : 3f + Lv, EShotType.Arrow);
+			Shots[^1].bPierce = bPierce;
+			break;
+		}
 		}
 	}
 
-	public void UpdateLaser()
+	/** 蓮's homing charms by power level: ahead, then out to the sides a pair at a time. */
+	static readonly float[][] RenHomingAngles =
 	{
-		FDanmakuPlayer P = Player;
-		P.bLaserOn = true;
-		float Dmg = 0.75f + 0.25f * PowerLevel();   // 1.0 / 1.25 / 1.5 / 1.75 per frame, and the beam widens with each level
-		foreach (FEnemy E in Enemies)
-		{
-			if (E.bDead || E.Pos.Y > P.Pos.Y || E.Pos.Y < -8f) continue;
-			if (FMath.Abs(E.Pos.X - P.Pos.X) < LaserWidthNow() + E.Radius)
-			{
-				E.HP -= Dmg;
-				E.HitFlash = 2;
-				if (Frame % 4 == 0) AddParticle(E.Pos, new FVector2f(Rng.FRandRange(-1f, 1f), -1f), 8f, ColLightBlue, 10);
-			}
-		}
-		FVector2f[] Tg = new FVector2f[4];
-		int NT = BossTargets(Tg);
-		bool bLaserHits = false;
-		for (int i = 0; i < NT; ++i) bLaserHits |= Tg[i].Y < P.Pos.Y && FMath.Abs(Tg[i].X - P.Pos.X) < LaserWidthNow() + 24f;
-		if (Boss.bActive && Boss.bVulnerable && bLaserHits)
-		{
-			DamageBoss(Dmg);
-			Score += 4;
-			if (Frame % 3 == 0) AddParticle(Boss.Pos + new FVector2f(Rng.FRandRange(-10f, 10f), 10f), new FVector2f(Rng.FRandRange(-2f, 2f), -1f), 10f, ColLightBlue, 12);
-		}
-	}
+		new[] { 0f },
+		new[] { -15f, 15f },
+		new[] { 0f, -15f, 15f },
+		new[] { -15f, 15f, -30f, 30f },
+	};
+
+	/** 雪's puppet shot: 2, or 2.8 at full power. His bomb's shots hit just as hard. */
+	public float YukiDollDamage() => Player.Power >= 4f ? 2.8f : 2f;
 
 	public void DamageBoss(float Amount)
 	{
@@ -997,6 +1078,10 @@ public partial class DanmakuWorld
 		BombCenter = Player.Pos;
 		BombRadius = 0f;
 		bBombHitBoss = false;
+		++BombSerial;
+		bBombArrowFlying = BombKind == ECharacter.Sou;
+		BombArrowPos = Player.Pos + new FVector2f(0f, -16f);
+		BombArrowAge = 0;
 		// Haru's slow is not an invincibility bomb: only a short grace period
 		Player.Invuln = FMath.Max(Player.Invuln, BombKind == ECharacter.Haru ? 90 : BombDuration + 60);
 		if (Boss.bSpell) Boss.bBonusValid = false;
@@ -1009,7 +1094,7 @@ public partial class DanmakuWorld
 		if (BombTime <= 0) return;
 		--BombTime;
 		float T = 1f - (float)BombTime / (float)BombDuration;
-		BombCenter = Player.Pos;
+		if (BombKind != ECharacter.Sou) BombCenter = Player.Pos;   // 蒼's thunder stays where his arrow landed
 
 		switch (BombKind)
 		{
@@ -1024,7 +1109,8 @@ public partial class DanmakuWorld
 			}
 			foreach (FEnemy E in Enemies)
 			{
-				if (!E.bDead && DistSq(E.Pos, BombCenter) < R2) { E.HP -= 3f; E.HitFlash = 2; }
+				// 300 once to every fairy the ring reaches
+				if (!E.bDead && E.BombHitSerial != BombSerial && DistSq(E.Pos, BombCenter) < R2) { E.HP -= 300f; E.HitFlash = 4; E.BombHitSerial = BombSerial; }
 			}
 			FVector2f[] Tg = new FVector2f[4];
 			int NT = BossTargets(Tg);
@@ -1032,7 +1118,7 @@ public partial class DanmakuWorld
 			for (int i = 0; i < NT; ++i) bInRange |= DistSq(Tg[i], BombCenter) < Sq(BombRadius + 28f);
 			if (!bBombHitBoss && Boss.bActive && Boss.bVulnerable && bInRange)
 			{
-				if (!IsBombImmunePhase()) DamageBoss(200f);
+				if (!IsBombImmunePhase()) DamageBoss(300f);
 				bBombHitBoss = true;
 				Burst(Boss.Pos, 50, ColLightBlue, 6f, 14f, 40);
 			}
@@ -1040,11 +1126,32 @@ public partial class DanmakuWorld
 		}
 		case ECharacter.Sou:
 		{
-			// heaven-thunder: a very wide beam straight up, clears its column and keeps burning
+			// heaven-thunder: first the arrow flies up; it lands on the first enemy or the boss it meets, or after
+			// about a third of a second. The thunder then strikes that column, top to bottom, and stays there.
+			if (bBombArrowFlying)
+			{
+				BombArrowPos += new FVector2f(0f, -14f);
+				bool bLand = ++BombArrowAge >= 20 || BombArrowPos.Y < 30f;
+				foreach (FEnemy E in Enemies)
+					if (!E.bDead && E.Pos.Y > -8f && DistSq(E.Pos, BombArrowPos) < Sq(E.Radius + 10f)) bLand = true;
+				FVector2f[] At = new FVector2f[4];
+				int NA = BossTargets(At);
+				for (int i = 0; i < NA; ++i) bLand |= Boss.bActive && DistSq(At[i], BombArrowPos) < Sq(32f);
+				if (bLand)
+				{
+					bBombArrowFlying = false;
+					BombCenter = BombArrowPos;
+					Sfx(ESfx.Thunder);
+					Burst(BombCenter, 30, new FLinearColor(1f, 0.6f, 0.45f), 5f, 12f, 30);
+				}
+				break;
+			}
+			if (BombArrowPos.Y > -80f) BombArrowPos += new FVector2f(0f, -14f);   // the arrow flies on out of the field
 			BombRadius = ThunderHalfWidth;
+			float X = BombCenter.X;
 			foreach (FBullet B in Bullets)
 			{
-				if (!B.bDead && !B.bBombProof && B.Pos.Y <= Player.Pos.Y && FMath.Abs(B.Pos.X - Player.Pos.X) <= ThunderHalfWidth + B.Radius)
+				if (!B.bDead && !B.bBombProof && FMath.Abs(B.Pos.X - X) <= ThunderHalfWidth + B.Radius)
 				{
 					B.bDead = true;
 					SpawnItem(EItemType.Star, B.Pos, true);
@@ -1052,15 +1159,15 @@ public partial class DanmakuWorld
 			}
 			foreach (FEnemy E in Enemies)
 			{
-				if (!E.bDead && E.Pos.Y <= Player.Pos.Y && FMath.Abs(E.Pos.X - Player.Pos.X) <= ThunderHalfWidth + E.Radius) { E.HP -= 3f; E.HitFlash = 2; }
+				if (!E.bDead && FMath.Abs(E.Pos.X - X) <= ThunderHalfWidth + E.Radius) { E.HP -= 1f; E.HitFlash = 2; }
 			}
 			FVector2f[] Tg = new FVector2f[4];
 			int NT = BossTargets(Tg);
 			bool bInColumn = false;
-			for (int i = 0; i < NT; ++i) bInColumn |= Tg[i].Y <= Player.Pos.Y && FMath.Abs(Tg[i].X - Player.Pos.X) <= ThunderHalfWidth + 24f;
+			for (int i = 0; i < NT; ++i) bInColumn |= FMath.Abs(Tg[i].X - X) <= ThunderHalfWidth + 24f;
 			if (Boss.bActive && !IsBombImmunePhase() && bInColumn)
 			{
-				DamageBoss(1.1f);
+				DamageBoss(1f);
 			}
 			break;
 		}
@@ -1078,7 +1185,7 @@ public partial class DanmakuWorld
 					int Count = Rng.RandRange(5, 8);
 					for (int k = 0; k < Count; ++k)
 					{
-						AddShot(From, -90f + Rng.FRandRange(-22f, 22f), Rng.FRandRange(8f, 11f), 0.55f * PowerMul(), EShotType.Doll);
+						AddShot(From, -90f + Rng.FRandRange(-22f, 22f), Rng.FRandRange(8f, 11f), YukiDollDamage(), EShotType.Doll);
 						Shots[^1].bFromBomb = true;
 					}
 				}
@@ -1102,14 +1209,15 @@ public partial class DanmakuWorld
 			// 雪 bombs by reflex: it costs two bombs, and puppets pay for whatever bombs he lacks
 			int FromBombs = FMath.Min(Player.Bombs, 2);
 			int FromDolls = 2 - FromBombs;
-			if (FromDolls <= Player.DollsAlive)
+			// a missing bomb is paid with a puppet, i.e. a whole power level; he always keeps at least one
+			if (FromDolls <= PowerLevel() - 1)
 			{
 				Player.Bombs -= FromBombs;
 				if (FromDolls > 0)
 				{
 					for (int i = 0; i < FromDolls; ++i) Burst(Player.Dolls[Player.DollsAlive - 1 - i], 20, new FLinearColor(0.9f, 0.7f, 1f), 3f, 10f, 30);
-					Player.DollsAlive -= FromDolls;
-					if (Player.DollRespawn <= 0) Player.DollRespawn = DollRespawnFrames;
+					Player.Power = FMath.Max(1f, Player.Power - FromDolls);
+					Player.DollsAlive = PowerLevel();
 				}
 				if (Boss.bSpell) Boss.bBonusValid = false;
 				StartBomb();
@@ -1177,18 +1285,8 @@ public partial class DanmakuWorld
 		case 2:  E.Radius = 22f; E.Color = new FLinearColor(0.7f, 0.4f, 1f); break;
 		default: E.Radius = 10f; E.Color = new FLinearColor(0.35f, 0.6f, 1f); break;
 		}
-		// a fox mask (spirit) fights alone: when one arrives the others vanish, and nothing else spawns while one is on screen
-		if (Kind == 2)
-		{
-			for (int i = 0; i < Enemies.Count - 1; ++i)
-			{
-				FEnemy O = Enemies[i];
-				if (O.bDead || O.Kind == 2) continue;
-				O.bDead = true;
-				AddParticle(O.Pos, FVector2f.Zero, 30f, O.Color, 14, true);
-			}
-		}
-		else
+		// a fox mask (spirit): fairies already on screen stay, but no new ones spawn while a fox mask is there
+		if (Kind != 2)
 		{
 			for (int i = 0; i < Enemies.Count - 1; ++i)
 			{
@@ -1254,7 +1352,7 @@ public partial class DanmakuWorld
 			for (int i = 0; i < N; ++i) Fire(E.Pos, 1.25f, Base + 360f * i / N, EBulletShape.Small, new FLinearColor(1f, 0.96f, 0.85f));
 		}
 		if (E.Kind == 2) SpawnItem(EItemType.BombPiece, E.Pos, false);
-		if (E.bCarry1Up) SpawnItem(EItemType.OneUp, E.Pos, false);   // the carrier drops its 1UP
+		if (E.bCarry1Up) { SpawnItem(EItemType.OneUp, E.Pos, false); SpawnItem(EItemType.BigPower, E.Pos + new FVector2f(14f, 0f), false); }
 		for (int i = 0; i < E.DropPower; ++i) SpawnItem(EItemType.Power, E.Pos + new FVector2f(Rng.FRandRange(-16f, 16f), Rng.FRandRange(-8f, 8f)), false);
 		for (int i = 0; i < E.DropPoint; ++i) SpawnItem(EItemType.Point, E.Pos + new FVector2f(Rng.FRandRange(-16f, 16f), Rng.FRandRange(-8f, 8f)), false);
 	}
@@ -1356,7 +1454,7 @@ public partial class DanmakuWorld
 				if (bMidboss)
 				{
 					// beating the Extra / Extra-IF midboss drops a 1UP
-					if (StageIndex >= ExtraStage) SpawnItem(EItemType.OneUp, Boss.Pos, false);
+					if (StageIndex >= ExtraStage) { SpawnItem(EItemType.OneUp, Boss.Pos, false); SpawnItem(EItemType.BigPower, Boss.Pos + new FVector2f(16f, 0f), false); }
 					bMidboss = false;
 					bMidDone = true;
 					Boss = new FBossState();
@@ -1987,6 +2085,11 @@ public partial class DanmakuWorld
 					continue;
 				}
 
+				if (B.bWrapX)
+				{
+					const float MX = 10f;
+					if (B.Pos.X < -MX) B.Pos.X += FieldW + 2 * MX; else if (B.Pos.X > FieldW + MX) B.Pos.X -= FieldW + 2 * MX;
+				}
 				if (B.bWrap)
 				{
 					const float M = 16f;
@@ -2125,6 +2228,17 @@ public partial class DanmakuWorld
 				if (E.bDead || E.HP <= 0f || E.Pos.Y < -8f) continue;
 				if (DistSq(S.Pos, E.Pos) < Sq(E.Radius + 6f))
 				{
+					if (S.bPierce)
+					{
+						S.Pierced ??= new List<FEnemy>();
+						if (S.Pierced.Contains(E)) continue;
+						S.Pierced.Add(E);
+						E.HP -= S.Damage;
+						E.HitFlash = 3;
+						Score += 10;
+						AddParticle(E.Pos, new FVector2f(Rng.FRandRange(-1f, 1f), -1.5f), 10f, new FLinearColor(1f, 0.6f, 0.45f), 12);
+						continue;
+					}
 					E.HP -= S.Damage;
 					E.HitFlash = 3;
 					S.bDead = true;
@@ -2133,7 +2247,7 @@ public partial class DanmakuWorld
 				}
 			}
 			bool bHitBoss = false;
-			if (!S.bDead && Boss.bActive && Boss.bVulnerable)
+			if (!S.bDead && !S.bPiercedBoss && Boss.bActive && Boss.bVulnerable)
 			{
 				FVector2f[] Tg = new FVector2f[4];
 				int NT = BossTargets(Tg);
@@ -2142,7 +2256,8 @@ public partial class DanmakuWorld
 			if (bHitBoss)
 			{
 				if (!(S.bFromBomb && IsBombImmunePhase())) DamageBoss(S.Damage);
-				S.bDead = true;
+				if (S.bPierce) S.bPiercedBoss = true;   // goes on through, but hits the boss only once
+				else S.bDead = true;
 				Score += 10;
 			}
 			if (S.bDead && Particles.Count < 2500)
@@ -2225,7 +2340,7 @@ public partial class DanmakuWorld
 			else { int Before = PowerLevel(); Player.Power = FMath.Min(4f, Player.Power + 0.01f); Score += 10; PowerUpPopup(Before); }
 			break;
 		case EItemType.BigPower:
-			{ int Before = PowerLevel(); Player.Power = FMath.Min(4f, Player.Power + 1f); PowerUpPopup(Before); }
+			{ int Before = PowerLevel(); Player.Power = FMath.Min(4f, Player.Power + Rng.FRandRange(0.5f, 1.5f)); PowerUpPopup(Before); }
 			Score += 1000;
 			break;
 		case EItemType.Point:
@@ -2435,10 +2550,13 @@ public partial class DanmakuWorld
 			else Bm.Length = Bm.MaxLength;
 
 			FVector2f End = Bm.Origin + Dir(Bm.Angle) * Bm.Length;
+			if (bMove && Bm.OnStrike == 2 && Bm.Age == Bm.Warn) Sfx(ESfx.Bamboo);   // the shoot starts to grow
 			if (!Bm.bStruck && Bm.Age >= RiseEnd)
 			{
 				Bm.bStruck = true;
-				Sfx(ESfx.Break);
+				if (Bm.OnStrike == 1) Sfx(ESfx.Thunder);
+				else if (Bm.OnStrike == 2) Sfx(ESfx.BambooHit);
+				else Sfx(ESfx.Break);
 				if (Bm.OnStrike == 1)
 				{
 					// lightning: fire bursts out of the ground and rains back down
