@@ -328,13 +328,15 @@ public partial class DanmakuWorld
 	{
 		const int MidAt = 3000;
 		int K = 0;
-		// the opening is a warm-up: fewer dolls, the two waves don't overlap, and these ones don't burst when they die
-		if (Rep(F, 90, 16, 20, ref K))
+		// the opening used to be a warm-up and was far too soft for an Extra: the waves are fuller now,
+		// they overlap, and the dolls burst when they die like the rest of the road
+		if (Rep(F, 90, 22, 15, ref K))
 		{
 			bool bL = K % 2 == 0;
-			Doll(new FVector2f(bL ? 30f : FieldW - 30f, -16f), new FVector2f(bL ? 0.8f : -0.8f, 1.8f), K % 2 == 0 ? 14 : -1).bRevenge = false;
+			Doll(new FVector2f(bL ? 30f : FieldW - 30f, -16f), new FVector2f(bL ? 0.8f : -0.8f, 1.8f), K % 2 == 0 ? 14 : 21);
 		}
-		if (Rep(F, 440, 14, 18, ref K)) Doll(new FVector2f(K % 2 != 0 ? -16f : FieldW + 16f, 40f + (K % 4) * 22f), new FVector2f(K % 2 != 0 ? 2.4f : -2.4f, 0.5f), K % 2 != 0 ? 19 : -1).bRevenge = false;
+		if (Rep(F, 400, 20, 15, ref K)) Doll(new FVector2f(K % 2 != 0 ? -16f : FieldW + 16f, 40f + (K % 4) * 22f), new FVector2f(K % 2 != 0 ? 2.4f : -2.4f, 0.5f), K % 2 != 0 ? 19 : 5);
+		if (Rep(F, 620, 4, 70, ref K)) Sentry(new FVector2f(70f + K * 82f, -20f), 23, 60, 260).Color = RIvory;
 		if (Rep(F, 700, 6, 45, ref K)) Sentry(new FVector2f(60f + K * 52f, -20f), 20, 60, 300).Color = RRed;
 		if (Rep(F, 1000, 20, 16, ref K)) Doll(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), -16f), new FVector2f(0f, 2f), 21);
 		if (F == 1400) Spirit(new FVector2f(FieldW * 0.5f, -30f), 22, 650f);

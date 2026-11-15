@@ -1271,8 +1271,14 @@ public partial class DanmakuWorld
 		E.Pos = Pos;
 		E.Vel = Vel;
 		E.Kind = Kind;
-		// toughness: stage 1 x1, stage 2 x1.1, stage 3 onward (Extra and Extra-IF too) x1.2 — later roads get harder through density, not HP
-		E.HP = HP * (StageIndex == 0 ? 1f : (StageIndex == 1 ? 1.1f : 1.2f));
+		// Toughness by road. The fairies that come in groups go from x1 on stage 1 to x1.5 on stage 6;
+		// the fox masks, which hang around much longer, go from x1 to x1.9. Extra and Extra-IF are x2.
+		// The guardian masks are tuned by hand (four times their road's fox mask), so they keep x1.2.
+		float Tough;
+		if (Kind == 3) Tough = 1.2f;
+		else if (StageIndex >= ExtraStage) Tough = 2f;
+		else Tough = 1f + (Kind == 2 ? 0.18f : 0.1f) * FMath.Min(StageIndex, 5);
+		E.HP = HP * Tough;
 		E.Pattern = Pattern;
 		E.StopAt = StopAt;
 		E.LeaveAt = LeaveAt;

@@ -34,7 +34,7 @@ SHEETS = {
     "sou":          ("SouNewSpirit",         12, 3, 12, 3),
     "haru":         ("HaruNewSpirit",         6, 6, 12, 3),
     "yuki":         ("YukiNewSpirit",         6, 6, 12, 3),
-    "boss1":        ("TenRouNewSpirit",      12, 3, 12, 3),
+    "boss1":        ("TenRouNewSpirit",       6, 6, 12, 3),   # redrawn on the 6x6 layout like the others
     "boss2":        ("千秋NewSpirit",          6, 6, 12, 3),
     "boss3":        ("ArashiNewSpirit",       6, 6, 12, 3),
     "boss4":        ("墨竹NewSpirit",          6, 6, 12, 3),
@@ -54,48 +54,117 @@ SHEETS = {
 }
 
 
-def split_row(strip, cols):
-    """The figures in one source row, split on the empty columns between them."""
-    solid = (strip[..., 3] > 24).sum(0) > 0
+def thin_columns(weight, thr):
+    """Runs of columns with next to nothing in them, as their middles; the sheet edges don't count."""
+    W = len(weight)
     runs, st = [], None
-    for i, s in enumerate(solid):
-        if not s and st is None:
+    for i, w in enumerate(weight):
+        if w <= thr and st is None:
             st = i
-        elif s and st is not None:
+        elif w > thr and st is not None:
             runs.append((st, i)); st = None
     if st is not None:
-        runs.append((st, len(solid)))
-    inner = [r for r in runs if r[0] > 0 and r[1] < len(solid)]
-    if len(inner) == cols - 1:
-        cuts = [0] + [(a + b) // 2 for a, b in inner] + [len(solid)]
-    else:                                   # no clean gaps: fall back to an even split
-        cuts = [round(c * len(solid) / cols) for c in range(cols + 1)]
+        runs.append((st, W))
+    return [(x0 + x1) // 2 for x0, x1 in runs if x0 > 0 and x1 < W]
+
+
+def count_figures(strip):
+    """How many figures are really drawn in this row. 天狼's sheet has eleven where the others have
+    twelve, which used to leave a blank frame and made her vanish for a moment in game."""
+    lab, n = label(strip[..., 3] > 24)
+    if n == 0:
+        return 0
+    sizes = np.bincount(lab.ravel()); sizes[0] = 0
+    return int((sizes > sizes.max() * 0.15).sum())
+
+
+def split_row(strip, cols):
+    """The figures in one source row. They are drawn wider than their slot and drift sideways through
+    the animation, and two of them sometimes touch, so the cuts are chosen among the emptiest columns:
+    the set that leaves the most even run of figures wins."""
+    weight = (strip[..., 3] > 24).sum(0).astype(np.float64)
+    W = len(weight)
+    step = W / cols
+    cand = []
+    for thr in (0, weight.max() * 0.02, weight.max() * 0.05, weight.max() * 0.12, weight.max() * 0.25):
+        cand = thin_columns(weight, thr)
+        if len(cand) >= cols - 1:
+            break
+    if len(cand) < cols - 1:                       # nothing to go on: fall back to an even split
+        cuts = [round(c * step) for c in range(cols + 1)]
+    else:
+        cand = np.array(cand, float)
+        # pick cols-1 of them, in order, so the figures come out as evenly wide as possible
+        N = len(cand)
+        INF = float("inf")
+        cost = np.full((cols, N), INF)
+        back = np.zeros((cols, N), int)
+        cost[0] = (cand - step) ** 2
+        for j in range(1, cols - 1):
+            for i in range(N):
+                prev = cost[j - 1, :i]
+                if len(prev) == 0:
+                    continue
+                c = prev + (cand[i] - cand[:i] - step) ** 2
+                k = int(np.argmin(c))
+                cost[j, i] = c[k]; back[j, i] = k
+        last = cost[cols - 2] + (W - cand - step) ** 2
+        i = int(np.argmin(last))
+        picked = [i]
+        for j in range(cols - 2, 0, -1):
+            i = back[j, i]; picked.append(i)
+        cuts = [0] + [int(cand[k]) for k in reversed(picked)] + [W]
     return [trim_strays(strip[:, cuts[i]:cuts[i + 1]].copy()) for i in range(cols)]
 
 
 def trim_strays(f):
-    """Drop anything that is separate from the figure and runs off the side of its slot: that is the
-    hair or sleeve of the frame drawn next to it, which the cut carried over."""
+    """Drop anything that is separate from the figure and runs off the edge of its slot: that is a
+    piece of the frame drawn next to or above it, which the cut carried over."""
     lab, n = label(f[..., 3] > 0)
     if n <= 1:
         return f
     sizes = np.bincount(lab.ravel()); sizes[0] = 0
     main = sizes.argmax()
-    edge = set(lab[:, 0]) | set(lab[:, -1])
+    edge = set(lab[:, 0]) | set(lab[:, -1]) | set(lab[0, :]) | set(lab[-1, :])
     keep = np.array([k == main or (k > 0 and k not in edge and sz > sizes[main] * 0.004)
                      for k, sz in enumerate(sizes)])
     f[..., 3] = np.where(keep[lab], f[..., 3], 0)
     return f
 
 
-def cut(path, cols, rows):
+# sheets drawn on a pale, half-transparent backdrop instead of on nothing
+WASHED = {"boss4", "boss6"}
+
+
+def strip_wash(im):
+    """Clear the pale wash some sheets are drawn over: everything see-through and nearly white that
+    joins up with the edge of the sheet. It is what draws a white box around the figure in game."""
+    wash = (im[..., 3] < 185) & (im[..., :3].min(axis=2) > 185)
+    lab, n = label(wash)
+    if n == 0:
+        return im
+    edge = set(lab[0, :]) | set(lab[-1, :]) | set(lab[:, 0]) | set(lab[:, -1])
+    edge.discard(0)
+    im[..., 3] = np.where(np.isin(lab, list(edge)), 0, im[..., 3])
+    return im
+
+
+def cut(path, cols, rows, washed=False):
     im = np.array(Image.open(path).convert("RGBA"))
+    if washed:
+        im = strip_wash(im)
     im[..., 3][im[..., 3] < 24] = 0          # the soft glow baked around every figure
     H = im.shape[0]
     ys = [round(r * H / rows) for r in range(rows + 1)]
     out = []
     for r in range(rows):
-        out += split_row(im[ys[r]:ys[r + 1]], cols)
+        strip = im[ys[r]:ys[r + 1]]
+        n = count_figures(strip)
+        if not cols - 3 <= n <= cols:        # a wild count means the figures ran together; trust the layout
+            n = cols
+        if n != cols:
+            print(f"  row {r}: {n} figures drawn, not {cols}")
+        out.append(split_row(strip, n))
     return out
 
 
@@ -120,8 +189,17 @@ def align(ref_mask, mask):
 
 def pack(name):
     src, cols, rows, per, anims = SHEETS[name]
-    cells = [crop(f) for f in cut(os.path.join(SRC, src), cols, rows)]
-    assert len(cells) == per * anims and all(c is not None for c in cells), (name, len(cells))
+    raw_rows = cut(os.path.join(SRC, src), cols, rows, name in WASHED)
+    srows = rows // anims                      # source rows per animation (2 on the 6x6 sheets)
+    cells = []
+    for A in range(anims):
+        got = [f for r in range(A * srows, (A + 1) * srows) for f in raw_rows[r]]
+        got = [crop(f) for f in got]
+        got = [f for f in got if f is not None]
+        assert got, (name, A)
+        # a row that is short of frames (天狼) is stretched over the sheet's columns instead of leaving a gap
+        cells += [got[i * len(got) // per] for i in range(per)]
+    assert len(cells) == per * anims, (name, len(cells))
 
     s = REF_H / cells[0].shape[0]
     imgs = [scaled(f, s) for f in cells]

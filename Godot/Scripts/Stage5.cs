@@ -145,13 +145,15 @@ public partial class DanmakuWorld
 		if (Every(T, 150, 75)) WanderBoss();
 	}
 
-	// 水符「流水無形」: two winding rivers and swaying rings of droplets
+	// 水符「流水無形」: an endurance card. The two winding rivers and the swaying rings of droplets stay
+	// — they are what makes the card look like water — and a slow waterwheel turns in the middle of them,
+	// letting a stream go every half second: one arm on Easy up to four on Lunatic, a bullet every 15°.
 	public void S5_Water(int T)
 	{
-		PlaceBoss(new FVector2f(FieldW * 0.5f, 100f));
+		PlaceBoss(new FVector2f(FieldW * 0.5f, 110f));
 		int D = FMath.Clamp(Difficulty, 0, 3);
-		ElementVolley(4, T, WaterRivers[D]);
-		if (Every(T, 70 - 5 * D, 35 - 2 * D))
+		ElementVolley(4, T, WaterRivers[D]);                   // the curtain
+		if (Every(T, 70 - 5 * D, 35 - 2 * D))                  // the wings
 		{
 			int N = Cnt(18);
 			float Base = Rng.FRandRange(0f, 360f);
@@ -160,6 +162,20 @@ public partial class DanmakuWorld
 				FBullet W = Fire(Boss.Pos, 1.3f, Base + 360f * i / N, EBulletShape.Water, new FLinearColor(0.55f, 0.8f, 1f));
 				W.WaveAmp = 0.6f;
 				W.WaveFreq = 0.05f;
+				W.WavePhase = i * 0.8f;
+			}
+		}
+		int Arms = 1 + D;                                      // the waterwheel
+		if (Every(T, 30, 15))
+		{
+			float Base = (T / 30) * 15f * Arms;                // each shot carries on where the last one stopped
+			for (int i = 0; i < Arms; ++i)
+			{
+				// slow water: it stays on the field long enough for the spiral to close around you
+				FBullet W = Fire(Boss.Pos, 1.05f + 0.1f * D, Base + i * 15f, EBulletShape.Water,
+					new FLinearColor(0.7f, 0.9f, 1f));
+				W.WaveAmp = 0.4f;
+				W.WaveFreq = 0.04f;
 				W.WavePhase = i * 0.8f;
 			}
 		}

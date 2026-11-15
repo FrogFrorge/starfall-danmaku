@@ -324,7 +324,7 @@ public partial class DanmakuWorld
 				new(950f, 45, true, "土符「山崩地裂」", static (w, t) => w.S5_Earth(t)),
 				new(950f, 45, true, "金符「金戈鐵刃」", static (w, t) => w.S5_Metal(t)),
 				new(700f, 30, false, "", static (w, t) => w.S5_NonSpell3(t)),
-				new(950f, 45, true, "水符「流水無形」", static (w, t) => w.S5_Water(t)),
+				new(950f, 45, true, "水符「流水無形」", static (w, t) => w.S5_Water(t), true),
 				new(1400f, 60, true, "五行「相生相剋」", static (w, t) => w.S5_Cycle(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
