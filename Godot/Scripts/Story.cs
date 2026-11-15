@@ -26,8 +26,23 @@ public static partial class Story
 		for (int c = 0; c < 4; ++c)
 		{
 			Target[c].Clear();
-			foreach (var Line in T.For(c)) Target[c].Add(new FDialogueLine(Line.S, Line.Zh));
+			foreach (var Line in T.For(c)) Target[c].Add(new FDialogueLine(Line.S, Line.Zh, Line.S == 0 ? ExpressionFor(Line.Zh) : EExpression.Idle));
 		}
+	}
+
+	/** The face that fits a line, read off how it is written. Only the player characters have more than one
+	 *  face, so this is only asked for their lines; anything unremarkable stays on the idle one. */
+	public static EExpression ExpressionFor(string Zh)
+	{
+		if (string.IsNullOrEmpty(Zh)) return EExpression.Idle;
+		bool Has(params string[] Words) { foreach (var W in Words) if (Zh.Contains(W)) return true; return false; }
+		if (Has("休想", "可惡", "別想", "還回來", "不准", "放開", "住手", "才不")) return EExpression.Angry;
+		if (Has("什麼？", "怎麼會", "哇", "咦", "欸", "！？", "真的假的")) return EExpression.Shock;
+		if (Has("對不起", "抱歉", "……可是", "好可憐", "難過", "孤單", "寂寞", "對不住")) return EExpression.Sad;
+		if (Has("好耶", "太好了", "謝謝", "哈哈", "好香", "好吃", "開心")) return EExpression.Happy;
+		if (Zh.Contains("？")) return EExpression.Anxious;
+		if (Zh.Contains("！")) return EExpression.Shock;
+		return EExpression.Idle;
 	}
 
 	/** Writes the story into the boss tables (called once from FindBossDef). */

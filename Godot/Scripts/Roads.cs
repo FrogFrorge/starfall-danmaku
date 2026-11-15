@@ -92,26 +92,42 @@ public partial class DanmakuWorld
 		return E;
 	}
 
-	/** A fairy carrying a 1UP: it hovers in the middle for a while, and drops the 1UP if you shoot it down in time. */
-	public FEnemy OneUpCarrier()
+	/** The sealed guardian: the last thing on the road before the boss. It has four times the health of
+	 *  that road's fox mask, holds the middle of the field for 30 seconds with the heaviest attack any
+	 *  road enemy has (pattern 24), and then flees upward the way a fox mask does. Shoot it down before
+	 *  it leaves and it drops a 1UP and a big power item. */
+	public FEnemy Guardian(float FoxHP, int Variant)
 	{
-		FEnemy E = Sentry(new FVector2f(FieldW * 0.5f, -20f), 1, 70, 480, 160f);
+		FEnemy E = SpawnEnemy(new FVector2f(FieldW * 0.5f, -30f), new FVector2f(0f, 2f), 3,
+			FoxHP * 0.7f * 4f, 24, 60, 60 + 1800, new FVector2f(0f, -2.4f), 0, 0);
 		E.bCarry1Up = true;
-		E.bDead = false;   // the 1UP carrier still comes while a fox mask is on screen
 		E.bRevenge = false;
-		E.DropPower = 0;   // looks like any fairy; the 1UP and a big power item only appear when it is shot down
+		E.Variant = Variant;
+		E.Color = GuardianGlow[Variant];
 		return E;
 	}
+
+	// the halo under each mask: pale gold for the god, jade for the mahjong mask, fire for the oni
+	public static readonly FLinearColor[] GuardianGlow =
+		{ new FLinearColor(0.85f, 0.88f, 1f), new FLinearColor(0.5f, 1f, 0.7f), new FLinearColor(1f, 0.55f, 0.25f) };
 
 	public FEnemy Spirit(FVector2f Pos, int Pattern, float HP)
 	{
 		return SpawnEnemy(Pos, new FVector2f(0f, 1.5f), 2, HP * 0.7f, Pattern, 90, 690, new FVector2f(0f, -1f), 8, 8);
 	}
 
+	/** True once the road is empty and has stayed empty for five seconds, so a boss never walks in on
+	 *  the tail of a wave (or on the guardian, which can hold the field for half a minute). */
+	public bool RoadClear(int F, int Quiet = 300)
+	{
+		return Enemies.Count == 0 && F - LastEnemyFrame >= Quiet;
+	}
+
 	public void UpdateStage()
 	{
 		if (Boss.bStarted) return;
 		int F = StageFrame;
+		if (Enemies.Count > 0) LastEnemyFrame = F;
 		GRoadDensity = RoadDensity();
 		switch (StageIndex)
 		{
@@ -149,7 +165,7 @@ public partial class DanmakuWorld
 		}
 		if (F == 3700) for (int i = 0; i < 4; ++i) Sentry(new FVector2f(64f + i * 85f, -20f), 1, 60 + i * 10, 300);
 		if (Rep(F, 3900, 10, 30, ref K)) Doll(new FVector2f(48f + (K % 5) * 72f, -16f), new FVector2f(0f, 1.5f), 2);
-		if (F >= 4500 && (Enemies.Count == 0 || F >= 4800)) StartBoss();
+		if (F >= 4500 && RoadClear(F)) StartBoss();
 	}
 
 	// ---------- stage 2: 四時繪卷 (~90 s) ----------
@@ -189,7 +205,7 @@ public partial class DanmakuWorld
 		}
 		if (F == 4500) { Sentry(new FVector2f(90f, -20f), 15, 70, 360).Color = RGreen; Sentry(new FVector2f(FieldW - 90f, -20f), 15, 70, 360).Color = ROrange; }
 		if (Rep(F, 4700, 12, 24, ref K)) Doll(new FVector2f(FieldW * 0.5f + (K % 2 != 0 ? 1f : -1f) * (40f + K * 8f), -16f), new FVector2f(0f, 1.7f), 6);
-		if (F >= 5400 && (Enemies.Count == 0 || F >= 5700)) StartBoss();
+		if (F >= 5400 && RoadClear(F)) StartBoss();
 	}
 
 	// ---------- stage 3: 雲上之路 (~100 s) ----------
@@ -217,7 +233,7 @@ public partial class DanmakuWorld
 		}
 		if (F == 4900) for (int i = 0; i < 3; ++i) Sentry(new FVector2f(96f + i * 96f, -20f), 1, 60, 300);
 		if (Rep(F, 5000, 16, 20, ref K)) Doll(new FVector2f(-16f + (K % 2) * (FieldW + 32f), 80f + (K % 3) * 20f), new FVector2f(K % 2 != 0 ? -2.8f : 2.8f, 0.2f), 7);
-		if (F >= 6000 && (Enemies.Count == 0 || F >= 6300)) StartBoss();
+		if (F >= 6000 && RoadClear(F)) StartBoss();
 	}
 
 	// ---------- stage 4: 四君子庭園 (~110 s) ----------
@@ -248,7 +264,7 @@ public partial class DanmakuWorld
 		if (Rep(F, 4900, 7, 55, ref K)) Sentry(new FVector2f(60f + (K % 6) * 52f, -20f), 15, 60, 300).Color = RYellow;
 		if (Rep(F, 5200, 16, 22, ref K)) Doll(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), -16f), new FVector2f(0f, 1.8f), 11);
 		if (F == 5800) { Sentry(new FVector2f(120f, -20f), 1, 60, 320); Sentry(new FVector2f(FieldW - 120f, -20f), 1, 60, 320); Sentry(new FVector2f(FieldW * 0.5f, -20f), 18, 80, 340, 60f); }
-		if (F >= 6600 && (Enemies.Count == 0 || F >= 6900)) StartBoss();
+		if (F >= 6600 && RoadClear(F)) StartBoss();
 	}
 
 	// ---------- stage 5: 五行仙壇 (~120 s) ----------
@@ -280,7 +296,7 @@ public partial class DanmakuWorld
 		if (Rep(F, 5500, 8, 50, ref K)) Sentry(new FVector2f(60f + (K % 6) * 52f, -20f), K % 2 != 0 ? 1 : 12, 60, 280).Color = Elem[K % 5];
 		if (Rep(F, 5700, 18, 20, ref K)) Doll(new FVector2f(K % 2 != 0 ? -16f : FieldW + 16f, 60f), new FVector2f(K % 2 != 0 ? 1.8f : -1.8f, 1f), 19).Color = Elem[K % 5];
 		if (F == 6300) for (int i = 0; i < 3; ++i) Sentry(new FVector2f(96f + i * 96f, -20f), 12, 60, 340).Color = Elem[i * 2];
-		if (F >= 7200 && (Enemies.Count == 0 || F >= 7500)) StartBoss();
+		if (F >= 7200 && RoadClear(F)) StartBoss();
 	}
 
 	// ---------- stage 6: 天宮 (~60 s, the final boss comes quickly) ----------
@@ -302,8 +318,8 @@ public partial class DanmakuWorld
 		}
 		if (F == 2600) for (int i = 0; i < 4; ++i) Sentry(new FVector2f(64f + i * 85f, -20f), i % 2 != 0 ? 1 : 8, 60, 300).Color = RYellow;
 		if (Rep(F, 2700, 16, 18, ref K)) Doll(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), -16f), new FVector2f(0f, 2.1f), 0).Color = RYellow;
-		if (F == 3100) OneUpCarrier();   // the last fairy before the final boss carries a 1UP
-		if (F >= 3600 && (Enemies.Count == 0 || F >= 3900)) StartBoss();
+		if (F == 3100) Guardian(700f, 0);   // the little god holds the gate before the final boss
+		if (F >= 3600 && RoadClear(F)) StartBoss();
 	}
 
 	// ---------- Extra: 天和閣 (~130 s, 玄 appears at the halfway point) ----------
@@ -334,7 +350,7 @@ public partial class DanmakuWorld
 			if (F >= MidAt)
 			{
 				if (bDemo && DemoSkipFrames > MidAt) bMidDone = true;
-				else if (Enemies.Count == 0 || F >= MidAt + 240) StartMidboss();
+				else if (RoadClear(F)) StartMidboss();
 			}
 			return;
 		}
@@ -357,8 +373,8 @@ public partial class DanmakuWorld
 			Spirit(new FVector2f(FieldW * 0.5f, -30f), 22, 600f);
 		}
 		if (Rep(F, 6800, 20, 20, ref K)) Doll(new FVector2f(K % 2 != 0 ? -16f : FieldW + 16f, 40f + (K % 3) * 25f), new FVector2f(K % 2 != 0 ? 2f : -2f, 0.6f), 0);
-		if (F == 7300) OneUpCarrier();   // the last fairy before 一索 carries a 1UP
-		if (F >= 7800 && (Enemies.Count == 0 || F >= 8100)) StartBoss();
+		if (F == 7300) Guardian(600f, 1);   // the mahjong mask holds the gate before 一索
+		if (F >= 7800 && RoadClear(F)) StartBoss();
 	}
 
 	// =====================================================================================
@@ -516,8 +532,207 @@ public partial class DanmakuWorld
 				}
 			}
 			break;
+		case 24: // the sealed guardian. Each mask fights in its own element, and none of it is aimed at
+		         // the player: it is heavy, and you read it and move.
+			if (bStopped)
+			{
+				if (E.Variant == 0) GuardianGod(E, A, Tier);
+				else if (E.Variant == 1) GuardianMahjong(E, A, Tier);
+				else GuardianOni(E, A, Tier);
+			}
+			break;
 		default:
 			break;
+		}
+	}
+
+	// =====================================================================================
+	// The sealed guardian's three faces (road pattern 24). Each one turns through three attacks,
+	// and every attack has its own difficulty steps — more bullets, narrower gaps, faster turns.
+	// =====================================================================================
+
+	/** The little god (main story): haloes, curtains of light, and a slow descent of stars. */
+	public void GuardianGod(FEnemy E, int A, int Tier)
+	{
+		bool Ev(int Interval, int Offset) => RoadEvery(A, Interval, Offset);
+		int RC(int N) => RoadCount(N);
+		if (StageIndex >= ExtraStage) Tier = 3;   // Extra and Extra-IF have no tier of their own: treat them as Lunatic
+		int Cyc = A % 450;
+		if (Cyc < 160)
+		{
+			// haloes: rings of light thrown off the god's own halo, each one turned against the last
+			if (Ev(40, 0)) Ring(E.Pos, RC(12), 1.7f + 0.1f * Tier, A * 2.4f, EBulletShape.Star, RYellow);
+			if (Tier >= 1 && Ev(40, 20)) Ring(E.Pos, RC(10), 2.2f + 0.1f * Tier, -A * 3.1f, EBulletShape.Chrys, RIvory);
+		}
+		else if (Cyc < 310)
+		{
+			// a curtain of light falling from the heavens, with a gate left open that walks across it.
+			// The gate is two columns wide on every difficulty, and the rows are far enough apart to walk
+			// to the next one: this is the main story's guardian, it has to be readable.
+			if (Ev(44, 0))
+			{
+				int Cols = 9 + Tier;
+				int Gate = ((A / 44) * (1 + Tier)) % Cols;
+				for (int i = 0; i < Cols; ++i)
+				{
+					int D = FMath.Abs(i - Gate);
+					if (FMath.Min(D, Cols - D) < 2) continue;
+					float X = (i + 0.5f) * FieldW / Cols;
+					Fire(new FVector2f(X, -10f), 1.3f + 0.1f * Tier, 90f, EBulletShape.Rice, RWater);
+				}
+			}
+		}
+		else
+		{
+			// stars let go overhead: they drift at first and then fall faster and faster
+			if (Ev(56, 0)) Ring(E.Pos, RC(10), 0.6f, A * 1.3f, EBulletShape.Star, RIvory, 0.016f + 0.004f * Tier, 2.8f);
+			if (Ev(22, 11))
+			{
+				float Side = (A / 22) % 2 == 0 ? 0f : 180f;
+				for (int i = 0; i < RC(2); ++i)
+					Fire(E.Pos, 2.3f + 0.15f * Tier, Side + 20f + i * 25f, EBulletShape.Crescent, RYellow);
+			}
+		}
+	}
+
+	/** The mahjong mask (Extra): tiles in pairs, a hand of fourteen falling with a discard missing. */
+	public void GuardianMahjong(FEnemy E, int A, int Tier)
+	{
+		bool Ev(int Interval, int Offset) => RoadEvery(A, Interval, Offset);
+		int RC(int N) => RoadCount(N);
+		if (StageIndex >= ExtraStage) Tier = 3;   // Extra and Extra-IF have no tier of their own: treat them as Lunatic
+		int Cyc = A % 450;
+		if (Cyc < 160)
+		{
+			// pairs: every tile comes with its twin, and the two drift apart as they travel
+			if (Ev(10, 0))
+			{
+				int Arms = 2 + Tier;
+				float Spin = A * (2.2f + 0.5f * Tier);
+				for (int i = 0; i < Arms; ++i)
+				{
+					float Base = Spin + 360f * i / Arms;
+					Fire(E.Pos, 2.0f + 0.1f * Tier, Base - 5f, EBulletShape.Tile, RIvory);
+					Fire(E.Pos, 2.0f + 0.1f * Tier, Base + 5f, EBulletShape.Tile, RGreen);
+				}
+			}
+		}
+		else if (Cyc < 310)
+		{
+			// a hand of fourteen tiles comes down, with the discarded one missing from the row
+			if (Ev(34, 0))
+			{
+				const int Cols = 14;
+				int Discard = ((A / 34) * 5) % Cols;
+				int Wide = FMath.Max(1, 3 - Tier);
+				for (int i = 0; i < Cols; ++i)
+				{
+					int D = FMath.Abs(i - Discard);
+					if (FMath.Min(D, Cols - D) < Wide) continue;
+					float X = (i + 0.5f) * FieldW / Cols;
+					Fire(new FVector2f(X, -10f), 1.5f + 0.15f * Tier, 90f, EBulletShape.Tile,
+						i % 2 == 0 ? RIvory : RRed);
+				}
+			}
+			// Hard and Lunatic also sweep a red tile across under the falling hand
+			if (Tier >= 2 && Ev(26, 13))
+			{
+				float Sweep = 90f + FMath.Sin(A * 0.03f) * 60f;
+				Fire(E.Pos, 2.6f, Sweep, EBulletShape.Tile, RRed);
+			}
+		}
+		else
+		{
+			// the wall: a ring of tiles with one lane open, turning slowly, and loose tiles tumbling in
+			float Open = A * (0.9f + 0.25f * Tier);
+			float Half = 36f - 7f * Tier;
+			if (Ev(34, 2))
+			{
+				int N = RC(16);
+				for (int i = 0; i < N; ++i)
+				{
+					float Ang = 360f * i / N;
+					if (FMath.Abs(FMath.FindDeltaAngleDegrees(Open, Ang)) < Half) continue;
+					Fire(E.Pos, 1.7f + 0.12f * Tier, Ang, EBulletShape.Tile, RIvory);
+				}
+			}
+			if (Ev(16, 0))
+			{
+				for (int i = 0; i < RC(4); ++i)
+				{
+					Fire(new FVector2f(Rng.FRandRange(12f, FieldW - 12f), E.Pos.Y - 70f),
+						1.6f + 0.12f * Tier, 90f + Rng.FRandRange(-12f, 12f), EBulletShape.Tile, RGreen);
+				}
+			}
+		}
+	}
+
+	/** The oni (Extra-IF): arms of fire, burning rings, and a curtain of embers. */
+	public void GuardianOni(FEnemy E, int A, int Tier)
+	{
+		bool Ev(int Interval, int Offset) => RoadEvery(A, Interval, Offset);
+		int RC(int N) => RoadCount(N);
+		if (StageIndex >= ExtraStage) Tier = 3;   // Extra and Extra-IF have no tier of their own: treat them as Lunatic
+		int Cyc = A % 450;
+		if (Cyc < 160)
+		{
+			// arms of fire turning both ways; one more arm and a faster turn on every difficulty up
+			if (Ev(5, 0))
+			{
+				int Arms = 2 + Tier;
+				float Spin = A * (2.6f + 0.6f * Tier);
+				for (int i = 0; i < Arms; ++i)
+				{
+					Fire(E.Pos, 2.1f, Spin + 360f * i / Arms, EBulletShape.Small, ROrange);
+					Fire(E.Pos, 2.1f, -Spin + 360f * i / Arms + 180f / Arms, EBulletShape.Small, RRed);
+				}
+			}
+		}
+		else if (Cyc < 310)
+		{
+			// rings with one lane left open; the lane turns slowly and narrows as the road gets harder
+			float Open = A * (0.9f + 0.25f * Tier);
+			float Half = 36f - 7f * Tier;
+			if (Ev(34, 2))
+			{
+				int N = RC(16);
+				for (int i = 0; i < N; ++i)
+				{
+					float Ang = 360f * i / N;
+					if (FMath.Abs(FMath.FindDeltaAngleDegrees(Open, Ang)) < Half) continue;
+					Fire(E.Pos, 1.7f + 0.12f * Tier, Ang, EBulletShape.Medium, RIvory);
+				}
+			}
+			// Hard and Lunatic get a second, faster ring between the first ones, with its own lane opposite
+			if (Tier >= 2 && Ev(34, 19))
+			{
+				int N = RC(14);
+				for (int i = 0; i < N; ++i)
+				{
+					float Ang = 360f * (i + 0.5f) / N;
+					if (FMath.Abs(FMath.FindDeltaAngleDegrees(Open + 180f, Ang)) < Half) continue;
+					Fire(E.Pos, 2.5f + 0.15f * Tier, Ang, EBulletShape.Small, RYellow);
+				}
+			}
+		}
+		else
+		{
+			// embers raining from above, and a curtain that sweeps across the field like a wiper
+			if (Ev(14, 0))
+			{
+				int N = RC(5);
+				for (int i = 0; i < N; ++i)
+				{
+					Fire(new FVector2f(Rng.FRandRange(12f, FieldW - 12f), E.Pos.Y - 70f),
+						1.8f + 0.12f * Tier, 90f + Rng.FRandRange(-14f, 14f), EBulletShape.Small, ROrange);
+				}
+			}
+			if (Ev(7, 0))
+			{
+				float Sweep = 90f + FMath.Sin(A * (0.028f + 0.006f * Tier)) * (52f + 8f * Tier);
+				int N = RC(2);
+				for (int i = 0; i < N; ++i) Fire(E.Pos, 2.6f + 0.15f * Tier, Sweep + i * 7f, EBulletShape.Medium, RRed);
+			}
 		}
 	}
 }

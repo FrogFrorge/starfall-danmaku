@@ -76,7 +76,8 @@ public sealed class DanmakuHud
 
 	// characters
 	List<Texture2D> PlayerBacks = new();   // indexed by ECharacter
-	List<Texture2D> Portraits = new();     // indexed by ECharacter
+	List<Texture2D> Portraits = new();
+	readonly List<Texture2D[]> PortraitFaces = new();   // five expressions per player character, or null     // indexed by ECharacter
 	Texture2D PortraitBoss;
 	Texture2D BossBody;
 	List<Texture2D> BossPortraits = new();   // per stage (index 0 = PortraitBoss)
@@ -89,6 +90,8 @@ public sealed class DanmakuHud
 	Texture2D FairyBlueArt;
 	Texture2D FairyRedArt;
 	Texture2D SpiritArt;
+	Texture2D[] MaskAnims = new Texture2D[4];   // fox, and the guardian's god / mahjong / oni masks
+	Texture2D FairyBlueAnim, FairyRedAnim;
 
 	// effects, items, bullets
 	Texture2D BulletOrb;
@@ -156,11 +159,24 @@ public sealed class DanmakuHud
 
 		PlayerBacks = new() { LoadArt("player_back.png"), LoadArt("player_back_sou.png"), LoadArt("player_back_haru.png"), LoadArt("player_back_yuki.png") };
 		Portraits   = new() { LoadArt("portrait_ren.png"), LoadArt("portrait_sou.png"), LoadArt("portrait_haru.png"), LoadArt("portrait_yuki.png") };
+		PortraitFaces.Clear();
+		foreach (string Who in new[] { "ren", "sou", "haru", "yuki" })
+		{
+			var Set = new Texture2D[5];
+			for (int i = 0; i < 5; ++i) Set[i] = LoadArt($"portrait_{Who}_e{i}.png");
+			PortraitFaces.Add(Set[0] != null ? Set : null);
+		}
 		PortraitBoss   = LoadArt("portrait_sirius.png");
 		BossBody       = LoadArt("boss_body.png");
 		FairyBlueArt   = LoadArt("fairy_blue.png");
 		FairyRedArt    = LoadArt("fairy_red.png");
 		SpiritArt      = LoadArt("spirit.png");
+		MaskAnims[0] = LoadArt("anim_mask_fox.png");
+		MaskAnims[1] = LoadArt("anim_mask_god.png");
+		MaskAnims[2] = LoadArt("anim_mask_mahjong.png");
+		MaskAnims[3] = LoadArt("anim_mask_oni.png");
+		FairyBlueAnim = LoadArt("anim_fairy_blue.png");
+		FairyRedAnim  = LoadArt("anim_fairy_red.png");
 
 		BulletOrb      = LoadArt("bullet_orb.png");
 		BulletPetal    = LoadArt("bullet_petal.png");
@@ -235,6 +251,20 @@ public sealed class DanmakuHud
 	Texture2D PortraitFor(int Char)
 	{
 		return At(Portraits, Char) ?? (Portraits.Count > 0 ? Portraits[0] : null);
+	}
+
+	// which of the five drawings each expression uses. 蓮 and 晴 were drawn idle/sad/anxious/shock/angry
+	// (their idle is already a smile), 蒼 and 雪 idle/happy/anxious/shock/angry.
+	static readonly int[] FaceRenHaru = { 0, 0, 1, 2, 3, 4 };
+	static readonly int[] FaceSouYuki = { 0, 1, 2, 2, 3, 4 };
+
+	/** The player's portrait wearing an expression, or the plain one when that character has no drawings. */
+	Texture2D PortraitFor(int Char, EExpression Expr)
+	{
+		Texture2D[] Set = Char >= 0 && Char < PortraitFaces.Count ? PortraitFaces[Char] : null;
+		if (Set == null) return PortraitFor(Char);
+		int[] Map = Char == (int)ECharacter.Ren || Char == (int)ECharacter.Haru ? FaceRenHaru : FaceSouYuki;
+		return Set[Map[FMath.Clamp((int)Expr, 0, Map.Length - 1)]] ?? PortraitFor(Char);
 	}
 
 	Texture2D BulletTex(byte Shape)
@@ -334,13 +364,14 @@ public sealed class DanmakuHud
 			new Vector2(Col / (float)Cols, Row / (float)Rows), new Vector2((Col + 1) / (float)Cols, (Row + 1) / (float)Rows));
 	}
 
-	/** Frame of a hand-made sheet (Tools/anim/pack_user_sheets.py): rows idle / left / right, 12 columns.
-	 *  Every cell is centred on the first idle frame, which is AnimRefH px tall in the sheet. */
-	void AnimSprite(Texture2D Sheet, FVector2f Center, float HeightUnits, FLinearColor Color, int Row, int Col)
+	/** Frame of a hand-made sheet (Tools/anim/pack_allrenew.py): rows idle / left / right (the masks
+	 *  have idle only), 12 columns for the characters and bosses, 8 for the fairies and the masks.
+	 *  Every frame is lined up on the first idle frame, which is AnimRefH px tall in the sheet. */
+	void AnimSprite(Texture2D Sheet, FVector2f Center, float HeightUnits, FLinearColor Color, int Row, int Col,
+		int Cols = 12, int Rows = 3)
 	{
 		if (Sheet == null) return;
-		const int Cols = 12, Rows = 3;
-		const float AnimRefH = 256f;   // must match REF_H in pack_user_sheets.py
+		const float AnimRefH = 256f;   // must match REF_H in pack_allrenew.py
 		float CellW = (float)Sheet.GetWidth() / Cols, CellH = (float)Sheet.GetHeight() / Rows;
 		Col = ((Col % Cols) + Cols) % Cols;
 		float H = HeightUnits * CellH / AnimRefH;
@@ -1138,10 +1169,26 @@ public sealed class DanmakuHud
 		{
 			float R = E.Radius;
 			FLinearColor Tint = E.HitFlash > 0 ? new FLinearColor(1f, 0.7f, 0.7f) : LinColor.White;
-			Sprite(SoftTex, E.Pos, V2D(R * 4f), WithAlpha(E.Color, 0.35f), EBlend.Additive);
-			Texture2D Art = E.Kind == 2 ? SpiritArt : (E.Kind == 1 ? FairyRedArt : FairyBlueArt);
+			// the guardian is a painted mask, so it only gets a faint halo; the fairies keep their bright one
+			Sprite(SoftTex, E.Pos, V2D(E.Kind == 3 ? R * 3f : R * 4f), WithAlpha(E.Color, E.Kind == 3 ? 0.16f : 0.35f), EBlend.Additive);
 			float T = (S.Frame + E.Age) + E.Pos.X;
-			if (E.Kind == 2) WarpSprite(Art, E.Pos, R * 2.6f, Tint, -E.Vel.X * 0.4f, 1.6f, T * 0.22f, 0.16f, 0.0f);
+			// the masks hang in the air and only have an idle animation; the fairies lean the way they fly
+			Texture2D Mask = E.Kind == 2 ? MaskAnims[0] : (E.Kind == 3 ? MaskAnims[1 + FMath.Clamp(E.Variant, 0, 2)] : null);
+			Texture2D Fairy = E.Kind == 1 ? FairyRedAnim : (E.Kind == 0 ? FairyBlueAnim : null);
+			if (Mask != null)
+			{
+				AnimSprite(Mask, E.Pos, R * (E.Kind == 3 ? 3.6f : 2.9f), Tint, 0,
+					(S.Frame + (int)E.Pos.X) / DanmakuWorld.AnimIdleStep, 8, 1);
+				continue;
+			}
+			if (Fairy != null)
+			{
+				int Row = E.Vel.X < -0.3f ? 1 : E.Vel.X > 0.3f ? 2 : 0;
+				AnimSprite(Fairy, E.Pos, R * 3.4f, Tint, Row, (S.Frame + E.Age) / DanmakuWorld.AnimIdleStep, 8, 3);
+				continue;
+			}
+			Texture2D Art = E.Kind >= 2 ? SpiritArt : (E.Kind == 1 ? FairyRedArt : FairyBlueArt);
+			if (E.Kind >= 2) WarpSprite(Art, E.Pos, R * 2.6f, Tint, -E.Vel.X * 0.4f, 1.6f, T * 0.22f, 0.16f, 0.0f);
 			else             WarpSprite(Art, E.Pos, R * 3.2f, Tint, -E.Vel.X * 0.4f, 1.4f, T * 0.16f, 0.12f, 0.2f);
 		}
 	}
@@ -1649,7 +1696,9 @@ public sealed class DanmakuHud
 		{
 			bool bBossTalks = S.GetDialogueSpeaker() >= 1;
 			float Hop = S.DialogueTimer < 12 ? FMath.Sin(S.DialogueTimer / 12f * FMath.PI) * 8f : 0f;
-			DrawPortrait(PortraitFor(Char), 95f, bBossTalks ? -12f : 0f, 1f, bBossTalks ? 0.45f : 1f, bBossTalks ? 0f : 6f + Hop, bBossTalks ? 0.97f : 1.02f, PlayerHair);
+			// the player's face follows the line he is saying; while the boss talks he listens with his idle face
+			DrawPortrait(PortraitFor(Char, bBossTalks ? EExpression.Idle : S.GetDialogueExpression()),
+				95f, bBossTalks ? -12f : 0f, 1f, bBossTalks ? 0.45f : 1f, bBossTalks ? 0f : 6f + Hop, bBossTalks ? 0.97f : 1.02f, PlayerHair);
 			int DArt = S.GetDialogueArt();
 			Texture2D SpeakerArt = At(BossPortraits, DArt) ?? BossPortraitFor(S);
 			DrawPortrait(SpeakerArt, FieldW - 95f, bBossTalks ? 0f : 12f, 1f, bBossTalks ? 1f : 0.45f, bBossTalks ? 6f + Hop : 0f, bBossTalks ? 1.02f : 0.97f, BossPortraitHair(S));

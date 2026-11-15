@@ -136,6 +136,12 @@ public partial class DanmakuWorld
 		return IsInDialogue() && DialogueIndex >= 0 && DialogueIndex < D.Count ? D[DialogueIndex].Speaker : 0;
 	}
 
+	public EExpression GetDialogueExpression()
+	{
+		List<FDialogueLine> D = CurrentDialogue();
+		return IsInDialogue() && DialogueIndex >= 0 && DialogueIndex < D.Count ? D[DialogueIndex].Expr : EExpression.Idle;
+	}
+
 	public string GetDialogueText()
 	{
 		List<FDialogueLine> D = CurrentDialogue();
@@ -671,6 +677,7 @@ public partial class DanmakuWorld
 		State = EDanmakuState.Playing;
 		StateTimer = 0;
 		StageFrame = bDemo ? DemoSkipFrames : 0;
+		LastEnemyFrame = StageFrame;
 		Boss = new FBossState();
 		DialogueIndex = -1;
 		bEnding = false;
@@ -753,47 +760,39 @@ public partial class DanmakuWorld
 			&& Player.RespawnTimer == 0 && (BombTime == 0 || BombKind == ECharacter.Haru);
 	}
 
-	// Per character (Ren, Sou, Haru, Yuki): the frame of the left / right animation where the lean is
-	// fullest, and the one closest to standing straight (printed by Tools/anim/pack_user_sheets.py, then checked by eye:
-	// 蓮's right sheet starts standing at frame 0 and turns fully by frame 8, which the script misread).
-	static readonly int[] LeftPeak = { 7, 9, 4, 4 }, LeftMid = { 11, 0, 11, 11 };
-	static readonly int[] RightPeak = { 8, 9, 1, 1 }, RightMid = { 0, 0, 5, 5 };
 	public const int AnimIdleStep = 6, AnimLeanStep = 3;   // sim frames per sheet frame
 
-	/** Lean animation: play into the lean from its middle frame, hold the fullest frame while the key
-	 *  stays down, and only play the way back to the middle once the key is released. */
+	// A lean row is twelve frames in three parts: 0-3 leaning into it, 4-7 the lean itself (these loop
+	// for as long as the key is held), 8-11 standing back up.
+	const int LeanInEnd = 4, LeanHoldEnd = 8;
+
+	/** Lean animation: play frames 0-3 when the key goes down, loop 4-7 while it is held, and play
+	 *  8-11 once it is let go. Pressing the other way starts that lean from its first frame. */
 	static void StepPlayerAnim(FDanmakuPlayer P, int Want)
 	{
-		int C = (int)P.Character;
 		if (Want != 0 && Want != P.AnimDir)
 		{
-			P.AnimDir = Want; P.AnimMode = 0; P.AnimTick = 0;
-			P.AnimFrame = Want < 0 ? LeftMid[C] : RightMid[C];
+			P.AnimDir = Want; P.AnimMode = 0; P.AnimTick = 0; P.AnimFrame = 0;
 			return;
 		}
 		if (P.AnimDir == 0) { P.AnimFrame = 0; return; }   // idle: Hud runs the loop from the frame counter
-		int Peak = P.AnimDir < 0 ? LeftPeak[C] : RightPeak[C];
-		int Mid = P.AnimDir < 0 ? LeftMid[C] : RightMid[C];
 		if (Want != 0)
 		{
-			if (P.AnimMode == 2) P.AnimMode = 3;            // pressed again on the way back: lean back in
-			if (P.AnimMode == 4) P.AnimMode = 0;
-			if (P.AnimMode == 1) return;                    // keep holding the lean
+			if (P.AnimMode == 2) { P.AnimMode = 1; P.AnimFrame = LeanInEnd; P.AnimTick = 0; }   // pressed again on the way up
 		}
-		else if (P.AnimMode != 2 && P.AnimMode != 4) { P.AnimMode = P.AnimMode == 0 ? 4 : 2; P.AnimTick = 0; }   // let go before the lean was full: unwind it
+		else if (P.AnimMode != 2) { P.AnimMode = 2; P.AnimFrame = LeanHoldEnd; P.AnimTick = 0; }
 		if (++P.AnimTick < AnimLeanStep) return;
 		P.AnimTick = 0;
 		switch (P.AnimMode)
 		{
-		case 0: P.AnimFrame = (P.AnimFrame + 1) % 12; if (P.AnimFrame == Peak) P.AnimMode = 1; break;
-		case 3: P.AnimFrame = (P.AnimFrame + 11) % 12; if (P.AnimFrame == Peak) P.AnimMode = 1; break;
-		case 2:
-			if (P.AnimFrame == Mid) { P.AnimDir = 0; P.AnimFrame = 0; break; }
-			P.AnimFrame = (P.AnimFrame + 1) % 12;
+		case 0:                                            // leaning in
+			if (++P.AnimFrame >= LeanInEnd) { P.AnimFrame = LeanInEnd; P.AnimMode = 1; }
 			break;
-		case 4:
-			if (P.AnimFrame == Mid) { P.AnimDir = 0; P.AnimFrame = 0; break; }
-			P.AnimFrame = (P.AnimFrame + 11) % 12;
+		case 1:                                            // held: loop the middle four
+			P.AnimFrame = LeanInEnd + (P.AnimFrame + 1 - LeanInEnd) % (LeanHoldEnd - LeanInEnd);
+			break;
+		case 2:                                            // standing back up
+			if (++P.AnimFrame >= 12) { P.AnimDir = 0; P.AnimFrame = 0; P.AnimMode = 0; }
 			break;
 		}
 	}
@@ -1072,6 +1071,7 @@ public partial class DanmakuWorld
 	public void StartBomb()
 	{
 		Sfx(ESfx.Bomb);
+		if (Boss.bSpell) Boss.bBombedPhase = true;
 		BombKind = Player.Character;
 		BombDuration = BombLength(BombKind);
 		BombTime = BombDuration;
@@ -1283,10 +1283,11 @@ public partial class DanmakuWorld
 		{
 		case 1:  E.Radius = 12f; E.Color = new FLinearColor(1f, 0.35f, 0.35f); break;
 		case 2:  E.Radius = 22f; E.Color = new FLinearColor(0.7f, 0.4f, 1f); break;
+		case 3:  E.Radius = 26f; E.Color = new FLinearColor(1f, 0.55f, 0.25f); break;
 		default: E.Radius = 10f; E.Color = new FLinearColor(0.35f, 0.6f, 1f); break;
 		}
 		// a fox mask (spirit): fairies already on screen stay, but no new ones spawn while a fox mask is there
-		if (Kind != 2)
+		if (Kind == 0 || Kind == 1)
 		{
 			for (int i = 0; i < Enemies.Count - 1; ++i)
 			{
@@ -1337,8 +1338,8 @@ public partial class DanmakuWorld
 	{
 		E.bDead = true;
 		Sfx(ESfx.EnemyDie);
-		Score += E.Kind == 2 ? 30000 : (E.Kind == 1 ? 5000 : 1000);
-		Burst(E.Pos, E.Kind == 2 ? 40 : 14, E.Color, 3f, 10f, 30);
+		Score += E.Kind == 3 ? 100000 : (E.Kind == 2 ? 30000 : (E.Kind == 1 ? 5000 : 1000));
+		Burst(E.Pos, E.Kind >= 2 ? 40 : 14, E.Color, 3f, 10f, 30);
 		AddParticle(E.Pos, FVector2f.Zero, E.Radius * 5f, E.Color, 20, true);
 		if (E.bRevenge && StageIndex < ExtraStage)
 		{
@@ -1592,6 +1593,7 @@ public partial class DanmakuWorld
 		Boss.SpellName = Tr(Def.Name);
 		if (Def.bSpell) MarkSpellSeen(Def.Name);   // unlocks it in spell practice
 		Boss.bBonusValid = true;
+		Boss.bBombedPhase = false;
 		Boss.GapTimer = 60;
 		Boss.bVulnerable = false;
 		Boss.PhaseTime = 0;
@@ -1660,8 +1662,21 @@ public partial class DanmakuWorld
 
 		if (Def.bSpell && bDefeated && Boss.bBonusValid) SpawnItem(EItemType.LifePiece, Boss.Pos, true);
 		else if (!Def.bSpell && bDefeated) SpawnItem(EItemType.BombPiece, Boss.Pos, true);
-		for (int i = 0; i < 4; ++i) SpawnItem(EItemType.Power, Boss.Pos + new FVector2f(Rng.FRandRange(-30f, 30f), Rng.FRandRange(-20f, 20f)), true);
-		for (int i = 0; i < 6; ++i) SpawnItem(EItemType.Point, Boss.Pos + new FVector2f(Rng.FRandRange(-30f, 30f), Rng.FRandRange(-20f, 20f)), true);
+
+		// Every spell pays out when it ends, caught or not: point items and thirty power items.
+		// yuki is the hardest character to play, so a bomb spent on the spell buys him one big power
+		// item instead of the thirty small ones.
+		int PointDrop = Def.bSpell ? 10 : 6;
+		for (int i = 0; i < PointDrop; ++i) SpawnItem(EItemType.Point, Boss.Pos + new FVector2f(Rng.FRandRange(-30f, 30f), Rng.FRandRange(-20f, 20f)), true);
+		if (Def.bSpell && Player.Character == ECharacter.Yuki && Boss.bBombedPhase)
+		{
+			SpawnItem(EItemType.BigPower, Boss.Pos, true);
+		}
+		else
+		{
+			int PowerDrop = Def.bSpell ? 30 : 4;
+			for (int i = 0; i < PowerDrop; ++i) SpawnItem(EItemType.Power, Boss.Pos + new FVector2f(Rng.FRandRange(-30f, 30f), Rng.FRandRange(-20f, 20f)), true);
+		}
 
 		int Next = bSpellPractice ? Phases().Count : NextPhaseFrom(Boss.Phase + 1);
 		if (Next < Phases().Count)
@@ -1753,17 +1768,6 @@ public partial class DanmakuWorld
 				B.MaxSpeed = 1.75f;
 			}
 		}
-		if (Every(T, 75, 45))
-		{
-			float Aim = AimAngle(Boss.Pos);
-			int JN = Half(2);
-			for (int j = -JN; j <= JN; ++j)
-			{
-				FBullet B = Fire(Boss.Pos, 3.0f, Aim + j * 6.9f, EBulletShape.Comet, new FLinearColor(1f, 0.5f, 0.35f));
-				B.Accel = 0.0022f;
-				B.MaxSpeed = 3.6f;
-			}
-		}
 	}
 
 	// ---------- 月蝕「月面反照」 : bouncing moon blades, orbiting moons ----------
@@ -1809,19 +1813,6 @@ public partial class DanmakuWorld
 		PatrolBoss(T);
 		if (Every(T, 26, 0)) LunarSideWave(T);
 		if (Every(T, 96, 0)) OrbitingMoons(8, 42f, 78);
-		if (Every(T, 140, 70))
-		{
-			float Aim = AimAngle(Boss.Pos);
-			int JN = Half(4);
-			for (int i = -JN; i <= JN; ++i)
-			{
-				FBullet B = Fire(Boss.Pos, 1.4f, Aim + i * 10.3f, EBulletShape.Crescent, new FLinearColor(0.8f, 0.88f, 1f));
-				B.AngVel = i < 0 ? -3.4f : 3.4f;
-				B.Event = EBulletEvent.AimAtPlayer;
-				B.EventFrame = 22;
-				B.EventParam = 1.76f;
-			}
-		}
 	}
 
 	// ---------- 星雨「天河崩落」 : splitting star rain, constellation bursts, meteor sweeps ----------
@@ -1840,14 +1831,6 @@ public partial class DanmakuWorld
 
 	public void ConstellationBurst(int T)
 	{
-		float Aim = AimAngle(Boss.Pos);
-		int JN = Half(5);
-		for (int i = -JN; i <= JN; ++i)
-		{
-			FBullet B = Fire(Boss.Pos, 2.25f, Aim + i * 5.7f, EBulletShape.Star, new FLinearColor(0.9f, 0.96f, 1f));
-			B.Accel = 0.0014f;
-			B.MaxSpeed = 3f;
-		}
 		int NR = Cnt(8);
 		for (int i = 0; i < NR; ++i)
 		{

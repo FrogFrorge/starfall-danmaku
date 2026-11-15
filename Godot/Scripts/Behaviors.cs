@@ -329,7 +329,7 @@ public partial class DanmakuWorld
 		case 0: // wood: seeds that sprout into rings of leaves
 			if (Ev(26, 0))
 			{
-				float Aim = AimAngle(Boss.Pos);
+				float Aim = Rng.FRandRange(60f, 120f);   // downward, not at the player
 				for (int j = -1; j <= 1; ++j)
 				{
 					FBullet S = Fire(Boss.Pos, 1.5f, Aim + j * 28f + Rng.FRandRange(-6f, 6f), EBulletShape.Medium, new FLinearColor(0.4f, 1f, 0.45f));

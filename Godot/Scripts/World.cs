@@ -7,11 +7,19 @@ using Godot;
 
 namespace DanmakuSTG;
 
+/** The face a player character pulls while speaking. The four of them have five drawings each
+ *  (Tools/art/cut_expressions.py); bosses have one portrait and ignore this. */
+public enum EExpression : byte { Idle, Happy, Sad, Anxious, Shock, Angry }
+
 public struct FDialogueLine
 {
 	public int Speaker;        // 0 = player, 1 = boss, 2..5 = the four beasts (Extra-IF relay)
 	public string Text;
-	public FDialogueLine(int Speaker, string Text) { this.Speaker = Speaker; this.Text = Text; }
+	public EExpression Expr;
+	public FDialogueLine(int Speaker, string Text, EExpression Expr = EExpression.Idle)
+	{
+		this.Speaker = Speaker; this.Text = Text; this.Expr = Expr;
+	}
 }
 
 public struct FDanmakuInput
@@ -272,6 +280,7 @@ public partial class DanmakuWorld
 	//                            -DanmakuSelect -DanmakuBombAt=N -DanmakuShotEvery=N -DanmakuShots=N)
 	public bool bDemoFocus = false;      // -DanmakuFocus: the demo holds focus down
 	public int DemoSkipFrames = 0;
+	public int LastEnemyFrame = 0;      // the last stage frame a road enemy was alive (see RoadClear)
 	public int DemoStartPhase = 0;
 	public int DemoCharacter = 0;
 	public int DemoDifficulty = 1;

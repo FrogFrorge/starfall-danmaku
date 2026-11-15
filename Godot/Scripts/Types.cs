@@ -331,6 +331,7 @@ public class FEnemy
 	public FVector2f Acc = FVector2f.Zero;   // added to Vel every frame (curving paths)
 	public float SineAmp = 0f, SineFreq = 0f, SinePhase = 0f;   // sideways sway
 	public bool bRevenge = false;   // bursts into a small ring when killed
+	public int Variant = 0;         // kind 3 (the guardian): 0 = the little god, 1 = the mahjong mask, 2 = the oni
 	public bool bCarry1Up = false;  // carries a 1UP item that drops when it is shot down
 	public FLinearColor Color = LinColor.Blue;
 	public bool bDead = false;
@@ -396,6 +397,7 @@ public class FBossState
 	public bool bVulnerable = false;
 	public bool bSpell = false;
 	public bool bBonusValid = false;
+	public bool bBombedPhase = false;   // a bomb was spent during this phase (yuki is paid for it, see EndPhase)
 	public FVector2f Pos = new FVector2f(FieldW * 0.5f, -40f);
 	public FVector2f MoveFrom = FVector2f.Zero;
 	public FVector2f MoveTo = FVector2f.Zero;
