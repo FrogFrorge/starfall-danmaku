@@ -1,4 +1,4 @@
-// Port of DanmakuHUD.h + DanmakuHUD.cpp.
+﻿// Port of DanmakuHUD.h + DanmakuHUD.cpp.
 // Draws the whole game with HudCanvas (UE: UCanvas): playfield, sprites, bullets, sidebar, menus and overlays.
 // All art is loaded at runtime from res://Art/*.png, the UI font from res://Fonts/.
 using System.Globalization;
@@ -114,7 +114,14 @@ public sealed class DanmakuHud
 	Texture2D IconBomb;
 
 	// backgrounds / UI
-	Texture2D TitleArt;      // logo
+	Texture2D[] TitleArts = new Texture2D[5];   // the logo, one per language (title.png, title_en.png, …)
+
+	/** The game's name drawn in the language being played, falling back to the Chinese logo. */
+	Texture2D TitleArt()
+	{
+		int L = FMath.Clamp(GetLanguage(), 0, TitleArts.Length - 1);
+		return TitleArts[L] ?? TitleArts[LangZh];
+	}
 	Texture2D TitleKeyArt;   // full-screen illustration
 	Texture2D StageBg;
 	Texture2D SpellBg;
@@ -200,7 +207,11 @@ public sealed class DanmakuHud
 		IconLife       = LoadArt("icon_life.png");
 		IconBomb       = LoadArt("icon_bomb.png");
 
-		TitleArt       = LoadArt("title.png");
+		TitleArts[LangZh]  = LoadArt("title.png");
+		TitleArts[LangEn]  = LoadArt("title_en.png");
+		TitleArts[LangJa]  = LoadArt("title_ja.png");
+		TitleArts[LangFr]  = LoadArt("title_fr.png");
+		TitleArts[LangZhs] = LoadArt("title_zhs.png");
 		TitleKeyArt    = LoadArt("title_art.png");
 		StageBg        = LoadArt("bg_stage.png", true);
 		SpellBg        = LoadArt("bg_spell.png", true);
@@ -653,11 +664,11 @@ public sealed class DanmakuHud
 			float T = (float)b / Bands;
 			ScreenRect(SW * 0.6f * T, 0f, SW * 0.6f / Bands + 1f, SH, new FLinearColor(0.01f, 0.0f, 0.05f, 0.5f * FMath.Square(1f - T)));
 		}
-		if (TitleArt != null)
+		if (TitleArt() != null)
 		{
 			float LH = SH * 0.26f;
-			float LA = (float)TitleArt.GetWidth() / (float)FMath.Max(1, TitleArt.GetHeight());
-			Canvas.TexRect(TitleArt, new Vector2(SW * 0.04f, SH * 0.12f), new Vector2(LH * LA, LH), LinColor.White, EBlend.Translucent);
+			float LA = (float)TitleArt().GetWidth() / (float)FMath.Max(1, TitleArt().GetHeight());
+			Canvas.TexRect(TitleArt(), new Vector2(SW * 0.04f, SH * 0.12f), new Vector2(LH * LA, LH), LinColor.White, EBlend.Translucent);
 		}
 		float MX = SW * 0.07f;
 		string[] Items = { "開始遊戲", "Extra", "Extra-IF", "關卡練習", "符卡練習", "音樂室", "選項", LanguageLabel() };
@@ -1266,6 +1277,11 @@ public sealed class DanmakuHud
 		FieldRect(B.Pos.X - 14f, FieldH - 5f, 28f, 5f, new FLinearColor(1f, 0.3f, 0.4f, 0.8f));
 	}
 
+	// Player shots are drawn at about two thirds opacity: at full strength a steady stream of them
+	// across the screen is tiring to look through.
+	const float ShotOpacity = 0.65f;
+	static FLinearColor Fade(FLinearColor C) => new FLinearColor(C.R, C.G, C.B, C.A * ShotOpacity);
+
 	void DrawShots(DanmakuWorld S)
 	{
 		FDanmakuPlayer P = S.Player;
@@ -1283,34 +1299,34 @@ public sealed class DanmakuHud
 			switch (Shot.Type)
 			{
 			case EShotType.Talisman:
-				Sprite(SoftTex, Shot.Pos, new Vector2(10f, 26f), bPaper ? PaperGlow : new FLinearColor(1f, 0.5f, 0.5f, 0.35f), EBlend.Additive, Rot);
-				ArtSprite(bPaper ? Paper : ShotTalisman, Shot.Pos, 16f, bPaper ? PaperTint : new FLinearColor(1f, 1f, 1f, 0.85f), Rot);
+				Sprite(SoftTex, Shot.Pos, new Vector2(10f, 26f), bPaper ? Fade(PaperGlow) : Fade(new FLinearColor(1f, 0.5f, 0.5f, 0.35f)), EBlend.Additive, Rot);
+				ArtSprite(bPaper ? Paper : ShotTalisman, Shot.Pos, 16f, bPaper ? Fade(PaperTint) : Fade(new FLinearColor(1f, 1f, 1f, 0.85f)), Rot);
 				break;
 			case EShotType.Straight:
-				Sprite(SoftTex, Shot.Pos, new Vector2(9f, 26f), bPaper ? PaperGlow : WithAlpha(CharCol, 0.5f), EBlend.Additive, Rot);
-				ArtSprite(bPaper ? Paper : ShotTalisman, Shot.Pos, 15f, bPaper ? PaperTint
-					: new FLinearColor(CharCol.R * 0.6f + 0.4f, CharCol.G * 0.6f + 0.4f, CharCol.B * 0.6f + 0.4f, 0.8f), Rot);
+				Sprite(SoftTex, Shot.Pos, new Vector2(9f, 26f), bPaper ? Fade(PaperGlow) : Fade(WithAlpha(CharCol, 0.5f)), EBlend.Additive, Rot);
+				ArtSprite(bPaper ? Paper : ShotTalisman, Shot.Pos, 15f, bPaper ? Fade(PaperTint)
+					: Fade(new FLinearColor(CharCol.R * 0.6f + 0.4f, CharCol.G * 0.6f + 0.4f, CharCol.B * 0.6f + 0.4f, 0.8f)), Rot);
 				break;
 			case EShotType.Homing:
-				Sprite(SoftTex, Shot.Pos, V2D(20f), bPaper ? WithAlpha(PaperGlow, 0.45f) : new FLinearColor(0.5f, 1f, 0.5f, 0.45f), EBlend.Additive);
-				ArtSprite(bPaper ? Paper : ShotTalisman, Shot.Pos, 15f, bPaper ? PaperTint : new FLinearColor(0.7f, 1f, 0.7f, 0.95f), Rot);
+				Sprite(SoftTex, Shot.Pos, V2D(20f), bPaper ? Fade(WithAlpha(PaperGlow, 0.45f)) : Fade(new FLinearColor(0.5f, 1f, 0.5f, 0.45f)), EBlend.Additive);
+				ArtSprite(bPaper ? Paper : ShotTalisman, Shot.Pos, 15f, bPaper ? Fade(PaperTint) : Fade(new FLinearColor(0.7f, 1f, 0.7f, 0.95f)), Rot);
 				break;
 			case EShotType.Doll:
-				Sprite(BulletOrb ?? SoftTex, Shot.Pos, V2D(12f), new FLinearColor(0.95f, 0.75f, 1f, 0.85f), EBlend.Translucent);
+				Sprite(BulletOrb ?? SoftTex, Shot.Pos, V2D(12f), Fade(new FLinearColor(0.95f, 0.75f, 1f, 0.85f)), EBlend.Translucent);
 				break;
 			case EShotType.Arrow:
 				if (Shot.bPierce)
 				{
 					// the piercing arrow: bigger, wrapped in red lightning, with a streak behind it
-					Beam(Shot.Pos + new FVector2f(0f, 40f), Shot.Pos, 7f, new FLinearColor(1f, 0.45f, 0.35f, 0.45f));
-					Sprite(SoftTex, Shot.Pos, new Vector2(20f, 48f), new FLinearColor(1f, 0.5f, 0.4f, 0.55f), EBlend.Additive, Rot);
-					if (FxBolt != null) Sprite(FxBolt, Shot.Pos + new FVector2f(0f, 6f), new Vector2(16f, 46f), new FLinearColor(1f, 0.75f, 0.7f, 0.8f), EBlend.Additive, Rot + ((S.Frame / 2) % 2) * 180f);
-					ArtSprite(ArrowTex ?? ShotTalisman, Shot.Pos, 40f, LinColor.White, Rot);
+					Beam(Shot.Pos + new FVector2f(0f, 40f), Shot.Pos, 7f, Fade(new FLinearColor(1f, 0.45f, 0.35f, 0.45f)));
+					Sprite(SoftTex, Shot.Pos, new Vector2(20f, 48f), Fade(new FLinearColor(1f, 0.5f, 0.4f, 0.55f)), EBlend.Additive, Rot);
+					if (FxBolt != null) Sprite(FxBolt, Shot.Pos + new FVector2f(0f, 6f), new Vector2(16f, 46f), Fade(new FLinearColor(1f, 0.75f, 0.7f, 0.8f)), EBlend.Additive, Rot + ((S.Frame / 2) % 2) * 180f);
+					ArtSprite(ArrowTex ?? ShotTalisman, Shot.Pos, 40f, Fade(LinColor.White), Rot);
 				}
 				else
 				{
-					Sprite(SoftTex, Shot.Pos, new Vector2(8f, 30f), WithAlpha(CharCol, 0.35f), EBlend.Additive, Rot);
-					ArtSprite(ArrowTex ?? ShotTalisman, Shot.Pos, 30f, new FLinearColor(1f, 1f, 1f, 0.9f), Rot);
+					Sprite(SoftTex, Shot.Pos, new Vector2(8f, 30f), Fade(WithAlpha(CharCol, 0.35f)), EBlend.Additive, Rot);
+					ArtSprite(ArrowTex ?? ShotTalisman, Shot.Pos, 30f, Fade(new FLinearColor(1f, 1f, 1f, 0.9f)), Rot);
 				}
 				break;
 			}
@@ -1494,11 +1510,12 @@ public sealed class DanmakuHud
 	/** 墨竹's bamboo: the painted stalk grows from where it was warned; its trunk is exactly the beam's hit width. */
 	void DrawBamboo(FBeamHazard Bm, FVector2f D, float Fade)
 	{
-		const float StalkFrac = 0.2f;   // trunk width / texture width in fx_bamboo.png
-		float W = Bm.Width * 2f / StalkFrac;
+		const float StalkFrac = 0.22f;  // trunk width / texture width in fx_bamboo.png
+		// the shoot is drawn as thick as the warning line that promised it, not twice that
+		float W = Bm.Width * 1.6f / StalkFrac;
 		float SegL = W * FxBamboo.GetHeight() / FMath.Max(1f, FxBamboo.GetWidth());
 		float Rot = Bm.Angle + 90f;
-		Beam(Bm.Origin, Bm.Origin + D * Bm.Length, Bm.Width * 3f, WithAlpha(Bm.Color, 0.22f * Fade));   // soft green glow
+		Beam(Bm.Origin, Bm.Origin + D * Bm.Length, Bm.Width * 1.9f, WithAlpha(Bm.Color, 0.2f * Fade));   // soft green glow
 		for (float L = 0f; L < Bm.Length; L += SegL)
 		{
 			float Piece = FMath.Min(SegL, Bm.Length - L);
@@ -1673,7 +1690,7 @@ public sealed class DanmakuHud
 	{
 		FDanmakuPlayer P = S.Player;
 		if (S.State != EDanmakuState.Playing || !P.bFocus || P.DeathTimer > 0) return;
-		Sprite(RingTex, P.Pos, V2D(52f), new FLinearColor(1f, 0.95f, 0.8f, 0.65f), EBlend.Additive, S.Frame * 3f);
+		Sprite(RingTex, P.Pos, V2D(FocusRingSize), new FLinearColor(1f, 0.95f, 0.8f, 0.65f), EBlend.Additive, S.Frame * 3f);
 		Sprite(DiscTex, P.Pos, V2D(9f), new FLinearColor(1f, 0.2f, 0.3f));
 		Sprite(DiscTex, P.Pos, V2D(6f), LinColor.White);
 	}
@@ -1882,11 +1899,11 @@ public sealed class DanmakuHud
 		ScreenText(Tr("關卡") + "　" + S.GetStageTitle() + (S.bPractice ? Tr("（練習）") : ""), X0, Y, LabelColor, 0.9f);
 
 		float LogoY = SH - 190f * TextScale;
-		if (TitleArt != null)
+		if (TitleArt() != null)
 		{
 			float H = 120f * TextScale;
-			float Aspect = (float)TitleArt.GetWidth() / (float)FMath.Max(1, TitleArt.GetHeight());
-			Canvas.TexRect(TitleArt, new Vector2(X0, LogoY), new Vector2(H * Aspect, H), LinColor.White, EBlend.Translucent);
+			float Aspect = (float)TitleArt().GetWidth() / (float)FMath.Max(1, TitleArt().GetHeight());
+			Canvas.TexRect(TitleArt(), new Vector2(X0, LogoY), new Vector2(H * Aspect, H), LinColor.White, EBlend.Translucent);
 		}
 		ScreenText(Inv($"{SmoothedFPS:F0} fps　") + Tr("彈數") + $" {S.Bullets.Count}", X0, SH - 40f * TextScale, new FLinearColor(0.55f, 0.55f, 0.65f), 0.65f);
 	}

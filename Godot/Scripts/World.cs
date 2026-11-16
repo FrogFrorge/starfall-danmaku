@@ -280,7 +280,8 @@ public partial class DanmakuWorld
 	//                            -DanmakuSelect -DanmakuBombAt=N -DanmakuShotEvery=N -DanmakuShots=N)
 	public bool bDemoFocus = false;      // -DanmakuFocus: the demo holds focus down
 	public int DemoSkipFrames = 0;
-	public int LastEnemyFrame = 0;      // the last stage frame a road enemy was alive (see RoadClear)
+	public int LastEnemyFrame = 0;
+	public float[] TaowuTailStart = new float[64];   // 丈八之尾: the angle each tail lashed out from      // the last stage frame a road enemy was alive (see RoadClear)
 	public int DemoStartPhase = 0;
 	public int DemoCharacter = 0;
 	public int DemoDifficulty = 1;

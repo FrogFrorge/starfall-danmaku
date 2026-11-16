@@ -40,7 +40,7 @@ public partial class DanmakuWorld
 		if (Every(T, 180, 90)) WanderBoss();
 	}
 
-	// 晴符「晴空萬里」: every half second three rings spiral outward together, alternating direction
+	// 第九印「晴空萬里」: every half second three rings spiral outward together, alternating direction
 	public void S3_Sunny(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 110f + FMath.Sin(T * 0.02f) * 8f));
@@ -71,7 +71,7 @@ public partial class DanmakuWorld
 		if (Every(T, 160, 80)) WanderBoss();
 	}
 
-	// 雨符「雨幕延綿」: the boss flings water upward, it arcs and rains back down
+	// 第十印「雨幕延綿」: the boss flings water upward, it arcs and rains back down
 	public void S3_Rain(int T)
 	{
 		PatrolBoss(T);
@@ -85,7 +85,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 雷符「雷暴中心」: a bolt is marked under the player every second and strikes two seconds later; fire bursts from the ground
+	// 第十一印「雷暴中心」: a bolt is marked under the player every second and strikes two seconds later; fire bursts from the ground
 	public void S3_Storm(int T)
 	{
 		PatrolBoss(T);
@@ -96,7 +96,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 霧符「雲裡霧裡」: vision shrinks for most of the card, while triple rings keep coming
+	// 第十二印「雲裡霧裡」: vision shrinks for most of the card, while triple rings keep coming
 	public void S3_Fog(int T)
 	{
 		PatrolBoss(T);

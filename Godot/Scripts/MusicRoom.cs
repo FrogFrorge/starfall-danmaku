@@ -11,7 +11,7 @@ public static partial class Danmaku
 	/** Track ids match Audio.cs: 0 title, 1 + 2*Stage road theme, 2 + 2*Stage boss theme. */
 	public static readonly FMusicTrack[] MusicTracks =
 	{
-		new(0,  "星墜彈幕　～ Starfall Overture", "標題畫面",
+		new(0,  "星墜天印錄　～ Starfall Overture", "標題畫面",
 			"天門之夜的前一晚，山上神社的天空開始掉星星。這是整個故事的主題。村子裡的人都還在睡，只有四個少年抬頭看見了。"),
 		new(1,  "星光參道", "第一面道中",
 			"通往神社的石階，每一階都映著星光。出發的夜晚總是有點興奮，也有點不安：天上明明還有這麼多星星，為什麼一顆接一顆不見了？"),
@@ -102,7 +102,7 @@ public static partial class Danmaku
 		("第六面 Boss　燁的主題", "Stage 6 Boss: Yoh's Theme"),
 		("Extra Boss　一索的主題", "Extra Boss: Isso's Theme"),
 		("Extra-IF Boss　四凶的主題", "Extra-IF Boss: Theme of the Four Perils"),
-		("星墜彈幕　～ Starfall Overture", "Starfall Danmaku ~ Starfall Overture"),
+		("星墜天印錄　～ Starfall Overture", "Starfall: Seal Registry ~ Starfall Overture"),
 		("星光參道", "Starlit Shrine Path"),
 		("天狼星詠　～ Star-Chanting Onmyoji", "Song of Sirius ~ Star-Chanting Onmyoji"),
 		("四時繪卷", "Scroll of the Four Seasons"),

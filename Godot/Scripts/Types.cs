@@ -1,4 +1,4 @@
-// Port of DanmakuTypes.h + DanmakuText.cpp.
+﻿// Port of DanmakuTypes.h + DanmakuText.cpp.
 // All gameplay runs in a fixed 384 x 448 "field" coordinate space (origin top-left, +Y down),
 // stepped at a fixed 60 Hz. Rendering scales the field to the screen.
 // The UE structs are classes here (reference semantics); where the C++ copied one by value, use .Clone().
@@ -12,7 +12,10 @@ public static partial class Danmaku
 	public const float FieldH = 448f;
 	public const float StepSeconds = 1f / 60f;
 	public const float PlayerHitRadius = 2.5f;
-	public const float GrazeRadius = 18f;
+	// The focus ring the HUD draws under the player (its sprite is FocusRingSize units wide and the
+	// visible rim sits at 0.9 of that half-width), and the graze ring, which is exactly the same circle.
+	public const float FocusRingSize = 52f;
+	public const float GrazeRadius = FocusRingSize * 0.5f * 0.9f;   // 23.4
 	public const float CollectLineY = 112f;   // above this line, all items fly to the player
 	public const int DeathBombWindow = 8;
 	public const int NumCharacters = 4;
@@ -291,6 +294,7 @@ public class FBeamHazard
 	public int Age = 0;
 	public FLinearColor Color = LinColor.White;
 	public byte OnStrike = 0;       // 0 nothing, 1 fireballs from the bottom (lightning), 2 leaves (bamboo), 3 shrapnel, 4 rising crescent
+	public int LeafMul = 1;         // bamboo: how many times the usual shower of leaves it sheds
 	public bool bStruck = false;
 	public bool bHarmless = false;  // only a marker line: shows where shots will go, never hits
 	public bool bGrazed = false;
@@ -417,6 +421,11 @@ public class FBossState
 	public string SpellName = "";
 	public int PatternTimer = 0;   // free per-phase scratch for patterns (next wave frame, ...)
 	public int Stage6Beasts = 0;   // how many of the four beasts have joined the stage 6 last spell / Tenhou's hands
+	public float LastX = 0f;       // where the boss was last frame, and which way he was going: used to
+	public int MoveSign = 0;       // catch the moment he turns at either end of his prowl
+	public int TigerRings = 0;     // moon rings still waiting to open, and the count-down to the next one
+	public int TigerRingTimer = 0;
+	public int TigerRingSide = 1;
 	public int ShieldTimer = 0;    // > 0: a spell card just started, the boss can't be damaged yet
 	public int[] JoinFrame = new int[12]; // Tenhou: the phase frame each earlier hand joined at
 	// Extra-IF relay: which beast is fighting (-1 none, 0..3 one beast, 4 all four at once)

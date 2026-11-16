@@ -1,10 +1,10 @@
-# Starfall Danmaku (星墜彈幕)
+# Starfall: Seal Registry (星墜天印錄)
 
 **English** · [繁體中文](README.zh-TW.md)
 
 ![Five spell cards: Tenrou, Mochiku, Yoh, Isso and the Four Perils](docs/media/banner.jpg)
 
-**Starfall Danmaku** is a vertical bullet-hell shooter in the style of Touhou Project. On the Night of the Heaven's Gate, four young men (an exorcist, an archer, a mountain ascetic and a puppeteer) climb to the Heavenly Palace through six stages of spell cards. An Extra stage and an "Extra-IF" route follow, where the hero arrives too late and four ancient beasts break loose.
+**Starfall: Seal Registry** is a vertical bullet-hell shooter in the style of Touhou Project. On the Night of the Heaven's Gate, four young men (an exorcist, an archer, a mountain ascetic and a puppeteer) climb to the Heavenly Palace through six stages of spell cards. An Extra stage and an "Extra-IF" route follow, where the hero arrives too late and four ancient beasts break loose.
 
 This is a side project. I designed and directed it, and an AI coding agent, Claude Code, wrote the code: first in Unreal Engine 5.8 (C++), then as a port to Godot 4.6 (C#), which is the version I now play and develop. This page explains what I did, what the AI did, and what the game looks like.
 

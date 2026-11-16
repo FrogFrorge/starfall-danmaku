@@ -80,7 +80,7 @@ public partial class DanmakuWorld
 	// 饕餮 (gluttony) — midboss cards
 	// =====================================================================================
 
-	// 饕符「貪食之口」: a mouth drifts around the field swallowing the boss's own rings, then spits everything it ate back out
+	// 第四十二印「貪食之口」: a mouth drifts around the field swallowing the boss's own rings, then spits everything it ate back out
 	public void IF_TaotieMaw(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 90f));
@@ -98,7 +98,7 @@ public partial class DanmakuWorld
 		if (T % 6 == 0) AddParticle(Boss.MawPos, FVector2f.Zero, 70f, new FLinearColor(0.35f, 0.25f, 0.1f), 14, true);
 	}
 
-	// 饕符「鐘鼎饌宴」: bronze cauldrons tumble from the sky and burst into a feast; food sprays from the boss in an arc
+	// 第四十三印「鐘鼎饌宴」: bronze cauldrons tumble from the sky and burst into a feast; food sprays from the boss in an arc
 	public void IF_TaotieFeast(int T)
 	{
 		PatrolBoss(T);
@@ -121,7 +121,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 饕符「饕餮紋」: the bronze mask motif — mirror-image curls, and the two eyes stare out as rings
+	// 第四十四印「饕餮紋」: the bronze mask motif — mirror-image curls, and the two eyes stare out as rings
 	public void IF_TaotieMotif(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 105f));
@@ -144,7 +144,7 @@ public partial class DanmakuWorld
 	// 檮杌 (the untamable) — midboss cards
 	// =====================================================================================
 
-	// 杌符「頑石不化」: boulders that never stop — they ricochet off every wall for a long time
+	// 第四十五印「頑石不化」: boulders that never stop — they ricochet off every wall for a long time
 	public void IF_TaowuStone(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 95f));
@@ -160,7 +160,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 杌符「難訓之獸」: every shot first runs AWAY from the player, stops, then turns and charges
+	// 第四十六印「難訓之獸」: every shot first runs AWAY from the player, stops, then turns and charges
 	public void IF_TaowuUntamed(int T)
 	{
 		PatrolBoss(T);
@@ -188,14 +188,14 @@ public partial class DanmakuWorld
 	}
 
 	/** A tail's starting angle: random-looking, but the same every time for a given tail so the sim stays repeatable. */
-	static float TaowuTailAngle(int I) => FMath.Fmod(FMath.Abs(FMath.Sin(I * 12.9898f) * 43758.5453f), 360f);
-
-	// 杌符「丈八之尾」: he lashes out one striped tail at a time. A new tail starts every second from a random angle,
+	// 第四十七印「丈八之尾」: he lashes out one striped tail at a time. A new tail starts every second from a random angle,
 	// turning the opposite way to the one before, and each one keeps sweeping for five seconds.
 	public void IF_TaowuTail(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 110f));
 		const int Spawn = 60, Life = 300;
+		// every tail picks its own angle the moment it lashes out, and keeps it for its five seconds
+		if (T % Spawn == 0) TaowuTailStart[(T / Spawn) % TaowuTailStart.Length] = Rng.FRandRange(0f, 360f);
 		if (Every(T, 3, 0))
 		{
 			for (int i = FMath.Max(0, (T - Life) / Spawn); i * Spawn <= T; ++i)
@@ -203,7 +203,7 @@ public partial class DanmakuWorld
 				int L = T - i * Spawn;
 				if (L < 0 || L >= Life) continue;
 				float Turn = i % 2 == 0 ? 1f : -1f;
-				float A = TaowuTailAngle(i) + Turn * 1.8f * L;
+				float A = TaowuTailStart[i % TaowuTailStart.Length] + Turn * 1.8f * L;
 				FirePolar(Boss.Pos, A, 10f, 2.0f, 0.12f * Turn, EBulletShape.Medium, (L / 6) % 2 != 0 ? TigerGold : new FLinearColor(0.25f, 0.2f, 0.2f));
 			}
 		}
@@ -216,7 +216,7 @@ public partial class DanmakuWorld
 
 	static readonly FVector2f[] IF_HundunSevenHoles = { new(-50f, -40f), new(50f, -40f), new(-105f, 0f), new(105f, 0f), new(-16f, 14f), new(16f, 14f), new(0f, 62f) };
 
-	// 沌符「七竅未開」: seven holes open one by one in a face that isn't there — eyes, ears, nostrils, mouth — then all at once
+	// 第四十八印「七竅未開」: seven holes open one by one in a face that isn't there — eyes, ears, nostrils, mouth — then all at once
 	public void IF_HundunSeven(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 80f));
@@ -245,7 +245,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 沌符「無面之舞」: a swirling dance with no direction — every bullet wanders on its own
+	// 第四十九印「無面之舞」: a swirling dance with no direction — every bullet wanders on its own
 	public void IF_HundunDance(int T)
 	{
 		PatrolBoss(T);
@@ -263,7 +263,7 @@ public partial class DanmakuWorld
 
 	static readonly int[] IF_HundunSongMelody = { 4, 5, 7, 5, 4, 2, 4, 1, 2, 4, 5, 7, 8, 7, 5, 4 };
 
-	// 沌符「帝江歌舞」: 帝江 sings — notes fall along a melody, and every bar ends with a chord burst
+	// 第五十印「帝江歌舞」: 帝江 sings — notes fall along a melody, and every bar ends with a chord burst
 	public void IF_HundunSong(int T)
 	{
 		PatrolBoss(T);
@@ -287,7 +287,7 @@ public partial class DanmakuWorld
 	// 窮奇 (the winged tiger) — midboss cards
 	// =====================================================================================
 
-	// 奇符「懲善揚惡」: honest shots fly straight at you; lying shots aim where you are about to be
+	// 第五十一印「懲善揚惡」: honest shots fly straight at you; lying shots aim where you are about to be
 	public void IF_QiongqiLie(int T)
 	{
 		PatrolBoss(T);
@@ -303,7 +303,7 @@ public partial class DanmakuWorld
 		if (Every(T, 9, 3)) for (int k = 0; k < 2; ++k) Fire(Boss.Pos, 1.4f, T * 4.7f + k * 180f, EBulletShape.Small, Indigo);
 	}
 
-	// 奇符「翼虎狂風」: each beat of the wings blows a gale that pushes you sideways while feathers sweep the field
+	// 第五十二印「翼虎狂風」: each beat of the wings blows a gale that pushes you sideways while feathers sweep the field
 	public void IF_QiongqiGale(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 100f));
@@ -326,7 +326,7 @@ public partial class DanmakuWorld
 		if (Every(T, 30, 15)) Ring(Boss.Pos, Cnt(24), 2.6f, AimAngle(Boss.Pos) + (T / 30) % 2 * 7.5f, EBulletShape.Crescent, Indigo);
 	}
 
-	// 奇符「食人從首」: it eats people head first — red lines mark the columns above you, then teeth fall down them
+	// 第五十三印「食人從首」: it eats people head first — red lines mark the columns above you, then teeth fall down them
 	public void IF_QiongqiHead(int T)
 	{
 		PatrolBoss(T);
@@ -347,7 +347,7 @@ public partial class DanmakuWorld
 	// The relay — two cards each
 	// =====================================================================================
 
-	// 凶符「吞天噬地」: 饕餮 inhales — you are dragged toward it, and bullets stream up from the ground into its mouth
+	// 第五十四印「吞天噬地」: 饕餮 inhales — you are dragged toward it, and bullets stream up from the ground into its mouth
 	public void IF_Devour(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, FieldH * 0.5f));   // the maw sits in the middle of the field
@@ -374,7 +374,7 @@ public partial class DanmakuWorld
 		Boss.MawEaten = 0;
 	}
 
-	// 凶符「無底之胃」: 饕餮 circles clockwise; a bronze cauldron always sits on the opposite side firing rings.
+	// 第五十五印「無底之胃」: 饕餮 circles clockwise; a bronze cauldron always sits on the opposite side firing rings.
 	// Whatever of the cauldron's rings runs into 饕餮 is eaten and spat back out as three bullets in random directions.
 	public void IF_Stomach(int T)
 	{
@@ -405,7 +405,7 @@ public partial class DanmakuWorld
 		Boss.MawEaten = 0;
 	}
 
-	// 凶符「傲狠明德」: 檮杌 marks you, then charges straight at you, scattering iron behind it
+	// 第五十六印「傲狠明德」: 檮杌 marks you, then charges straight at you, scattering iron behind it
 	public void IF_Arrogance(int T)
 	{
 		int Cyc = FMath.Max(60, FMath.RoundToInt(150 * GetDifficultyInfo(Difficulty).IntervalScale));
@@ -432,7 +432,7 @@ public partial class DanmakuWorld
 		if (Ph == 120) Ring(Boss.Pos, 18, 1.4f, 0f, EBulletShape.Large, Crimson);
 	}
 
-	// 凶符「不退之陣」: walls of iron advance and never retreat — find the gap — while tusks thrust in from both sides of you
+	// 第五十七印「不退之陣」: walls of iron advance and never retreat — find the gap — while tusks thrust in from both sides of you
 	public void IF_NoRetreat(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 70f));
@@ -456,7 +456,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 凶符「混元一氣」: primordial mist — sparks appear anywhere (never right on you), flare up, then drift
+	// 第五十八印「混元一氣」: primordial mist — sparks appear anywhere (never right on you), flare up, then drift
 	public void IF_PrimalMist(int T)
 	{
 		PatrolBoss(T);
@@ -479,7 +479,7 @@ public partial class DanmakuWorld
 		if (Every(T, 30, 15)) Ring(Boss.Pos, 28, 1.8f, AimAngle(Boss.Pos), EBulletShape.Small, Pearl);
 	}
 
-	// 凶符「渾沌初開」: heaven and earth split apart — a light arm and a dark arm turn against each other
+	// 第五十九印「渾沌初開」: heaven and earth split apart — a light arm and a dark arm turn against each other
 	public void IF_ChaosSplit(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 120f));
@@ -512,7 +512,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 凶符「顛倒是非」: right and wrong turned upside down. 窮奇 throws straight lines of feathers all the way round,
+	// 第六十印「顛倒是非」: right and wrong turned upside down. 窮奇 throws straight lines of feathers all the way round,
 	// honest (purple) and lying (white) lines alternating; a mirror below throws the same lines upward, colours swapped,
 	// and the boss alone still throws its ring of crescents.
 	void IF_InversionLines(FVector2f From, int Lines, float Base, float Spread, FLinearColor Honest, FLinearColor Liar)
@@ -561,7 +561,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 凶符「窮奇之翼」: the tiger sweeps from wall to wall shedding feathers that hang in the air, then dive at you
+	// 第六十一印「窮奇之翼」: the tiger sweeps from wall to wall shedding feathers that hang in the air, then dive at you
 	public void IF_Wings(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f + FMath.Sin(T * 0.028f) * 140f, 80f + FMath.Abs(FMath.Cos(T * 0.028f)) * 40f));
@@ -588,7 +588,7 @@ public partial class DanmakuWorld
 	// All four together
 	// =====================================================================================
 
-	// 耐久「四凶降世」 (survival): each beast attacks in its own way from its corner of the diamond, faster as time runs on
+	// 第六十二印「四凶降世」 (survival): each beast attacks in its own way from its corner of the diamond, faster as time runs on
 	public void IF_QuadSurvive(int T)
 	{
 		float K = 1.4f + FMath.Clamp(T / 3600f, 0f, 1f) * 0.9f;
@@ -716,7 +716,7 @@ public partial class DanmakuWorld
 
 	static readonly FVector2f[] IF_QuadFinalSlots = { new(-125f, -62f), new(0f, -95f), new(125f, -62f) };
 
-	// 終符「四凶・天地失序」: the last card, fought like a trio-plus-one — the beast you met on the road leads from the
+	// 終印「四凶・天地失序」: the last card, fought like a trio-plus-one — the beast you met on the road leads from the
 	// front with its own signature at full strength; the other three hang back and fire weaker copies of the same pattern
 	public void IF_QuadFinal(int T)
 	{
@@ -761,12 +761,19 @@ public partial class DanmakuWorld
 	// 檮杌: two iron lines sweeping down from both sides, boulders thrown at you
 	public void IF_NsTaowu(int T)
 	{
-		if (Every(T, 5, 0))
+		// the sweeping horns, twice as thick as they were, and now they sweep both ways at once
+		if (Every(T, 4, 0))
 		{
-			float Sweep = FMath.Fmod(T * 2.4f, 140f);
-			foreach (float S in new[] { -1f, 1f }) Fire(Boss.Pos, 2.5f, 90f + S * (10f + Sweep), EBulletShape.Crescent, S > 0 ? Iron : Crimson);
+			float Sweep = FMath.Fmod(T * 2.8f, 150f);
+			foreach (float S in new[] { -1f, 1f })
+			{
+				Fire(Boss.Pos, 2.6f, 90f + S * (10f + Sweep), EBulletShape.Crescent, S > 0 ? Iron : Crimson);
+				Fire(Boss.Pos, 2.2f, 90f - S * (10f + Sweep * 0.6f), EBulletShape.Crescent, S > 0 ? Crimson : Iron);
+			}
 		}
-		if (Every(T, 54, 27)) for (int k = 0; k < 3; ++k) Fire(Boss.Pos, 1.6f + k * 0.45f, AimAngle(Boss.Pos), EBulletShape.Large, Crimson);
+		if (Every(T, 44, 22)) for (int k = 0; k < 4; ++k) Fire(Boss.Pos, 1.6f + k * 0.4f, AimAngle(Boss.Pos), EBulletShape.Large, Crimson);
+		// stones thrown off in a ring: nowhere on the field is quiet any more
+		if (Every(T, 110, 55)) Ring(Boss.Pos, Cnt(18), 1.8f, T * 1.7f, EBulletShape.Medium, Iron);
 		if (Every(T, 170, 85)) WanderBoss();
 	}
 
@@ -786,14 +793,19 @@ public partial class DanmakuWorld
 	// 窮奇: wingbeats — feathers fan out from both wings, then a crescent fan at you
 	public void IF_NsQiongqi(int T)
 	{
-		if (Every(T, 7, 0))
+		// the two wings beat faster and wider, and each one lets go of a pair of feathers
+		if (Every(T, 5, 0))
 		{
 			foreach (float S in new[] { -1f, 1f })
 			{
-				Fire(Boss.Pos + new FVector2f(S * 40f, -4f), 2.4f, 90f + S * (10f + FMath.Sin(T * 0.05f) * 50f), EBulletShape.Rice, S > 0 ? Indigo : Silver);
+				float Beat = 10f + FMath.Sin(T * 0.055f) * 68f;
+				Fire(Boss.Pos + new FVector2f(S * 40f, -4f), 2.6f, 90f + S * Beat, EBulletShape.Rice, S > 0 ? Indigo : Silver);
+				Fire(Boss.Pos + new FVector2f(S * 40f, -4f), 2.2f, 90f + S * (Beat + 18f), EBulletShape.Rice, S > 0 ? Silver : Indigo);
 			}
 		}
-		if (Every(T, 44, 22)) Fan(Boss.Pos, Cnt(7), 44f, 2.9f, AimAngle(Boss.Pos), EBulletShape.Crescent, Indigo);
+		if (Every(T, 34, 17)) Fan(Boss.Pos, Cnt(9), 50f, 3.1f, AimAngle(Boss.Pos), EBulletShape.Crescent, Indigo);
+		// the gale itself: a turning ring that closes the easy lanes down the sides
+		if (Every(T, 86, 43)) Ring(Boss.Pos, Cnt(20), 2.1f, T * 2.3f, EBulletShape.Crescent, Silver);
 		if (Every(T, 160, 80)) WanderBoss();
 	}
 

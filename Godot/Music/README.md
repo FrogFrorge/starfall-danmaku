@@ -27,7 +27,7 @@ Written for a music generator (Suno, Udio, …). All are instrumental, made to l
 bullet-hell music: a strong lead melody over driving rhythm, East Asian colour, about 2–3 minutes.
 Road themes are lighter and travel forward; boss themes are faster, denser and more dramatic, with a hook you remember.
 
-**title — 星墜彈幕**
+**title — 星墜天印錄**
 Instrumental, loopable. Night sky over a mountain shrine, stars beginning to fall. Slow-building intro of koto and
 celesta, then a hopeful, heroic main theme on erhu and strings over soft taiko and piano. Wistful but determined,
 the feeling of a long journey about to start. 100 BPM.

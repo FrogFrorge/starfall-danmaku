@@ -37,7 +37,7 @@ public partial class DanmakuWorld
 		if (Every(T, 180, 90)) WanderBoss();
 	}
 
-	// 木符「萬木生長」: sprouting seeds plus two growing vines
+	// 第十八印「萬木生長」: sprouting seeds plus two growing vines
 	public void S5_Wood(int T)
 	{
 		PatrolBoss(T);
@@ -53,7 +53,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 火符「烈火燎原」: a fountain of fire that rains down, rings of flame spreading from the boss
+	// 第十九印「烈火燎原」: a fountain of fire that rains down, rings of flame spreading from the boss
 	public void S5_Fire(int T)
 	{
 		PatrolBoss(T);
@@ -94,7 +94,7 @@ public partial class DanmakuWorld
 		if (Every(T, 160, 80)) WanderBoss();
 	}
 
-	// 土符「山崩地裂」: walls of boulders fall with a gap to slip through, while rings spread from the boss
+	// 第二十印「山崩地裂」: walls of boulders fall with a gap to slip through, while rings spread from the boss
 	public void S5_Earth(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 90f));
@@ -105,7 +105,7 @@ public partial class DanmakuWorld
 		if (D >= 2 && Every(T, 64, 32)) Fan(Boss.Pos, D >= 3 ? 5 : 3, D >= 3 ? 48f : 30f, 2.1f, AimAngle(Boss.Pos), EBulletShape.Large, new FLinearColor(0.95f, 0.78f, 0.35f));
 	}
 
-	// 金符「金戈鐵刃」: blades stop and lunge, some beside the player and some anywhere; swords fall on both flanks
+	// 第二十一印「金戈鐵刃」: blades stop and lunge, some beside the player and some anywhere; swords fall on both flanks
 	public void S5_Metal(int T)
 	{
 		PatrolBoss(T);
@@ -145,7 +145,7 @@ public partial class DanmakuWorld
 		if (Every(T, 150, 75)) WanderBoss();
 	}
 
-	// 水符「流水無形」: an endurance card. The two winding rivers and the swaying rings of droplets stay
+	// 第二十二印「流水無形」: an endurance card. The two winding rivers and the swaying rings of droplets stay
 	// — they are what makes the card look like water — and a slow waterwheel turns in the middle of them,
 	// letting a stream go every half second: one arm on Easy up to four on Lunatic, a bullet every 15°.
 	public void S5_Water(int T)
@@ -181,7 +181,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 五行「相生相剋」: every 5 s the next element takes over while the previous one fades out
+	// 第二十三印「相生相剋」: every 5 s the next element takes over while the previous one fades out
 	public void S5_Cycle(int T)
 	{
 		PatrolBoss(T);

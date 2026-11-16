@@ -57,7 +57,7 @@ public partial class DanmakuWorld
 		if (Every(T, 200, 100)) WanderBoss();
 	}
 
-	// ---------- 春符「春風催生」 : expanding, turning petal rings whose centre sinks toward the player ----------
+	// ---------- 第五印「春風催生」 : expanding, turning petal rings whose centre sinks toward the player ----------
 
 	public void S2_Spring(int T)
 	{
@@ -107,7 +107,7 @@ public partial class DanmakuWorld
 		if (Every(T, 170, 85)) WanderBoss();
 	}
 
-	// ---------- 夏符「夏日鋒芒」 : streams of sun orbs that look like lasers and ricochet off every wall ----------
+	// ---------- 第六印「夏日鋒芒」 : streams of sun orbs that look like lasers and ricochet off every wall ----------
 	// (a random direction each burst; 5/6/7/8 evenly spaced streams of 5/6/7/8 orbs by difficulty)
 
 	public void S2_Summer(int T)
@@ -134,7 +134,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// ---------- 秋符「秋風落葉」 : maple leaves blown in from the right, acorns dropping from above ----------
+	// ---------- 第七印「秋風落葉」 : maple leaves blown in from the right, acorns dropping from above ----------
 
 	public void S2_Autumn(int T)
 	{
@@ -161,18 +161,23 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// ---------- 冬符「冬日暴雪」 : snowfall that grows heavier, big flakes fall faster ----------
+	// ---------- 第八印「冬日暴雪」 : snowfall that grows heavier, big flakes fall faster ----------
 
 	public void S2_Winter(int T)
 	{
 		PatrolBoss(T);
+		int D = FMath.Clamp(Difficulty, 0, 3);
+		// On Lunatic the snow is driven by a wind that turns around every few seconds, so the whole
+		// field slides one way and then the other; Hard only feels a draught of it.
+		float Wind = D >= 3 ? FMath.Sin(T * 0.011f) * 1.15f : (D >= 2 ? FMath.Sin(T * 0.009f) * 0.3f : 0f);
 		if (Every(T, 5, 0))
 		{
 			int N = Cnt(1 + FMath.Min(T, 2400) / 800);
 			for (int i = 0; i < N; ++i)
 			{
 				float S = Rng.FRandRange(0.7f, 1.45f);
-				FBullet B = FireVec(new FVector2f(Rng.FRandRange(4f, FieldW - 4f), -10f), new FVector2f(Rng.FRandRange(-0.25f, 0.25f), 0.55f + S * 0.65f),
+				FBullet B = FireVec(new FVector2f(Rng.FRandRange(4f, FieldW - 4f), -10f),
+					new FVector2f(Rng.FRandRange(-0.25f, 0.25f) + Wind, 0.55f + S * (0.65f + 0.06f * D)),
 					EBulletShape.Snow, S > 1.2f ? ColIce : ColSnow);
 				B.Scale = S;
 				B.Radius *= S;
@@ -180,6 +185,17 @@ public partial class DanmakuWorld
 				B.WaveFreq = 0.03f;
 				B.WavePhase = Rng.FRandRange(0f, 6.28f);
 				B.Spin = Rng.FRandRange(-2f, 2f);
+			}
+		}
+		// and a gust of ice sweeps in from one side, alternating, which the wind then carries across
+		if (D >= 3 && Every(T, 100, 50))
+		{
+			bool bLeft = (T / 100) % 2 == 0;
+			for (int i = 0; i < Cnt(7); ++i)
+			{
+				FBullet B = Fire(new FVector2f(bLeft ? -12f : FieldW + 12f, Rng.FRandRange(10f, FieldH * 0.45f)),
+					2.5f, bLeft ? Rng.FRandRange(18f, 32f) : Rng.FRandRange(148f, 162f), EBulletShape.Snow, ColIce);
+				B.Spin = Rng.FRandRange(-6f, 6f);
 			}
 		}
 	}

@@ -49,44 +49,77 @@ public partial class DanmakuWorld
 		if (Every(T, FMath.RoundToInt(70 / K), 35)) Ring(Boss.Pos, Cnt(18), 1.6f, T * 0.9f, EBulletShape.Medium, new FLinearColor(0.45f, 0.95f, 0.8f));
 	}
 
-	public void S6_TigerPart(int T, float K)
+	/** bGale: the tiger's own card, where the wind off the walls blows half again as thick. */
+	public void S6_TigerPart(int T, float K, bool bGale = false)
 	{
-		// claws: three parallel streaks raking at the player, then a wide crescent sweep
+		// the sweep he always had: as he prowls, a wide ring of moons opens from the tiger himself,
+		// its gap turned towards you. These are the dim, heavy moons — a fifth slower than the ones
+		// that open at his flanks, so the two rings never read as the same attack.
 		int Cyc = FMath.Max(1, FMath.RoundToInt(70 / K));
-		int Ph = T % Cyc;
-		if (Ph == 0)
-		{
-			float Aim = AimAngle(Boss.Pos);
-			FVector2f Fwd = Dir(Aim), Side = Dir(Aim + 90f);
-			for (int c = -1; c <= 1; ++c)
-			{
-				int N = Cnt(9);
-				for (int j = 0; j < N; ++j)
-				{
-					FBullet B = Fire(Boss.Pos + Side * (c * 26f) - Fwd * (j * 9f), 3.3f, Aim + c * 4f, EBulletShape.Crescent, ColTiger);
-					B.Accel = 0.01f;
-					B.MaxSpeed = 4.2f;
-				}
-			}
-		}
-		if (Ph == 24)
+		if (T % Cyc == 24)
 		{
 			int N = Cnt(26);
 			float Base = AimAngle(Boss.Pos) + 180f / N;
 			for (int i = 0; i < N; ++i)
 			{
-				FBullet B = Fire(Boss.Pos, 1.6f, Base + 360f * i / N, EBulletShape.Crescent, new FLinearColor(0.85f, 0.9f, 1f));
+				FBullet B = Fire(Boss.Pos, 1.28f, Base + 360f * i / N, EBulletShape.Crescent, new FLinearColor(0.58f, 0.64f, 0.82f));
 				B.Accel = 0.012f;
-				B.MaxSpeed = 2.8f;
+				B.MaxSpeed = 2.24f;
 			}
 		}
-		// wind: gusts from both walls at once, in rows
+		// at each end of his prowl the tiger howls without breaking stride, and moons open one after
+		// another at his flanks — one on Easy up to four on Lunatic, each a bullet every 20 degrees,
+		// and never further down than halfway, so they always come at you from above
+		if (TigerTurned())
+		{
+			Boss.TigerRings = 1 + FMath.Clamp(Difficulty, 0, 3);
+			Boss.TigerRingTimer = 0;
+			Boss.TigerRingSide = Rng.FRand() < 0.5f ? -1 : 1;
+		}
+		if (Boss.TigerRings > 0 && --Boss.TigerRingTimer <= 0)
+		{
+			--Boss.TigerRings;
+			Boss.TigerRingTimer = 16;
+			Boss.TigerRingSide = -Boss.TigerRingSide;          // left of him, then right, then left again
+			var At = new FVector2f(
+				FMath.Clamp(Boss.Pos.X + Boss.TigerRingSide * Rng.FRandRange(56f, 130f), 40f, FieldW - 40f),
+				FMath.Clamp(Boss.Pos.Y + Rng.FRandRange(-46f, 70f), 40f, FieldH * 0.5f - 12f));
+			AddParticle(At, V2.ZeroVector, 150f, new FLinearColor(0.85f, 0.9f, 1f), 18, true);
+			for (int i = 0; i < 18; ++i)
+			{
+				FBullet B = Fire(At, 1.5f, Rng.FRandRange(0f, 20f) + 20f * i, EBulletShape.Crescent, new FLinearColor(0.85f, 0.9f, 1f));
+				B.Accel = 0.008f;
+				B.MaxSpeed = 2.4f;
+			}
+		}
+		// wind: gusts from both walls at once, in rows, at any height of the field
 		if (Every(T, FMath.Max(2, FMath.RoundToInt(10 / K)), 0))
 		{
-			float Y = Rng.FRandRange(40f, FieldH * 0.78f);
+			float Y = Rng.FRandRange(24f, FieldH - 24f);
 			Fire(new FVector2f(-6f, Y), 2.4f, 6f + Rng.FRandRange(-4f, 4f), EBulletShape.Small, new FLinearColor(0.8f, 0.9f, 1f));
-			Fire(new FVector2f(FieldW + 6f, Y + 30f), 2.4f, 174f + Rng.FRandRange(-4f, 4f), EBulletShape.Small, new FLinearColor(0.8f, 0.9f, 1f));
+			float Y2 = Rng.FRandRange(24f, FieldH - 24f);
+			Fire(new FVector2f(FieldW + 6f, Y2), 2.4f, 174f + Rng.FRandRange(-4f, 4f), EBulletShape.Small, new FLinearColor(0.8f, 0.9f, 1f));
+			// his own card: one more gust off whichever wall the wind takes, so half again as many blow
+			if (bGale && (T / FMath.Max(2, FMath.RoundToInt(10 / K))) % 2 == 0)
+			{
+				bool bLeft = Rng.FRand() < 0.5f;
+				float Y3 = Rng.FRandRange(24f, FieldH - 24f);
+				Fire(new FVector2f(bLeft ? -6f : FieldW + 6f, Y3), 2.4f, (bLeft ? 6f : 174f) + Rng.FRandRange(-4f, 4f),
+					EBulletShape.Small, new FLinearColor(0.8f, 0.9f, 1f));
+			}
 		}
+	}
+
+	/** True on the frame the boss turns around: his X was climbing and now falls, or the other way about. */
+	bool TigerTurned()
+	{
+		float Dx = Boss.Pos.X - Boss.LastX;
+		Boss.LastX = Boss.Pos.X;
+		int Sgn = Dx > 0.05f ? 1 : (Dx < -0.05f ? -1 : 0);
+		if (Sgn == 0) return false;
+		bool bTurn = Boss.MoveSign != 0 && Sgn != Boss.MoveSign;
+		Boss.MoveSign = Sgn;
+		return bTurn;
 	}
 
 	public void S6_PhoenixPart(int T, float K)
@@ -156,7 +189,7 @@ public partial class DanmakuWorld
 	{
 		// the tiger prowls from side to side faster than the other beasts
 		PlaceBoss(new FVector2f(FieldW * 0.5f + FMath.Sin(T * 0.03f) * 100f, 100f + FMath.Abs(FMath.Sin(T * 0.03f)) * 20f));
-		S6_TigerPart(T, 1.65f * BeastK(Difficulty));
+		S6_TigerPart(T, 1.65f * BeastK(Difficulty), true);
 		// Lunatic: the tiger also pounces with a fan of claws between strikes
 	}
 

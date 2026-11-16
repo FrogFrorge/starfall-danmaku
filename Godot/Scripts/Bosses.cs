@@ -56,11 +56,11 @@ public partial class DanmakuWorld
 			Phases = new()
 			{
 				new(500f, 30, false, "", static (w, t) => w.Pattern_NonSpell1(t)),
-				new(800f, 45, true, "日輪「赫耀天環」", static (w, t) => w.Pattern_Sun(t)),
+				new(800f, 45, true, "第一印「赫耀天環」", static (w, t) => w.Pattern_Sun(t)),
 				new(600f, 35, false, "", static (w, t) => w.Pattern_NonSpell2(t)),
-				new(850f, 50, true, "月蝕「月面反照」", static (w, t) => w.Pattern_Moon(t)),
-				new(850f, 50, true, "星雨「天河崩落」", static (w, t) => w.Pattern_Star(t)),
-				new(1100f, 60, true, "日月星奧義「終夜天象」", static (w, t) => w.Pattern_Final(t)),
+				new(850f, 50, true, "第二印「月面反照」", static (w, t) => w.Pattern_Moon(t)),
+				new(850f, 50, true, "第三印「天河崩落」", static (w, t) => w.Pattern_Star(t)),
+				new(1100f, 60, true, "第四印「終夜天象」", static (w, t) => w.Pattern_Final(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -106,11 +106,11 @@ public partial class DanmakuWorld
 			Phases = new()
 			{
 				new(450f, 30, false, "", static (w, t) => w.S2_NonSpell1(t)),
-				new(750f, 45, true, "春符「春風催生」", static (w, t) => w.S2_Spring(t)),
+				new(750f, 45, true, "第五印「春風催生」", static (w, t) => w.S2_Spring(t)),
 				new(500f, 30, false, "", static (w, t) => w.S2_NonSpell2(t)),
-				new(800f, 45, true, "夏符「夏日鋒芒」", static (w, t) => w.S2_Summer(t)),
-				new(800f, 45, true, "秋符「秋風落葉」", static (w, t) => w.S2_Autumn(t)),
-				new(1000f, 55, true, "冬符「冬日暴雪」", static (w, t) => w.S2_Winter(t)),
+				new(800f, 45, true, "第六印「夏日鋒芒」", static (w, t) => w.S2_Summer(t)),
+				new(800f, 45, true, "第七印「秋風落葉」", static (w, t) => w.S2_Autumn(t)),
+				new(1000f, 55, true, "第八印「冬日暴雪」", static (w, t) => w.S2_Winter(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -160,11 +160,11 @@ public partial class DanmakuWorld
 			Phases = new()
 			{
 				new(500f, 30, false, "", static (w, t) => w.S3_NonSpell1(t)),
-				new(800f, 45, true, "晴符「晴空萬里」", static (w, t) => w.S3_Sunny(t)),
+				new(800f, 45, true, "第九印「晴空萬里」", static (w, t) => w.S3_Sunny(t)),
 				new(550f, 30, false, "", static (w, t) => w.S3_NonSpell2(t)),
-				new(850f, 45, true, "雨符「雨幕延綿」", static (w, t) => w.S3_Rain(t)),
-				new(850f, 45, true, "雷符「雷暴中心」", static (w, t) => w.S3_Storm(t)),
-				new(1100f, 60, true, "霧符「雲裡霧裡」", static (w, t) => w.S3_Fog(t)),
+				new(850f, 45, true, "第十印「雨幕延綿」", static (w, t) => w.S3_Rain(t)),
+				new(850f, 68, true, "第十一印「雷暴中心」", static (w, t) => w.S3_Storm(t)),
+				new(1100f, 60, true, "第十二印「雲裡霧裡」", static (w, t) => w.S3_Fog(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -216,12 +216,12 @@ public partial class DanmakuWorld
 			Phases = new()
 			{
 				new(550f, 30, false, "", static (w, t) => w.S4_NonSpell1(t)),
-				new(850f, 45, true, "梅符「梅花盛開」", static (w, t) => w.S4_Plum(t)),
+				new(850f, 45, true, "第十三印「梅花盛開」", static (w, t) => w.S4_Plum(t)),
 				new(600f, 30, false, "", static (w, t) => w.S4_NonSpell2(t)),
-				new(900f, 45, true, "蘭符「蘭花路徑」", static (w, t) => w.S4_Orchid(t)),
-				new(900f, 45, true, "竹符「竹林之勢」", static (w, t) => w.S4_Bamboo(t)),
-				new(1000f, 50, true, "菊符「菊花之哀」", static (w, t) => w.S4_Chrys(t)),
-				new(1f, 60, true, "四君子「君子之約」", static (w, t) => w.S4_Final(t), true, 1),
+				new(900f, 45, true, "第十四印「蘭花路徑」", static (w, t) => w.S4_Orchid(t)),
+				new(900f, 45, true, "第十五印「竹林之勢」", static (w, t) => w.S4_Bamboo(t)),
+				new(1000f, 50, true, "第十六印「菊花之哀」", static (w, t) => w.S4_Chrys(t)),
+				new(1f, 60, true, "第十七印「君子之約」", static (w, t) => w.S4_Final(t), true, 1),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -318,14 +318,14 @@ public partial class DanmakuWorld
 			Phases = new()
 			{
 				new(600f, 30, false, "", static (w, t) => w.S5_NonSpell1(t)),
-				new(900f, 45, true, "木符「萬木生長」", static (w, t) => w.S5_Wood(t)),
-				new(900f, 45, true, "火符「烈火燎原」", static (w, t) => w.S5_Fire(t)),
+				new(900f, 45, true, "第十八印「萬木生長」", static (w, t) => w.S5_Wood(t)),
+				new(900f, 45, true, "第十九印「烈火燎原」", static (w, t) => w.S5_Fire(t)),
 				new(650f, 30, false, "", static (w, t) => w.S5_NonSpell2(t)),
-				new(950f, 45, true, "土符「山崩地裂」", static (w, t) => w.S5_Earth(t)),
-				new(950f, 45, true, "金符「金戈鐵刃」", static (w, t) => w.S5_Metal(t)),
+				new(950f, 45, true, "第二十印「山崩地裂」", static (w, t) => w.S5_Earth(t)),
+				new(950f, 45, true, "第二十一印「金戈鐵刃」", static (w, t) => w.S5_Metal(t)),
 				new(700f, 30, false, "", static (w, t) => w.S5_NonSpell3(t)),
-				new(950f, 45, true, "水符「流水無形」", static (w, t) => w.S5_Water(t), true),
-				new(1400f, 60, true, "五行「相生相剋」", static (w, t) => w.S5_Cycle(t)),
+				new(950f, 45, true, "第二十二印「流水無形」", static (w, t) => w.S5_Water(t), true),
+				new(1400f, 60, true, "第二十三印「相生相剋」", static (w, t) => w.S5_Cycle(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -426,14 +426,14 @@ public partial class DanmakuWorld
 			Phases = new()
 			{
 				new(650f, 30, false, "", static (w, t) => w.S6_NonSpell1(t)),
-				new(1000f, 45, true, "東方「青龍天昇」", static (w, t) => w.S6_Dragon(t)),
+				new(1000f, 45, true, "第二十四印「青龍天昇」", static (w, t) => w.S6_Dragon(t)),
 				new(700f, 30, false, "", static (w, t) => w.S6_NonSpell2(t)),
-				new(1000f, 45, true, "西方「白虎嘯風」", static (w, t) => w.S6_Tiger(t)),
+				new(1000f, 45, true, "第二十五印「白虎嘯風」", static (w, t) => w.S6_Tiger(t)),
 				new(750f, 30, false, "", static (w, t) => w.S6_NonSpell3(t)),
-				new(1050f, 45, true, "南方「朱雀焚天」", static (w, t) => w.S6_Phoenix(t)),
-				new(1050f, 45, true, "北方「玄武鎮海」", static (w, t) => w.S6_Tortoise(t)),
+				new(1050f, 45, true, "第二十六印「朱雀焚天」", static (w, t) => w.S6_Phoenix(t)),
+				new(1050f, 45, true, "第二十七印「玄武鎮海」", static (w, t) => w.S6_Tortoise(t)),
 				new(800f, 30, false, "", static (w, t) => w.S6_NonSpell4(t)),
-				new(2600f, 99, true, "四神奧義「四象歸一」", static (w, t) => w.S6_Final(t)),
+				new(2600f, 99, true, "第二十八印「四象歸一」", static (w, t) => w.S6_Final(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -540,9 +540,9 @@ public partial class DanmakuWorld
 			Name = "玄", Title = "五行的方士", StageTitle = "", StageSub = "",
 			Phases = new()
 			{
-				new(700f, 30, true, "逆符「五行逆轉」", static (w, t) => w.MB_Reverse(t)),
-				new(750f, 35, true, "數符「河圖洛書」", static (w, t) => w.MB_LoShu(t)),
-				new(800f, 35, true, "陣符「八門金鎖」", static (w, t) => w.MB_EightGates(t)),
+				new(700f, 30, true, "第二十九印「五行逆轉」", static (w, t) => w.MB_Reverse(t)),
+				new(750f, 35, true, "第三十印「河圖洛書」", static (w, t) => w.MB_LoShu(t)),
+				new(800f, 35, true, "第三十一印「八門金鎖」", static (w, t) => w.MB_EightGates(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -597,18 +597,18 @@ public partial class DanmakuWorld
 			Phases = new()
 			{
 				new(700f, 30, false, "", static (w, t) => w.EX_NonSpell1(t)),
-				new(900f, 45, true, "立直「立直一發」", static (w, t) => w.EX_Riichi(t)),
-				new(850f, 40, true, "平和「平和斷么」", static (w, t) => w.EX_Pinfu(t)),
+				new(900f, 45, true, "第三十二印「立直一發」", static (w, t) => w.EX_Riichi(t)),
+				new(850f, 40, true, "第三十三印「平和斷么」", static (w, t) => w.EX_Pinfu(t)),
 				new(750f, 30, false, "", static (w, t) => w.EX_NonSpell2(t)),
-				new(950f, 45, true, "一色「清一色」", static (w, t) => w.EX_Chinitsu(t)),
-				new(950f, 45, true, "對子「七對子」", static (w, t) => w.EX_Chiitoi(t)),
+				new(950f, 45, true, "第三十四印「清一色」", static (w, t) => w.EX_Chinitsu(t)),
+				new(950f, 45, true, "第三十五印「七對子」", static (w, t) => w.EX_Chiitoi(t)),
 				new(800f, 30, false, "", static (w, t) => w.EX_NonSpell3(t)),
-				new(1000f, 45, true, "開花「嶺上開花」", static (w, t) => w.EX_Rinshan(t)),
-				new(1100f, 50, true, "役滿一「大三元」", static (w, t) => w.EX_Daisangen(t)),
-				new(1100f, 50, true, "役滿二「大四喜」", static (w, t) => w.EX_Daisuushi(t)),
-				new(1f, 45, true, "役滿三「九蓮寶燈」", static (w, t) => w.EX_Chuuren(t), true),
-				new(1300f, 70, true, "役滿奧義「國士無雙」", static (w, t) => w.EX_Kokushi(t)),
-				new(6000f, 99, true, "終局「天和」", static (w, t) => w.EX_Tenhou(t)) { bTimerAtThird = true },   // the 99 s only start at 1/3 HP
+				new(1000f, 45, true, "第三十六印「嶺上開花」", static (w, t) => w.EX_Rinshan(t)),
+				new(1100f, 50, true, "第三十七印「大三元」", static (w, t) => w.EX_Daisangen(t)),
+				new(1100f, 50, true, "第三十八印「大四喜」", static (w, t) => w.EX_Daisuushi(t)),
+				new(1f, 45, true, "第三十九印「九蓮寶燈」", static (w, t) => w.EX_Chuuren(t), true),
+				new(1300f, 70, true, "第四十印「國士無雙」", static (w, t) => w.EX_Kokushi(t)),
+				new(6000f, 99, true, "第四十一印「天和」", static (w, t) => w.EX_Tenhou(t)) { bTimerAtThird = true },   // the 99 s only start at 1/3 HP
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -712,9 +712,9 @@ public partial class DanmakuWorld
 			Name = "饕餮", Title = "貪食的凶獸", StageTitle = "", StageSub = "",
 			Phases = new()
 			{
-				new(650f, 35, true, "饕符「貪食之口」", static (w, t) => w.IF_TaotieMaw(t)),
-				new(700f, 35, true, "饕符「鐘鼎饌宴」", static (w, t) => w.IF_TaotieFeast(t)),
-				new(750f, 35, true, "饕符「饕餮紋」", static (w, t) => w.IF_TaotieMotif(t)),
+				new(650f, 35, true, "第四十二印「貪食之口」", static (w, t) => w.IF_TaotieMaw(t)),
+				new(700f, 35, true, "第四十三印「鐘鼎饌宴」", static (w, t) => w.IF_TaotieFeast(t)),
+				new(750f, 35, true, "第四十四印「饕餮紋」", static (w, t) => w.IF_TaotieMotif(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -745,9 +745,9 @@ public partial class DanmakuWorld
 			Name = "檮杌", Title = "不馴的凶獸", StageTitle = "", StageSub = "",
 			Phases = new()
 			{
-				new(650f, 35, true, "杌符「頑石不化」", static (w, t) => w.IF_TaowuStone(t)),
-				new(700f, 35, true, "杌符「難訓之獸」", static (w, t) => w.IF_TaowuUntamed(t)),
-				new(750f, 35, true, "杌符「丈八之尾」", static (w, t) => w.IF_TaowuTail(t)),
+				new(650f, 35, true, "第四十五印「頑石不化」", static (w, t) => w.IF_TaowuStone(t)),
+				new(700f, 35, true, "第四十六印「難訓之獸」", static (w, t) => w.IF_TaowuUntamed(t)),
+				new(750f, 35, true, "第四十七印「丈八之尾」", static (w, t) => w.IF_TaowuTail(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -778,9 +778,9 @@ public partial class DanmakuWorld
 			Name = "混沌", Title = "無面的凶獸", StageTitle = "", StageSub = "",
 			Phases = new()
 			{
-				new(650f, 35, true, "沌符「七竅未開」", static (w, t) => w.IF_HundunSeven(t)),
-				new(700f, 35, true, "沌符「無面之舞」", static (w, t) => w.IF_HundunDance(t)),
-				new(750f, 35, true, "沌符「帝江歌舞」", static (w, t) => w.IF_HundunSong(t)),
+				new(650f, 35, true, "第四十八印「七竅未開」", static (w, t) => w.IF_HundunSeven(t)),
+				new(700f, 35, true, "第四十九印「無面之舞」", static (w, t) => w.IF_HundunDance(t)),
+				new(750f, 35, true, "第五十印「帝江歌舞」", static (w, t) => w.IF_HundunSong(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -811,9 +811,9 @@ public partial class DanmakuWorld
 			Name = "窮奇", Title = "顛倒是非的凶獸", StageTitle = "", StageSub = "",
 			Phases = new()
 			{
-				new(650f, 35, true, "奇符「懲善揚惡」", static (w, t) => w.IF_QiongqiLie(t)),
-				new(700f, 35, true, "奇符「翼虎狂風」", static (w, t) => w.IF_QiongqiGale(t)),
-				new(750f, 35, true, "奇符「食人從首」", static (w, t) => w.IF_QiongqiHead(t)),
+				new(650f, 35, true, "第五十一印「懲善揚惡」", static (w, t) => w.IF_QiongqiLie(t)),
+				new(700f, 35, true, "第五十二印「翼虎狂風」", static (w, t) => w.IF_QiongqiGale(t)),
+				new(750f, 35, true, "第五十三印「食人從首」", static (w, t) => w.IF_QiongqiHead(t)),
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{
@@ -846,24 +846,21 @@ public partial class DanmakuWorld
 			Name = "四凶", Title = "結界下的上古凶獸", StageTitle = "Extra-IF", StageSub = "崩落天宮・四凶之淵",
 			Phases = new()
 			{
+				// each beast opens with one non-spell and then casts both of its cards back to back
 				new(800f, 30, false, "", static (w, t) => w.IF_NsTaotie(t), false, 0, 0),
-				new(1000f, 45, true, "凶符「吞天噬地」", static (w, t) => w.IF_Devour(t), false, 0, 0),
-				new(800f, 30, false, "", static (w, t) => w.IF_NsTaotie(t), false, 0, 0),
-				new(1000f, 45, true, "凶符「無底之胃」", static (w, t) => w.IF_Stomach(t), false, 0, 0),
+				new(1000f, 45, true, "第五十四印「吞天噬地」", static (w, t) => w.IF_Devour(t), false, 0, 0),
+				new(1000f, 45, true, "第五十五印「無底之胃」", static (w, t) => w.IF_Stomach(t), false, 0, 0),
 				new(800f, 30, false, "", static (w, t) => w.IF_NsTaowu(t), false, 0, 1),
-				new(1000f, 90, true, "凶符「傲狠明德」", static (w, t) => w.IF_Arrogance(t), false, 0, 1),
-				new(800f, 30, false, "", static (w, t) => w.IF_NsTaowu(t), false, 0, 1),
-				new(1000f, 45, true, "凶符「不退之陣」", static (w, t) => w.IF_NoRetreat(t), false, 0, 1),
+				new(1000f, 90, true, "第五十六印「傲狠明德」", static (w, t) => w.IF_Arrogance(t), false, 0, 1),
+				new(1000f, 45, true, "第五十七印「不退之陣」", static (w, t) => w.IF_NoRetreat(t), false, 0, 1),
 				new(800f, 30, false, "", static (w, t) => w.IF_NsHundun(t), false, 0, 2),
-				new(1000f, 45, true, "凶符「混元一氣」", static (w, t) => w.IF_PrimalMist(t), false, 0, 2),
-				new(800f, 30, false, "", static (w, t) => w.IF_NsHundun(t), false, 0, 2),
-				new(1000f, 45, true, "凶符「渾沌初開」", static (w, t) => w.IF_ChaosSplit(t), false, 0, 2),
+				new(1000f, 45, true, "第五十八印「混元一氣」", static (w, t) => w.IF_PrimalMist(t), false, 0, 2),
+				new(1000f, 45, true, "第五十九印「渾沌初開」", static (w, t) => w.IF_ChaosSplit(t), false, 0, 2),
 				new(800f, 30, false, "", static (w, t) => w.IF_NsQiongqi(t), false, 0, 3),
-				new(1000f, 45, true, "凶符「顛倒是非」", static (w, t) => w.IF_Inversion(t), false, 0, 3),
-				new(800f, 30, false, "", static (w, t) => w.IF_NsQiongqi(t), false, 0, 3),
-				new(1000f, 90, true, "凶符「窮奇之翼」", static (w, t) => w.IF_Wings(t), false, 0, 3),
-				new(1f, 40, true, "耐久「四凶降世」", static (w, t) => w.IF_QuadSurvive(t), true, 0, 4),
-				new(4000f, 99, true, "終符「四凶・天地失序」", static (w, t) => w.IF_QuadFinal(t), false, 0, 4) { bTimerAtThird = true },   // the 99 s only start at 1/3 HP
+				new(1000f, 45, true, "第六十印「顛倒是非」", static (w, t) => w.IF_Inversion(t), false, 0, 3),
+				new(1000f, 90, true, "第六十一印「窮奇之翼」", static (w, t) => w.IF_Wings(t), false, 0, 3),
+				new(1f, 40, true, "第六十二印「四凶降世」", static (w, t) => w.IF_QuadSurvive(t), true, 0, 4),
+				new(4000f, 99, true, "終印「四凶・天地失序」", static (w, t) => w.IF_QuadFinal(t), false, 0, 4) { bTimerAtThird = true },   // the 99 s only start at 1/3 HP
 			},
 			Dialogue = new List<FDialogueLine>[]
 			{

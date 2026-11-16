@@ -39,7 +39,7 @@ public partial class DanmakuWorld
 		if (Every(T, 180, 90)) WanderBoss();
 	}
 
-	// 梅符「梅花盛開」: seeds appear around the boss and burst into five petals
+	// 第十三印「梅花盛開」: seeds appear around the boss and burst into five petals
 	public void S4_Plum(int T)
 	{
 		PatrolBoss(T);
@@ -66,7 +66,7 @@ public partial class DanmakuWorld
 		if (Every(T, 170, 85)) WanderBoss();
 	}
 
-	// 蘭符「蘭花路徑」: a fast spiral of orchid petals that start to curl after a moment
+	// 第十四印「蘭花路徑」: a fast spiral of orchid petals that start to curl after a moment
 	public void S4_Orchid(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 105f));
@@ -83,7 +83,9 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 竹符「竹林之勢」: bamboo shoots up from the ground after a warning and sheds leaves from the top
+	// 第十五印「竹林之勢」: bamboo shoots up from the ground after a warning and sheds leaves from the top.
+	// The ordinary shoots never come up beside you — but every five seconds one thick stalk comes up exactly
+	// where you stand, and that one sheds a storm of leaves: once the usual shower on Easy, four times on Lunatic.
 	public void S4_Bamboo(int T)
 	{
 		PatrolBoss(T);
@@ -92,12 +94,31 @@ public partial class DanmakuWorld
 			int Cols = Difficulty >= 2 ? 2 : 1;
 			for (int i = 0; i < Cols; ++i)
 			{
-				AddBeam(new FVector2f(Rng.FRandRange(30f, FieldW - 30f), FieldH), -90f, 8f, 120, 30, 60, ColBamboo, 2);
+				AddBeam(new FVector2f(BambooColumn(), FieldH), -90f, 8f, 120, 30, 60, ColBamboo, 2);
 			}
+		}
+		if (Every(T, 300, 150))
+		{
+			var Big = AddBeam(new FVector2f(Player.Pos.X, FieldH), -90f, 16f, 120, 30, 60, ColBamboo, 2);
+			Big.LeafMul = 1 + D4(Difficulty);
 		}
 	}
 
-	// 菊符「菊花之哀」: chrysanthemum bursts that get denser and faster as the boss weakens
+	/** Where the next shoot comes up: anywhere but beside you. The thick stalk is the one that hunts you
+	 *  down, so the ordinary ones always leave you a way out. */
+	float BambooColumn()
+	{
+		const float Keep = 56f;
+		float Px = Player.Pos.X;
+		float X = Rng.FRandRange(30f, FieldW - 30f);
+		for (int Try = 0; Try < 12 && FMath.Abs(X - Px) < Keep; ++Try)
+		{
+			X = Rng.FRandRange(30f, FieldW - 30f);
+		}
+		return X;
+	}
+
+	// 第十六印「菊花之哀」: chrysanthemum bursts that get denser and faster as the boss weakens
 	public void S4_Chrys(int T)
 	{
 		PatrolBoss(T);
@@ -113,7 +134,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 四君子「君子之約」 (Normal+, survival): chrysanthemums roam the field, bouncing between plum seeds and bamboo
+	// 第十七印「君子之約」 (Normal+, survival): chrysanthemums roam the field, bouncing between plum seeds and bamboo
 	public void S4_Final(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, FieldH * 0.45f));

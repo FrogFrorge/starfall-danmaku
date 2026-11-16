@@ -230,9 +230,16 @@ public partial class DanmakuWorld
 
 	public void BeginPlay()
 	{
-		Rng.Initialize(20261106);
-
 		string Cmd = Host.GetCommandLine();
+		// The simulation runs off one stream of dice. A fixed seed made every run of the game play out
+		// exactly the same, so patterns that pick an angle "at random" opened in the same place every
+		// time; a real game seeds itself from the clock. Demo and bot runs keep the fixed seed, and
+		// -DanmakuSeed=N forces any seed, so tests stay repeatable.
+		int Seed = 20261106;
+		if (!FParse.Param(Cmd, "DanmakuDemo")) Seed = unchecked((int)System.DateTime.Now.Ticks) ^ System.Environment.TickCount;
+		FParse.Value(Cmd, "DanmakuSeed=", ref Seed);
+		Rng.Initialize(Seed);
+
 		bDemo = FParse.Param(Cmd, "DanmakuDemo");
 		bDemoHits = FParse.Param(Cmd, "DanmakuHitTest");
 		bBot = bDemo && FParse.Param(Cmd, "DanmakuBot");
@@ -1271,13 +1278,15 @@ public partial class DanmakuWorld
 		E.Pos = Pos;
 		E.Vel = Vel;
 		E.Kind = Kind;
-		// Toughness by road. The fairies that come in groups go from x1 on stage 1 to x1.5 on stage 6;
-		// the fox masks, which hang around much longer, go from x1 to x1.9. Extra and Extra-IF are x2.
-		// The guardian masks are tuned by hand (four times their road's fox mask), so they keep x1.2.
+		// Toughness by road. The fairies that come in groups climb a twentieth a stage, x1 on stage 1 up to
+		// x1.25 on stage 6; the fox masks, which hang around much longer, are x1, then x1.1 on stage 2 and
+		// x1.2 from stage 3 on, Extra and Extra-IF included. The guardian masks are tuned by hand (four
+		// times their road's fox mask), so they keep x1.2 — the same as the fox masks they are built from.
 		float Tough;
 		if (Kind == 3) Tough = 1.2f;
+		else if (Kind == 2) Tough = StageIndex <= 0 ? 1f : (StageIndex == 1 ? 1.1f : 1.2f);
 		else if (StageIndex >= ExtraStage) Tough = 2f;
-		else Tough = 1f + (Kind == 2 ? 0.18f : 0.1f) * FMath.Min(StageIndex, 5);
+		else Tough = 1f + 0.05f * FMath.Min(StageIndex, 5);
 		E.HP = HP * Tough;
 		E.Pattern = Pattern;
 		E.StopAt = StopAt;
@@ -1591,6 +1600,7 @@ public partial class DanmakuWorld
 	public void BeginPhase(int Index)
 	{
 		FPhaseDef Def = Phases()[Index];
+		bool bAfterSpell = Boss.bSpell && Boss.Phase >= 0;   // the phase that just ended was a card
 		FogRadius = 0f;
 		Boss.Phase = Index;
 		Boss.HP = Boss.MaxHP = Def.HP * (bDemo ? DemoHPScale : 1f);
@@ -1600,11 +1610,17 @@ public partial class DanmakuWorld
 		if (Def.bSpell) MarkSpellSeen(Def.Name);   // unlocks it in spell practice
 		Boss.bBonusValid = true;
 		Boss.bBombedPhase = false;
-		Boss.GapTimer = 60;
+		// A second between phases, and two when one card follows straight after another: with no
+		// non-spell in between the boss would otherwise start casting the moment the last card broke.
+		Boss.GapTimer = Def.bSpell && bAfterSpell ? 120 : 60;
 		Boss.bVulnerable = false;
 		Boss.PhaseTime = 0;
 		Boss.PatternTimer = 0;
 		Boss.Stage6Beasts = 0;
+		Boss.LastX = Boss.Pos.X;
+		Boss.MoveSign = 0;
+		Boss.TigerRings = 0;
+		Boss.TigerRingTimer = 0;
 		Boss.ShieldTimer = 0;
 		Array.Clear(Boss.JoinFrame);
 		int NewActor = Def.Actor;
@@ -1732,7 +1748,7 @@ public partial class DanmakuWorld
 		if (Every(T, 150, 75)) WanderBoss();
 	}
 
-	// ---------- 日輪「赫耀天環」 : curving solar rings, slow halo, aimed flares ----------
+	// ---------- 第一印「赫耀天環」 : curving solar rings, slow halo, aimed flares ----------
 
 	public void SunRings(int T, int Interval, int Rings, int BaseCount)
 	{
@@ -1776,7 +1792,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// ---------- 月蝕「月面反照」 : bouncing moon blades, orbiting moons ----------
+	// ---------- 第二印「月面反照」 : bouncing moon blades, orbiting moons ----------
 
 	public void LunarSideWave(int T)
 	{
@@ -1821,7 +1837,7 @@ public partial class DanmakuWorld
 		if (Every(T, 96, 0)) OrbitingMoons(8, 42f, 78);
 	}
 
-	// ---------- 星雨「天河崩落」 : splitting star rain, constellation bursts, meteor sweeps ----------
+	// ---------- 第三印「天河崩落」 : splitting star rain, constellation bursts, meteor sweeps ----------
 
 	public void StarRain(int Num)
 	{
@@ -1868,7 +1884,7 @@ public partial class DanmakuWorld
 		if (Every(T, 120, 50)) MeteorSweep(Rng.FRand() < 0.5f);
 	}
 
-	// ---------- 日月星奧義「終夜天象」 : sun + moon + stars together ----------
+	// ---------- 第四印「終夜天象」 : sun + moon + stars together ----------
 
 	public void Pattern_Final(int T)
 	{
@@ -2560,7 +2576,7 @@ public partial class DanmakuWorld
 				}
 				else if (Bm.OnStrike == 2)
 				{
-					SpawnLeaves(End, Bm.Angle + 180f, Cnt(Rng.RandRange(4, 9)));
+					SpawnLeaves(End, Bm.Angle + 180f, Cnt(Rng.RandRange(4, 9)) * Bm.LeafMul);
 				}
 				else if (Bm.OnStrike == 4)
 				{

@@ -6,7 +6,7 @@ config_version=5
 
 [application]
 
-config/name="星墜彈幕 Starfall Danmaku"
+config/name="星墜天印錄 Starfall: Seal Registry"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 

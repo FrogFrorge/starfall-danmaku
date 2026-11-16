@@ -78,42 +78,45 @@ def count_figures(strip):
     return int((sizes > sizes.max() * 0.15).sum())
 
 
-def split_row(strip, cols):
-    """The figures in one source row. They are drawn wider than their slot and drift sideways through
-    the animation, and two of them sometimes touch, so the cuts are chosen among the emptiest columns:
-    the set that leaves the most even run of figures wins."""
-    weight = (strip[..., 3] > 24).sum(0).astype(np.float64)
+def best_cuts(weight, n):
+    """Where to cut a strip into n pieces: among the emptiest lines, the set that leaves the most
+    even run of figures. Used across a row (between figures) and down the sheet (between rows),
+    because the figures are drawn wider and taller than their slot and drift as they animate."""
     W = len(weight)
-    step = W / cols
+    step = W / n
+    if n < 2:
+        return [0, W]
     cand = []
     for thr in (0, weight.max() * 0.02, weight.max() * 0.05, weight.max() * 0.12, weight.max() * 0.25):
         cand = thin_columns(weight, thr)
-        if len(cand) >= cols - 1:
+        if len(cand) >= n - 1:
             break
-    if len(cand) < cols - 1:                       # nothing to go on: fall back to an even split
-        cuts = [round(c * step) for c in range(cols + 1)]
-    else:
-        cand = np.array(cand, float)
-        # pick cols-1 of them, in order, so the figures come out as evenly wide as possible
-        N = len(cand)
-        INF = float("inf")
-        cost = np.full((cols, N), INF)
-        back = np.zeros((cols, N), int)
-        cost[0] = (cand - step) ** 2
-        for j in range(1, cols - 1):
-            for i in range(N):
-                prev = cost[j - 1, :i]
-                if len(prev) == 0:
-                    continue
-                c = prev + (cand[i] - cand[:i] - step) ** 2
-                k = int(np.argmin(c))
-                cost[j, i] = c[k]; back[j, i] = k
-        last = cost[cols - 2] + (W - cand - step) ** 2
-        i = int(np.argmin(last))
-        picked = [i]
-        for j in range(cols - 2, 0, -1):
-            i = back[j, i]; picked.append(i)
-        cuts = [0] + [int(cand[k]) for k in reversed(picked)] + [W]
+    if len(cand) < n - 1:                          # nothing to go on: fall back to an even split
+        return [round(c * step) for c in range(n + 1)]
+    cand = np.array(cand, float)
+    N = len(cand)
+    cost = np.full((n, N), float("inf"))
+    back = np.zeros((n, N), int)
+    cost[0] = (cand - step) ** 2
+    for j in range(1, n - 1):
+        for i in range(N):
+            prev = cost[j - 1, :i]
+            if len(prev) == 0:
+                continue
+            c = prev + (cand[i] - cand[:i] - step) ** 2
+            k = int(np.argmin(c))
+            cost[j, i] = c[k]; back[j, i] = k
+    last = cost[n - 2] + (W - cand - step) ** 2
+    i = int(np.argmin(last))
+    picked = [i]
+    for j in range(n - 2, 0, -1):
+        i = back[j, i]; picked.append(i)
+    return [0] + [int(cand[k]) for k in reversed(picked)] + [W]
+
+
+def split_row(strip, cols):
+    """The figures in one source row."""
+    cuts = best_cuts((strip[..., 3] > 24).sum(0).astype(np.float64), cols)
     return [trim_strays(strip[:, cuts[i]:cuts[i + 1]].copy()) for i in range(cols)]
 
 
@@ -154,8 +157,9 @@ def cut(path, cols, rows, washed=False):
     if washed:
         im = strip_wash(im)
     im[..., 3][im[..., 3] < 24] = 0          # the soft glow baked around every figure
-    H = im.shape[0]
-    ys = [round(r * H / rows) for r in range(rows + 1)]
+    # 窮奇's figures are taller than their row and overlap into the next one, so an even cut took
+    # their legs off: the rows are split on the emptiest lines, the same way the figures are.
+    ys = best_cuts((im[..., 3] > 24).sum(1).astype(np.float64), rows)
     out = []
     for r in range(rows):
         strip = im[ys[r]:ys[r + 1]]

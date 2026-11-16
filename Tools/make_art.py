@@ -424,16 +424,34 @@ def sprite_option():
 # ----------------------------------------------------------------------------------------
 # Title logo
 # ----------------------------------------------------------------------------------------
+# 星墜天印錄 — the registry of the celestial seals. One logo per language: the CJK name set large
+# with the English line under it, and for the Latin languages the game's name large instead.
+TITLES = {
+    "zh":  ("星墜天印錄", "STARFALL  ·  SEAL REGISTRY"),
+    "zhs": ("星坠天印录", "STARFALL  ·  SEAL REGISTRY"),
+    "ja":  ("星墜天印録", "STARFALL  ·  SEAL REGISTRY"),
+    "en":  ("STARFALL", "SEAL REGISTRY"),
+    "fr":  ("STARFALL", "REGISTRE DES SCEAUX"),
+}
+
+
 def title_logo():
+    for lang, (top, sub) in TITLES.items():
+        one_logo(lang, top, sub)
+
+
+def one_logo(lang, top, sub):
     w, h = 900, 380
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    fz = ImageFont.truetype("C:/Windows/Fonts/msjhbd.ttc", 150)
-    fe = ImageFont.truetype("C:/Windows/Fonts/georgiab.ttf", 64)
+    bCJK = lang in ("zh", "zhs", "ja")
+    ftop = ImageFont.truetype("C:/Windows/Fonts/msjhbd.ttc", 132 if bCJK else 150) if bCJK \
+        else ImageFont.truetype("C:/Windows/Fonts/georgiab.ttf", 128)
+    fsub = ImageFont.truetype("C:/Windows/Fonts/georgiab.ttf", 50 if bCJK else 58)
 
     text_mask = Image.new("L", (w, h), 0)
     d = ImageDraw.Draw(text_mask)
-    d.text((w // 2, 140), "星墜彈幕", font=fz, anchor="mm", fill=255)
-    d.text((w // 2, 290), "STARFALL DANMAKU", font=fe, anchor="mm", fill=255)
+    d.text((w // 2, 140), top, font=ftop, anchor="mm", fill=255)
+    d.text((w // 2, 290), sub, font=fsub, anchor="mm", fill=255)
 
     grad = Image.new("RGBA", (w, h))
     gd = ImageDraw.Draw(grad)
@@ -457,8 +475,10 @@ def title_logo():
     sd = ImageDraw.Draw(img)
     for (sx, sy, r) in [(110, 60, 22), (800, 80, 16), (760, 220, 10), (140, 230, 12), (450, 20, 9)]:
         sd.polygon(star_pts(sx, sy, r, r * 0.35, 4), fill=(255, 240, 190, 255))
-    img.save(os.path.join(OUT, "title.png"))
-    print("wrote title.png", img.size)
+    name = "title.png" if lang == "zh" else "title_%s.png" % lang
+    img.save(os.path.join(OUT, name))
+    print("wrote", name, img.size)
+
 
 
 if __name__ == "__main__":

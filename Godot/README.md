@@ -1,4 +1,4 @@
-# 星墜彈幕 — Godot 4.6 (C#) version
+# 星墜天印錄 — Godot 4.6 (C#) version
 
 A port of the Unreal project one folder up. Gameplay, balance, art, audio, text and tools are the same; the C# is a
 near line-for-line translation of the C++ (see `PORTING.md` for the rules and which file came from which .cpp).

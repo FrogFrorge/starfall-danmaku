@@ -45,7 +45,7 @@ public partial class DanmakuWorld
 		if (Every(T, 180, 90)) WanderBoss();
 	}
 
-	// 立直「立直一發」: red lines mark the shots, then fast columns of tiles fly down them; the discards rain from above
+	// 第三十二印「立直一發」: red lines mark the shots, then fast columns of tiles fly down them; the discards rain from above
 	public void EX_Riichi(int T)
 	{
 		PatrolBoss(T);
@@ -79,16 +79,33 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 平和「平和斷么」: calm, perfectly symmetric alternating rings
+	// 第三十三印「平和斷么」: 平和 is a hand of runs and nothing else, so the tiles leave in runs. A whole
+	// ring of white and green tiles goes out at a time, and because the ring turns a little between
+	// shots every tile in it trails its own spiral — as many tails as there are tiles in the ring.
+	// A red ring of half that many goes out with it, turning the other way and travelling faster, so
+	// the two spirals cut across each other. Every difficulty adds two tiles, and so two more tails.
 	public void EX_Pinfu(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 105f));
-		if (Every(T, 22, 0))
+		int D = FMath.Clamp(Difficulty, 0, 3);
+		int N = 8 + 2 * D;                         // tiles in the ring = tails in the spiral
+		int R = N / 2;                             // the red ring is half as many tiles
+		if (Every(T, 9, 0))
 		{
-			int W = T / FMath.Max(1, FMath.RoundToInt(22 * GetDifficultyInfo(Difficulty).IntervalScale));
-			Ring(Boss.Pos, 28, 1.5f, (W % 2) * (180f / 28f), EBulletShape.Tile, W % 2 != 0 ? ColHatsu : ColHaku);
+			// each ring turns only a fifth of the gap between two of its own tiles, so every tile's
+			// trail stays a clean curve instead of filling in as a lattice
+			int W = T / 9;
+			float Base = W * (360f / N) * 0.2f;
+			for (int i = 0; i < N; ++i)
+			{
+				Fire(Boss.Pos, 2.6f, Base + 360f * i / N, EBulletShape.Tile, i % 2 == 0 ? ColHaku : ColHatsu);
+			}
+			float Red = 25f - W * (360f / R) * 0.2f;
+			for (int i = 0; i < R; ++i)
+			{
+				Fire(Boss.Pos, 3.1f, Red + 360f * i / R, EBulletShape.Tile, ColChun);
+			}
 		}
-		if (Every(T, 33, 11)) Ring(Boss.Pos, 12, 2.4f, AimAngle(Boss.Pos), EBulletShape.Medium, ColChun);   // the red rings come twice as often
 	}
 
 	public void EX_NonSpell2(int T)
@@ -99,7 +116,7 @@ public partial class DanmakuWorld
 		if (Every(T, 160, 80)) WanderBoss();
 	}
 
-	// 一色「清一色」: three-armed spirals of one colour; each new spiral starts before the last one ends, turning the other way
+	// 第三十四印「清一色」: three-armed spirals of one colour; each new spiral starts before the last one ends, turning the other way
 	public void EX_Chinitsu(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 110f));
@@ -118,7 +135,7 @@ public partial class DanmakuWorld
 		if (Every(T, 60, 30)) Ring(Boss.Pos, 18, 1.2f, 0f, EBulletShape.Large, new FLinearColor(0.3f, 0.75f, 0.4f));
 	}
 
-	// 對子「七對子」: seven pairs of tiles that fly together, then split apart
+	// 第三十五印「七對子」: seven pairs of tiles that fly together, then split apart
 	public void EX_Chiitoi(int T)
 	{
 		PatrolBoss(T);
@@ -157,7 +174,7 @@ public partial class DanmakuWorld
 		if (Every(T, 150, 75)) WanderBoss();
 	}
 
-	// 開花「嶺上開花」: tiles are tossed into the air and blossom into rings
+	// 第三十六印「嶺上開花」: tiles are tossed into the air and blossom into rings
 	public void EX_Rinshan(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 120f));
@@ -178,7 +195,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 役滿一「大三元」: white, green and red dragons — three-armed, six-layered turning sprays plus slow rings
+	// 第三十七印「大三元」: white, green and red dragons — three-armed, six-layered turning sprays plus slow rings
 	public void EX_Daisangen(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 110f));
@@ -223,7 +240,7 @@ public partial class DanmakuWorld
 	static readonly float[] EX_DaisuushiSpeeds = { 0.8f, 1.15f, 1.5f, 1.85f };
 	static readonly float[] EX_DaisuushiOffsets = { 0f, 7.4f, 16.6f, 24.6f };
 
-	// 役滿二「大四喜」: one volley of four rings of wind (four colours, four speeds) that wrap around the edges of the screen.
+	// 第三十八印「大四喜」: one volley of four rings of wind (four colours, four speeds) that wrap around the edges of the screen.
 	// Bombs cannot erase them.
 	public void EX_Daisuushi(int T)
 	{
@@ -250,7 +267,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 役滿三「九蓮寶燈」 (survival 45 s): nine numbered lotuses appear; 1 and 9 burst into rings, 2-8 into homing petals
+	// 第三十九印「九蓮寶燈」 (survival 45 s): nine numbered lotuses appear; 1 and 9 burst into rings, 2-8 into homing petals
 	public void EX_Chuuren(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 100f));
@@ -282,7 +299,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 役滿奧義「國士無雙」: thirteen assassins come out — one first, then two at a time (bombs and the death clear can't remove them);
+	// 第四十印「國士無雙」: thirteen assassins come out — one first, then two at a time (bombs and the death clear can't remove them);
 	// each one flies to a wall, then stalks the player, and does it again every time it reaches a wall
 	public void EX_Kokushi(int T)
 	{
@@ -312,7 +329,7 @@ public partial class DanmakuWorld
 
 	static readonly string[] EX_TenhouPhaseNames = { "天和", "地和", "人和" };
 
-	// 終局「天和」: three hands in one card, like 燁's last spell — each one joins the ones already in play.
+	// 第四十一印「天和」: three hands in one card, like 燁's last spell — each one joins the ones already in play.
 	//   天和 (from the start): rings of tiles burst from the top edge; half of each ring flies off into the sky. Each ring turns
 	//        a different way.
 	//   地和 (2/3 health): rows of tiles rise from the bottom, the tiles scattered at random along each row.
@@ -330,7 +347,7 @@ public partial class DanmakuWorld
 			if (H > 0)
 			{
 				ShowMessage("「" + Tr(EX_TenhouPhaseNames[H]) + "」", "", 90);
-				// the card's title keeps its 天和 and stacks each new hand after it: 終局「天和」「地和」「人和」
+				// the card's title keeps its 天和 and stacks each new hand after it: 第四十一印「天和」「地和」「人和」
 				Boss.SpellName += QuoteName(EX_TenhouPhaseNames[H]);
 				AddParticle(Boss.Pos, FVector2f.Zero, 420f, new FLinearColor(1f, 0.85f, 0.45f), 40, true);
 				Sfx(ESfx.Spell);
@@ -367,7 +384,7 @@ public partial class DanmakuWorld
 	// Extra midboss: 玄 returns to warn the player (three spell cards)
 	// =====================================================================================
 
-	// 逆符「五行逆轉」: rings in the five colours that spin one way, then all reverse together; a second layer turns the other way
+	// 第二十九印「五行逆轉」: rings in the five colours that spin one way, then all reverse together; a second layer turns the other way
 	public void MB_Reverse(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 105f));
@@ -391,7 +408,7 @@ public partial class DanmakuWorld
 
 	static readonly int[] MB_LoShuSquare = { 4, 9, 2, 3, 5, 7, 8, 1, 6 };
 
-	// 數符「河圖洛書」: the 3x3 magic square — seeds bloom in the order of the numbers 1 to 9, and the centre five answers with an aimed ring
+	// 第三十印「河圖洛書」: the 3x3 magic square — seeds bloom in the order of the numbers 1 to 9, and the centre five answers with an aimed ring
 	public void MB_LoShu(int T)
 	{
 		PlaceBoss(new FVector2f(FieldW * 0.5f, 80f));
@@ -418,7 +435,7 @@ public partial class DanmakuWorld
 		}
 	}
 
-	// 陣符「八門金鎖」: eight beams lock the field around the boss and burst into shrapnel where they hit the walls;
+	// 第三十一印「八門金鎖」: eight beams lock the field around the boss and burst into shrapnel where they hit the walls;
 	// one gate is always left open
 	public void MB_EightGates(int T)
 	{
